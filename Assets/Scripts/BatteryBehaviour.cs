@@ -20,12 +20,6 @@ public class BatteryBehaviour : MonoBehaviour
         Vector3 scale = liquid.localScale;
         scale.y = batteryCharge;
         liquid.localScale = scale;
-        //Keep the liquid at the bottom of the container
-        liquid.localPosition = new Vector3(
-            liquid.localPosition.x,
-            scale.y*maxLiquidHeight/2f,
-            liquid.localPosition.z
-        );
     }
     public void DrainBattery()
     {
