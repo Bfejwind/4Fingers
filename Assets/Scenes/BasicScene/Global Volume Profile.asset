@@ -21,7 +21,7 @@ MonoBehaviour:
     m_Value: 1
   m_CloudPreset:
     m_OverrideState: 1
-    m_Value: 4
+    m_Value: 3
   densityMultiplier:
     m_OverrideState: 1
     m_Value: 0.35
@@ -74,7 +74,7 @@ MonoBehaviour:
     m_Value: 0.85
   shapeScale:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 5
   erosionFactor:
     m_OverrideState: 1
     m_Value: 0.75
@@ -192,7 +192,7 @@ MonoBehaviour:
     m_Value: 1000
   altitudeRange:
     m_OverrideState: 1
-    m_Value: 10000
+    m_Value: 5000
   shapeOffset:
     m_OverrideState: 0
     m_Value: {x: 0, y: 0, z: 0}
