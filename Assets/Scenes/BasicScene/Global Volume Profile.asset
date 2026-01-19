@@ -83,7 +83,7 @@ MonoBehaviour:
     m_Value: 1
   m_CloudPreset:
     m_OverrideState: 1
-    m_Value: 3
+    m_Value: 4
   densityMultiplier:
     m_OverrideState: 1
     m_Value: 0.35
@@ -284,7 +284,7 @@ MonoBehaviour:
     m_Value: 0
   ambientLightProbeDimmer:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 1.805
   sunLightDimmer:
     m_OverrideState: 0
     m_Value: 1
@@ -293,7 +293,7 @@ MonoBehaviour:
     m_Value: 0.1
   scatteringTint:
     m_OverrideState: 1
-    m_Value: {r: 0.95, g: 0.89456, b: 0.85595, a: 1}
+    m_Value: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
   powderEffectIntensity:
     m_OverrideState: 0
     m_Value: 0.25
@@ -484,7 +484,7 @@ MonoBehaviour:
     m_Value: 0.125
   tint:
     m_OverrideState: 1
-    m_Value: {r: 0.8862745, g: 0.6212591, b: 0.5294118, a: 1}
+    m_Value: {r: 0.8862745, g: 0.39751846, b: 0.23220389, a: 1}
   enableAdditionalLightsContribution:
     m_OverrideState: 1
     m_Value: 1
