@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.kink3d.mirrors": "file:D:/Download/kMirrors-master/kMirrors-master",
     "com.unity.feature.development": "1.0.2",
     "com.unity.inputsystem": "1.14.2",
     "com.unity.learn.iet-framework": "4.0.4",
