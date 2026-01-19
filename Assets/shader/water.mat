@@ -14,8 +14,8 @@ Material:
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 2
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 1
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses:
@@ -66,7 +66,7 @@ Material:
     - _normal_strgnth: 0.618
     - _refelction: 0.53
     - _refraction: 0.05
-    - _ripple_strenth: 0
+    - _ripple_strenth: 5
     - _smoothnees: 1
     - _water_lerp: 0.513
     m_Colors:

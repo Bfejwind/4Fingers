@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class XRWaterRipple : MonoBehaviour
+public class XRCameraWaterRipple : MonoBehaviour
 {
     [SerializeField] private ParticleSystem ripple;
     [SerializeField] private float emitInterval = 0.2f;
@@ -9,36 +9,28 @@ public class XRWaterRipple : MonoBehaviour
     private float timer;
 
     void Update()
-    {   
-        {
-        Debug.DrawRay(transform.position, Vector3.up, Color.red);
-        }
+    {
         if (!inWater) return;
 
         timer += Time.deltaTime;
-
         if (timer >= emitInterval)
         {
-            ripple.transform.position = transform.position;
+            Vector3 footPos = transform.position + Vector3.down * 1.2f;
+            ripple.transform.position = footPos;
             ripple.Emit(1);
             timer = 0f;
         }
-        
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Water"))
-        {
             inWater = true;
-        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Water"))
-        {
             inWater = false;
-        }
     }
 }
