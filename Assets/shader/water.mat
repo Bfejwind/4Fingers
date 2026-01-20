@@ -71,8 +71,8 @@ Material:
     - _water_lerp: 0.513
     m_Colors:
     - _color: {r: 1, g: 1, b: 1, a: 1}
-    - _uv1: {r: 8, g: 8, b: -0.06, a: 0.6}
-    - _uv2: {r: 6, g: 6, b: 0, a: 0}
+    - _uv1: {r: 10, g: 10, b: -0.06, a: 0.6}
+    - _uv2: {r: 8, g: 8, b: 0, a: 0}
     - _wate_speed: {r: 0.05, g: 0.05, b: 0, a: 0}
     - _water_speed2: {r: -0.1, g: 0.1, b: 0, a: 0}
   m_BuildTextureStacks: []
