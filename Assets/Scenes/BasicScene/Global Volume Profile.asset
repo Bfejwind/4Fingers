@@ -62,7 +62,7 @@ MonoBehaviour:
   intensity:
     m_OverrideState: 1
     m_Value: 0.179
---- !u!114 &-6554063396336943417
+--- !u!114 &-7000388070045723459
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -71,271 +71,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5944d5dca791344186c8265c2b87ac4, type: 3}
-  m_Name: VolumetricClouds
+  m_Script: {fileID: 11500000, guid: 221518ef91623a7438a71fef23660601, type: 3}
+  m_Name: WhiteBalance
   m_EditorClassIdentifier: 
-  active: 1
-  state:
+  active: 0
+  temperature:
     m_OverrideState: 1
-    m_Value: 1
-  localClouds:
-    m_OverrideState: 1
-    m_Value: 1
-  m_CloudPreset:
-    m_OverrideState: 1
-    m_Value: 4
-  densityMultiplier:
-    m_OverrideState: 1
-    m_Value: 0.058
-  densityCurve:
-    m_OverrideState: 1
-    m_Value:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.037
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.6
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  shapeFactor:
-    m_OverrideState: 1
-    m_Value: 0.85
-  shapeScale:
-    m_OverrideState: 1
-    m_Value: 1.58
-  erosionFactor:
-    m_OverrideState: 1
-    m_Value: 0.75
-  erosionScale:
-    m_OverrideState: 1
-    m_Value: 107
-  erosionCurve:
-    m_OverrideState: 1
-    m_Value:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.05
-        value: 0.8
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.2438
-        value: 0.9498
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.5
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.93
-        value: 0.9268
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  ambientOcclusionCurve:
-    m_OverrideState: 1
-    m_Value:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.1
-        value: 0.4
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  microErosion:
-    m_OverrideState: 0
-    m_Value: 0
-  microErosionFactor:
-    m_OverrideState: 1
-    m_Value: 0.48
-  microErosionScale:
-    m_OverrideState: 1
-    m_Value: 200
-  bottomAltitude:
-    m_OverrideState: 1
-    m_Value: 1000
-  altitudeRange:
-    m_OverrideState: 1
-    m_Value: 5000
-  shapeOffset:
-    m_OverrideState: 0
-    m_Value: {x: 0, y: 0, z: 0}
-  earthCurvature:
-    m_OverrideState: 0
-    m_Value: 0
-  globalSpeed:
-    m_OverrideState: 1
-    m_Value: 1000
-  globalOrientation:
-    m_OverrideState: 0
-    m_Value: 0
-  shapeSpeedMultiplier:
-    m_OverrideState: 0
-    m_Value: 1
-  erosionSpeedMultiplier:
-    m_OverrideState: 0
-    m_Value: 0.25
-  altitudeDistortion:
-    m_OverrideState: 0
-    m_Value: 0.25
-  verticalShapeWindSpeed:
-    m_OverrideState: 0
-    m_Value: 0
-  verticalErosionWindSpeed:
-    m_OverrideState: 0
-    m_Value: 0
-  ambientLightProbeDimmer:
-    m_OverrideState: 1
-    m_Value: 1.805
-  sunLightDimmer:
-    m_OverrideState: 0
-    m_Value: 1
-  erosionOcclusion:
-    m_OverrideState: 0
-    m_Value: 0.1
-  scatteringTint:
-    m_OverrideState: 1
-    m_Value: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
-  powderEffectIntensity:
-    m_OverrideState: 0
-    m_Value: 0.25
-  multiScattering:
-    m_OverrideState: 0
-    m_Value: 0.5
-  shadows:
-    m_OverrideState: 1
-    m_Value: 1
-  shadowResolution:
-    m_OverrideState: 0
-    m_Value: 256
-  shadowDistance:
-    m_OverrideState: 0
-    m_Value: 8000
-  shadowOpacity:
-    m_OverrideState: 1
-    m_Value: 0.711
-  shadowOpacityFallback:
-    m_OverrideState: 0
-    m_Value: 0.123
-  temporalAccumulationFactor:
-    m_OverrideState: 1
-    m_Value: 0.95
-  perceptualBlending:
-    m_OverrideState: 0
-    m_Value: 1
-  numPrimarySteps:
-    m_OverrideState: 0
-    m_Value: 32
-  numLightSteps:
-    m_OverrideState: 0
-    m_Value: 2
-  fadeInMode:
+    m_Value: -8.8
+  tint:
     m_OverrideState: 1
     m_Value: 0
-  fadeInStart:
-    m_OverrideState: 0
-    m_Value: 0
-  fadeInDistance:
-    m_OverrideState: 0
-    m_Value: 5000
 --- !u!114 &-3248970500271913239
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -426,13 +171,14 @@ MonoBehaviour:
   components:
   - {fileID: -1473189689674696656}
   - {fileID: 631339341138466060}
-  - {fileID: -6554063396336943417}
   - {fileID: 6871875994620966481}
   - {fileID: -8275965561211115352}
   - {fileID: -7587528783408604552}
   - {fileID: 2784965982321833639}
   - {fileID: 1885031759596012598}
   - {fileID: -3248970500271913239}
+  - {fileID: 4532105419632765380}
+  - {fileID: -7000388070045723459}
 --- !u!114 &631339341138466060
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -556,6 +302,40 @@ MonoBehaviour:
   saturation:
     m_OverrideState: 0
     m_Value: 0
+--- !u!114 &4532105419632765380
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558a8e2b6826cf840aae193990ba9f2e, type: 3}
+  m_Name: ShadowsMidtonesHighlights
+  m_EditorClassIdentifier: 
+  active: 1
+  shadows:
+    m_OverrideState: 1
+    m_Value: {x: 0.8249893, y: 0.89060956, z: 1, w: 0}
+  midtones:
+    m_OverrideState: 0
+    m_Value: {x: 0.9691302, y: 1, z: 0.9569205, w: 0}
+  highlights:
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 0.94960034, z: 0.84204555, w: 0}
+  shadowsStart:
+    m_OverrideState: 0
+    m_Value: 0
+  shadowsEnd:
+    m_OverrideState: 0
+    m_Value: 0.3
+  highlightsStart:
+    m_OverrideState: 0
+    m_Value: 0.55
+  highlightsEnd:
+    m_OverrideState: 0
+    m_Value: 1
 --- !u!114 &6871875994620966481
 MonoBehaviour:
   m_ObjectHideFlags: 3
