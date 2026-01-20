@@ -25,4 +25,8 @@ public class BatteryBehaviour : MonoBehaviour
     {
         batteryCharge -= .1f;
     }
+    public void TestRepair()
+    {
+        batteryCharge += .1f;
+    }
 }
