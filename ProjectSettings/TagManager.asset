@@ -7,6 +7,8 @@ TagManager:
   - Anchor
   - CinemachineTarget
   - Wrench
+  - Sample
+  - Scanner
   layers:
   - Default
   - TransparentFX

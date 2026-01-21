@@ -1,19 +1,17 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ScannerBehaviour : MonoBehaviour
 {
     public GameObject ScannerPrefab;
     public float duration = 10f;
     public float size = 500f;
-    // Update is called once per frame
-    void Update()
+    public InputActionReference ActivateScanner;
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ScanTerrain();
-        }
+        ActivateScanner.action.started += ScanTerrain;
     }
-    void ScanTerrain()
+    void ScanTerrain(InputAction.CallbackContext context)
     {
         GameObject ScannerSpawn = Instantiate(ScannerPrefab, gameObject.transform.position, Quaternion.identity) as GameObject;
         ParticleSystem PulsesParticles = ScannerSpawn.transform.GetChild(0).GetComponent<ParticleSystem>();
@@ -29,4 +27,5 @@ public class ScannerBehaviour : MonoBehaviour
         }
         Destroy(ScannerSpawn,duration+1);
     }
+
 }
