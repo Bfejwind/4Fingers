@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "347239688584",
+    "firebase_url": "https://nothing-b62c1-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "nothing-b62c1",
+    "storage_bucket": "nothing-b62c1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:347239688584:android:526d21a91f0e947e42723d",
+        "android_client_info": {
+          "package_name": "FourFingers.IP"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-XkDmB6D659K4cPtCV2TrYqhzGJZFNQU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
