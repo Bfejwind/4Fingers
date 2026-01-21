@@ -5,20 +5,17 @@ public class SampleMaterialChange : MonoBehaviour
 {
     public Material sampleOriginal;
     public Material sampleGlow;
-    // void OnTriggerEnter(Collider other)
-    // {
-    //     Debug.Log("Collided with " + other.name);
-
-    //     if (other.CompareTag("Scanner"))
-    //     {
-    //         Debug.Log("Scanner detected");
-    //         StartCoroutine(GlowFade());
-    //     }
-    // }
-    void OnParticleCollision(GameObject other)
+    void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collided with " + other.gameObject.name);
+        Debug.Log("Collided with " + other.name);
+
+        if (other.CompareTag("Scanner"))
+        {
+            Debug.Log("Scanner detected");
+            StartCoroutine(GlowFade());
+        }
     }
+
     IEnumerator GlowFade()
     {
         this.GetComponent<Renderer>().material = sampleGlow;
