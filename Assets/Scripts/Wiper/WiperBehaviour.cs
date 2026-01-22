@@ -1,11 +1,35 @@
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 
 public class WiperBehaviour : MonoBehaviour
 {
     public float screenDirtiness;
-    
+    public Image SandOverlay;
+
+    void Start()
+    {
+        screenDirtiness = 0;
+    }
+
     void SandEffect()
     {
-        //float transparency = 
+        screenDirtiness = Mathf.Clamp01(screenDirtiness);
+        Color imageColor = Color.white;
+        imageColor.a = screenDirtiness;
+        SandOverlay.color = imageColor;
+    }
+    public void GettingDirty()
+    {
+        screenDirtiness += .1f;
+    }
+    public void GettingClean()
+    {
+        screenDirtiness -= .1f;
+    }
+    void Update()
+    {
+        SandEffect();
     }
 }
