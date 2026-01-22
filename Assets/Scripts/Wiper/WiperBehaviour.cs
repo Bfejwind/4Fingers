@@ -2,15 +2,10 @@ using UnityEngine;
 
 public class WiperBehaviour : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public float screenDirtiness;
+    
+    void SandEffect()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //float transparency = 
     }
 }
