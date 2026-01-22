@@ -11,7 +11,9 @@ using System;
 /// </summary>
 
 public class AuthManager : MonoBehaviour
-{
+{   
+    public SceneTransitionManager transitionManager; 
+    public int sceneToLoadIndex = 1; // The index of your next scene
     public FirebaseAuth auth; // Firebase Authentication instance
     public FirebaseUser user; // Currently logged-in user
 
@@ -137,6 +139,12 @@ public class AuthManager : MonoBehaviour
             var result = await auth.SignInWithEmailAndPasswordAsync(email, password);
             user = result.User;
             UpdateStatus(loginStatusText, "Login successful!", Color.green);
+
+            // Transition to the next scene
+            if (transitionManager != null)
+            {
+                transitionManager.GoToSceneAsync(sceneToLoadIndex);
+            }
         }
         
         catch (Exception e)
