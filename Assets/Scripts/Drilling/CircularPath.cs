@@ -13,20 +13,22 @@ public class CircularPath : MonoBehaviour
     float angle; //Tracks current angle of target
     [SerializeField]
     float depth; //Adjust depth of target
-    private float time; //Apply intervals to movements
+    private float time; //Track time
+    private float firstInterval;
 
+    void Start()
+    {
+        RandomInterval(1,5);
+    }
 
     // Update is called once per frame
     void Update()
     {
         time += Time.deltaTime; 
-        // if (time>0.1f)
-        //Calculate new position of target
-        float x = centrePoint.position.x + Mathf.Cos(angle) * radius;
-        float y = centrePoint.position.y + Mathf.Sin(angle) *radius;
-        float z = centrePoint.position.z + depth;
-        //Update the position of target
-        transform.position = new Vector3(x,y,z);
+        if (time > firstInterval)
+        {
+            
+        }
         //Randomise speed of movement and direction
         RandomiseSpeedDirection();
         //Modify the angle to move the target
@@ -38,6 +40,19 @@ public class CircularPath : MonoBehaviour
         {
             angle += speed * Time.deltaTime;
         }
+    }
+    private void CalculatePosition()
+    {
+        //Calculate new position of target
+            float x = centrePoint.position.x + Mathf.Cos(angle) * radius;
+            float y = centrePoint.position.y + Mathf.Sin(angle) *radius;
+            float z = centrePoint.position.z + depth;
+            //Update the position of target
+            transform.position = new Vector3(x,y,z);
+    }
+    private void RandomInterval(float min,float max)
+    {
+        firstInterval = Random.Range(min,max);
     }
     private void RandomiseSpeedDirection()
     {
