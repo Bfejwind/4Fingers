@@ -33,7 +33,7 @@ MonoBehaviour:
     m_Value: 0.611
   attenuationDistance:
     m_OverrideState: 1
-    m_Value: 21.4
+    m_Value: 30
   enableAPVContribution:
     m_OverrideState: 1
     m_Value: 0
