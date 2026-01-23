@@ -13,33 +13,42 @@ public class CircularPath : MonoBehaviour
     float angle; //Tracks current angle of target
     [SerializeField]
     float depth; //Adjust depth of target
-    private float time; //Track time
-    private float firstInterval;
+    private float timeInterval1;
+    private float timeInterval2; //Track time
+    public float firstInterval;
+    public float secondInterval;
 
     void Start()
     {
-        RandomInterval(1,5);
+        RandomFirstInterval(2,6);
     }
 
     // Update is called once per frame
     void Update()
     {
-        time += Time.deltaTime; 
-        if (time > firstInterval)
+        timeInterval1 += Time.deltaTime; 
+        if (timeInterval1 > firstInterval)
         {
-            
-        }
-        //Randomise speed of movement and direction
-        RandomiseSpeedDirection();
-        //Modify the angle to move the target
-        if (posOrNeg < 4)
-        {
+            CalculatePosition();
             angle -= speed * Time.deltaTime;
+            RandomSecondInterval(2,6);
+            timeInterval2 += Time.deltaTime;
+            if (timeInterval2 > secondInterval)
+            {
+                RandomFirstInterval(2,6);
+                timeInterval2 = 0;
+                timeInterval1 = 0;
+            }
+
         }
         else
         {
+            CalculatePosition();
             angle += speed * Time.deltaTime;
         }
+        //Randomise speed of movement and direction
+        RandomiseSpeed();
+        //Modify the angle to move the target
     }
     private void CalculatePosition()
     {
@@ -50,13 +59,17 @@ public class CircularPath : MonoBehaviour
             //Update the position of target
             transform.position = new Vector3(x,y,z);
     }
-    private void RandomInterval(float min,float max)
+    private void RandomFirstInterval(float min,float max)
     {
         firstInterval = Random.Range(min,max);
     }
-    private void RandomiseSpeedDirection()
+    private void RandomSecondInterval(float min,float max)
+    {
+        secondInterval= Random.Range(min,max);
+    }
+    private void RandomiseSpeed()
     {
         speed = Random.Range(0.1f,10f);
-        posOrNeg = Random.Range(0,10);
     }
+    
 }
