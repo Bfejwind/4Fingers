@@ -55,7 +55,7 @@ MonoBehaviour:
   m_ReflectionProbeBoxProjection: 0
   m_ShadowDistance: 500
   m_ShadowCascadeCount: 2
-  m_Cascade2Split: 0.2047046
+  m_Cascade2Split: 0.061847508
   m_Cascade3Split: {x: 0.2478355, y: 0.29800004}
   m_Cascade4Split: {x: 0.067, y: 0.2, z: 0.467}
   m_CascadeBorder: 0.7460745

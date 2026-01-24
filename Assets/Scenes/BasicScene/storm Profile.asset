@@ -30,7 +30,7 @@ MonoBehaviour:
     m_Value: 0
   density:
     m_OverrideState: 1
-    m_Value: 0.611
+    m_Value: 1
   attenuationDistance:
     m_OverrideState: 1
     m_Value: 30
@@ -44,11 +44,11 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 1
   anisotropy:
-    m_OverrideState: 1
-    m_Value: -0.23
+    m_OverrideState: 0
+    m_Value: 0.33
   scattering:
-    m_OverrideState: 1
-    m_Value: 0.278
+    m_OverrideState: 0
+    m_Value: 0.171
   tint:
     m_OverrideState: 1
     m_Value: {r: 0.71599996, g: 0.41507244, b: 0.31476328, a: 1}

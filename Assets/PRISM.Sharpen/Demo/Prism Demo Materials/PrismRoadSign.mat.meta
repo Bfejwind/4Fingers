@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 83bcbf4a83136ea41b7f4d4f8b22a240
+timeCreated: 1453473903
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 101643
+  packageName: PRISM Sharpen
+  packageVersion: 1.03
+  assetPath: Assets/PRISM.Sharpen/Demo/Prism Demo Materials/PrismRoadSign.mat
+  uploadId: 206853

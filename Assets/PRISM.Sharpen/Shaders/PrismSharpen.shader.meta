@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: a884b698409ebfd41af0f6df151ca78c
+timeCreated: 1506831246
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 101643
+  packageName: PRISM Sharpen
+  packageVersion: 1.03
+  assetPath: Assets/PRISM.Sharpen/Shaders/PrismSharpen.shader
+  uploadId: 206853
