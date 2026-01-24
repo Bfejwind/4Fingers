@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 1226279130081643562}
   - component: {fileID: 5673449747208765321}
   m_Layer: 0
-  m_Name: lod_rock1
+  m_Name: carbonate lod
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
