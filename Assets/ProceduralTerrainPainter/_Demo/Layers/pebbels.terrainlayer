@@ -6,17 +6,18 @@ TerrainLayer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Puddles
-  m_DiffuseTexture: {fileID: 10305, guid: 0000000000000000f000000000000000, type: 0}
-  m_NormalMapTexture: {fileID: 0}
+  m_Name: pebbels
+  m_DiffuseTexture: {fileID: 2800000, guid: 781392ffabf5e6c478ccecdd305c7a96, type: 3}
+  m_NormalMapTexture: {fileID: 2800000, guid: fb39b9f86d8db004ea5c93bee1a94d7b, type: 3}
   m_MaskMapTexture: {fileID: 0}
-  m_TileSize: {x: 4, y: 4}
+  m_TileSize: {x: 15, y: 15}
   m_TileOffset: {x: 0, y: 0}
-  m_Specular: {r: 0.33490568, g: 0.8639096, b: 1, a: 1}
-  m_Metallic: 1
-  m_Smoothness: 0.946
-  m_NormalScale: 1
+  m_Specular: {r: 1, g: 1, b: 1, a: 0}
+  m_Metallic: 0
+  m_Smoothness: 0.182
+  m_NormalScale: 3
   m_DiffuseRemapMin: {x: 0, y: 0, z: 0, w: 0}
   m_DiffuseRemapMax: {x: 1, y: 1, z: 1, w: 1}
   m_MaskMapRemapMin: {x: 0, y: 0, z: 0, w: 0}
   m_MaskMapRemapMax: {x: 1, y: 1, z: 1, w: 1}
+  m_SmoothnessSource: 1
