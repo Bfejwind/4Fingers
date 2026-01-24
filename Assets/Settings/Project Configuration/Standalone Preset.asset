@@ -105,7 +105,7 @@ MonoBehaviour:
   - {fileID: 8698386579873852132}
   - {fileID: -5995735067765429486}
   - {fileID: -1212395444398519995}
-  - {fileID: -6270827606475179339}
+  - {fileID: 0}
   m_RendererFeatureMap: 7868177780a46e8be4ea672482e0b678122b7dfeb8decaac45095351c4b42cefb57a5524848bf9a8
   m_UseNativeRenderPass: 0
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f62c9c65cf3354c93be831c8bc075510, type: 3}
   m_Name: ScreenSpaceAmbientOcclusion
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   m_Settings:
     AOMethod: 0
     Downsample: 0
