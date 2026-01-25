@@ -66,7 +66,7 @@ Material:
     - _normal_strgnth: 0.618
     - _refelction: 0.53
     - _refraction: 0.05
-    - _ripple_strenth: 5
+    - _ripple_strenth: 30
     - _smoothnees: 1
     - _water_lerp: 0.513
     m_Colors:

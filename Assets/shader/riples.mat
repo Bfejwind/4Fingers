@@ -57,7 +57,7 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _normal_stenth: 30
+    - _normal_stenth: 10000
     - _smoothness: 1
     m_Colors:
     - _color: {r: 1, g: 1, b: 1, a: 0}

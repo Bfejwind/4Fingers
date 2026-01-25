@@ -18,7 +18,7 @@ MonoBehaviour:
     m_Version: 1
     dilationSettings:
       enableDilation: 0
-      dilationDistance: 1
+      dilationDistance: 2
       dilationValidityThreshold: 0.25
       dilationIterations: 1
       squaredDistWeighting: 1
@@ -70,13 +70,13 @@ MonoBehaviour:
       m_Values: []
     m_Asset: {fileID: 0}
   chunkSizeInBricks: 128
-  maxCellPosition: {x: 7, y: 8, z: 19}
-  minCellPosition: {x: -19, y: -1, z: -19}
+  maxCellPosition: {x: 3, y: 4, z: 6}
+  minCellPosition: {x: -8, y: 1, z: -6}
   globalBounds:
-    m_Center: {x: -486, y: 283.5, z: 0}
-    m_Extent: {x: 1053, y: 364.5, z: 1539}
+    m_Center: {x: -405, y: 405, z: 0}
+    m_Extent: {x: 891, y: 243, z: 972}
   bakedSimplificationLevels: 3
-  bakedMinDistanceBetweenProbes: 1
+  bakedMinDistanceBetweenProbes: 2
   bakedProbeOcclusion: 1
   bakedSkyOcclusionValue: 0
   bakedSkyShadingDirectionValue: 0
@@ -87,27 +87,27 @@ MonoBehaviour:
     y: 0
     z: 0
     w: 0
-  maxSHChunkCount: 62
-  L0ChunkSize: 0
-  L1ChunkSize: 0
-  L2TextureChunkSize: 0
-  ProbeOcclusionChunkSize: 0
+  maxSHChunkCount: 34
+  L0ChunkSize: 65536
+  L1ChunkSize: 32768
+  L2TextureChunkSize: 32768
+  ProbeOcclusionChunkSize: 32768
   sharedValidityMaskChunkSize: 8192
   sharedSkyOcclusionL0L1ChunkSize: 0
   sharedSkyShadingDirectionIndicesChunkSize: 0
-  sharedDataChunkSize: 0
-  supportPositionChunkSize: 0
-  supportValidityChunkSize: 0
-  supportTouchupChunkSize: 0
+  sharedDataChunkSize: 8192
+  supportPositionChunkSize: 98304
+  supportValidityChunkSize: 32768
+  supportTouchupChunkSize: 32768
   supportLayerMaskChunkSize: 0
-  supportOffsetsChunkSize: 0
-  supportDataChunkSize: 0
+  supportOffsetsChunkSize: 98304
+  supportDataChunkSize: 262144
   lightingScenario: Default
   version: 2
   freezePlacement: 0
   probeOffset: {x: 0, y: 0, z: 0}
   simplificationLevels: 3
-  minDistanceBetweenProbes: 1
+  minDistanceBetweenProbes: 2
   renderersLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -124,8 +124,8 @@ MonoBehaviour:
     m_Keys:
     - 4e9fef26e6adb88479ad1b9834a32d94
     m_Values:
-    - hasProbeVolume: 1
+    - hasProbeVolume: 0
       bakeScene: 1
       bounds:
-        m_Center: {x: -445.5, y: 364.5, z: 0}
-        m_Extent: {x: 850.5, y: 121.5, z: 972}
+        m_Center: {x: -405, y: 405, z: 0}
+        m_Extent: {x: 891, y: 243, z: 972}
