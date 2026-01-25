@@ -25,10 +25,7 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _GLOSSYREFLECTIONS_OFF
-  - _NORMALMAP
-  - _SPECGLOSSMAP
+  m_InvalidKeywords: []
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -82,6 +79,26 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 2800000, guid: ed0321087411d944cacce0a523f7fde2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _blendTex:
+        m_Texture: {fileID: 2800000, guid: 781392ffabf5e6c478ccecdd305c7a96, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _heightmap:
+        m_Texture: {fileID: 2800000, guid: 80a92628a98a9ac4ca70027493d9c5d4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _normal_map:
+        m_Texture: {fileID: 2800000, guid: 92bd1a93c2bf1764a9845ca1bb0cb727, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _roughness:
+        m_Texture: {fileID: 2800000, guid: ed0321087411d944cacce0a523f7fde2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texture:
+        m_Texture: {fileID: 2800000, guid: a2ef24184d481e740b0a6b554f6cf8e7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -140,6 +157,12 @@ Material:
     - _UseRoughnessMap: 1
     - _WorkflowMode: 1
     - _ZWrite: 1
+    - _blendDistance: 144.8
+    - _blendTiling: 0.1
+    - _height: 600
+    - _metaalic: 0
+    - _normal_strength: 2
+    - _smoothness: 0.147
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
@@ -147,5 +170,6 @@ Material:
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _UvOffset: {r: 0, g: 0, b: 0, a: 0}
     - _UvTiling: {r: 1, g: 1, b: 0, a: 0}
+    - _terrain_size_offset: {r: 1000, g: 1000, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
