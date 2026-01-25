@@ -60,17 +60,17 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _depth: 7.97
+    - _depth: 39.12
     - _depth_fade: 4.19
     - _lerp: 0.894
     - _normal_strgnth: 0.618
-    - _refelction: 0.53
+    - _refelction: 0.1
     - _refraction: 0.05
     - _ripple_strenth: 30
-    - _smoothnees: 1
+    - _smoothnees: 0
     - _water_lerp: 0.513
     m_Colors:
-    - _color: {r: 0.9198113, g: 0.9782527, b: 1, a: 1}
+    - _color: {r: 0.764151, g: 0.764151, b: 0.764151, a: 1}
     - _uv1: {r: 10, g: 10, b: -0.06, a: 0.6}
     - _uv2: {r: 8, g: 8, b: 0, a: 0}
     - _wate_speed: {r: 0.05, g: 0.05, b: 0, a: 0}
