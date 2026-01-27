@@ -19,18 +19,26 @@ public class CircularPath : MonoBehaviour
     public float firstInterval;
     public float secondInterval;
     public GameObject miniGame;
+    public float gameTime;
+    public float endGame = 10.0f;
 
 
     void Awake()
     {
         RandomFirstInterval(2,6);
         miniGame.SetActive(false);
+        gameTime = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        gameTime += Time.deltaTime;
         timeInterval1 += Time.deltaTime; 
+        if (gameTime >= endGame)
+        {
+            miniGame.SetActive(false);
+        }
         if (timeInterval1 > firstInterval)
         {
             CalculatePosition();
