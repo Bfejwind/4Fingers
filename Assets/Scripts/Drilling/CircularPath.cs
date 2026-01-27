@@ -1,4 +1,5 @@
 using sc.terrain.proceduralpainter;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 
@@ -17,10 +18,13 @@ public class CircularPath : MonoBehaviour
     private float timeInterval2; //Track time
     public float firstInterval;
     public float secondInterval;
+    public GameObject miniGame;
 
-    void Start()
+
+    void Awake()
     {
         RandomFirstInterval(2,6);
+        miniGame.SetActive(false);
     }
 
     // Update is called once per frame
@@ -70,6 +74,10 @@ public class CircularPath : MonoBehaviour
     private void RandomiseSpeed()
     {
         speed = Random.Range(0.1f,10f);
+    }
+    public void ActivateDrillingGame()
+    {
+        miniGame.SetActive(true);
     }
     
 }

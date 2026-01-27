@@ -9,6 +9,7 @@ TagManager:
   - Wrench
   - Sample
   - Scanner
+  - DrillTarget
   layers:
   - Default
   - TransparentFX
