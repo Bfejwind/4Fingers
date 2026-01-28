@@ -21,6 +21,7 @@ public class CircularPath : MonoBehaviour
     public GameObject miniGame;
     public float gameTime;
     public float endGame = 10.0f;
+    public DrillingScoreTracking GetScore;
 
 
     void Awake()
@@ -37,7 +38,9 @@ public class CircularPath : MonoBehaviour
         timeInterval1 += Time.deltaTime; 
         if (gameTime >= endGame)
         {
+            GetScore.ClearHitScore();
             miniGame.SetActive(false);
+            gameTime = 0;
         }
         if (timeInterval1 > firstInterval)
         {

@@ -3,22 +3,35 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class DrillingScoreTracking : MonoBehaviour
 {
-    public XRRayInteractor rightRay;
     public float hitScore;
-    // Update is called once per frame
+    public float hoverInstance;
+    public bool onTarget = false;
+    void Awake()
+    {
+        hitScore = 0;
+        hoverInstance = 0;
+        onTarget = false;
+    }
+    public void HoverEnter()
+    {
+        hoverInstance = Time.time;
+        onTarget = true;
+    }
+    public void HoverExit()
+    {
+        hitScore += Time.time - hoverInstance;
+        onTarget = false;
+    }
     void Update()
     {
-        if (rightRay.TryGetCurrent3DRaycastHit(out RaycastHit hit))
-        {
-            if (hit.collider.CompareTag("DrillTarget"))
-            {
-                hitScore += Time.deltaTime;
-                Debug.Log(hitScore);
-            }
-        }
+        // if (onTarget)
+        // {
+            
+        // }
     }
     public void ClearHitScore()
     {
+        Debug.Log(hitScore);
         hitScore = 0;
     }
 }
