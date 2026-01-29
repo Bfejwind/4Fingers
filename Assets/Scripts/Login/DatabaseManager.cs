@@ -84,6 +84,24 @@ public class DatabaseManager : MonoBehaviour
                 ["email"] = email,
                 ["accountCreated"] = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"),
                 ["lastLogin"] = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ")
+            },
+            ["inventory"] = new Dictionary<string, object>
+            {
+                ["tools"] = new Dictionary<string, object>
+                {
+                    ["Repair_tool"] = false,
+                    ["Wiper_tool"] = false,
+                    ["Extractor"] = false
+                },
+                ["samples"] = new Dictionary<string, object>
+                {
+                    ["Water"] = 0,
+                    ["Regolith"] = 0,
+                    ["Smecite_Clay"] = 0,
+                    ["Gypsum"] = 0,
+                    ["Carbonate_Rock"] = 0,
+                    ["Basalt"] = 0
+                }
             }
         };
         

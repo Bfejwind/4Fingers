@@ -1139,9 +1139,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eb4acabfda7c2849b38707c9e40a0a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionManager: {fileID: 1770170411}
   sceneToLoadIndex: 1
   databaseManager: {fileID: 387976676}
+  transitionManager: {fileID: 1770170411}
   loginPanel: {fileID: 1149717375}
   signupPanel: {fileID: 1895165773}
   loginEmail: {fileID: 442409971}
@@ -5744,7 +5744,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -304.96103, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -6457,6 +6457,7 @@ MonoBehaviour:
   size: 500
   ActivateScanner: {fileID: -2769741871619112098, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   scanSphere: {fileID: 0}
+  ScannerReady: 0
 --- !u!1 &2092139007
 GameObject:
   m_ObjectHideFlags: 0
