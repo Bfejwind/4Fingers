@@ -95,7 +95,7 @@ Material:
     - _lin_bias: 2.2
     - _line: 10.03
     - _opacity: 1
-    - _range: 161.09
+    - _range: 57.7
     m_Colors:
     - _Color: {r: 0, g: 0.7363053, b: 1.9053557, a: 0}
     - _position: {r: 74.3, g: 302.31, b: -258.6027, a: 0}
