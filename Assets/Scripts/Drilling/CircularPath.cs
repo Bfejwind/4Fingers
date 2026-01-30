@@ -22,6 +22,7 @@ public class CircularPath : MonoBehaviour
     public float gameTime;
     public float endGame = 10.0f;
     public DrillingScoreTracking GetScore;
+    public RockSampleExtracted sampleGenerate;
 
 
     void Awake()
@@ -41,6 +42,7 @@ public class CircularPath : MonoBehaviour
             GetScore.ClearHitScore();
             miniGame.SetActive(false);
             gameTime = 0;
+            sampleGenerate.SpawnSample();
         }
         if (timeInterval1 > firstInterval)
         {
