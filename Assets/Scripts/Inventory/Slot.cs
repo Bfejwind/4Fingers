@@ -9,11 +9,12 @@ public class Slot : MonoBehaviour
     public Image slotImage;
     Color originalColor;
     public Transform currentSlotPosition;
+    private Vector3 originalScale;
+    public Vector3 targetScale;
     void Start()
     {
         slotImage = GetComponentInChildren<Image>();
         originalColor = slotImage.color;
-        
     }
 
     void OnTriggerStay(Collider other)
@@ -35,9 +36,11 @@ public class Slot : MonoBehaviour
     }
     void InsertItem(GameObject obj)
     {
+        originalScale = obj.transform.lossyScale;
         obj.GetComponent<Rigidbody>().isKinematic = true;
         obj.transform.SetParent(gameObject.transform,true);
         obj.transform.localPosition = Vector3.zero;
+        obj.transform.localScale = targetScale;
         obj.transform.localEulerAngles = obj.GetComponent<Item>().slotRotation;
         obj.GetComponent<Item>().inSlot = true;
         obj.GetComponent<Item>().currentSlot = this;
@@ -52,6 +55,7 @@ public class Slot : MonoBehaviour
     {
         if(itemInSlot != null)
         {
+            itemInSlot.transform.localScale = originalScale;
             itemInSlot.transform.parent = null;
             itemInSlot.GetComponent<Item>().inSlot = false;
             ResetColor();
