@@ -1,34 +1,65 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class Slot : MonoBehaviour
 {
-    private UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor socket;
-
-    void Awake()
+    public GameObject itemInSlot;
+    public Image slotImage;
+    Color originalColor;
+    public Transform currentSlotPosition;
+    void Start()
     {
-        socket = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor>();
+        slotImage = GetComponentInChildren<Image>();
+        originalColor = slotImage.color;
+        
     }
 
-    void OnEnable()
+    void OnTriggerStay(Collider other)
     {
-        socket.selectEntered.AddListener(OnItemPlaced);
-    }
-
-    void OnDisable()
-    {
-        socket.selectEntered.RemoveListener(OnItemPlaced);
-    }
-
-    void OnItemPlaced(SelectEnterEventArgs args)
-    {
-        Item item = args.interactableObject.transform
-            .GetComponent<Item>();
-
-        if (item != null)
+        if (itemInSlot !=null) return;
+        GameObject obj = other.gameObject;
+        if (!isItem(obj)) return;
+        else if (!obj.GetComponent<Item>().grabbed)
         {
-            InventoryManager.Instance.AddItem(item);
+            //Grabbed link here
+            InsertItem(obj);
+        }
+    }
+
+    bool isItem(GameObject obj)
+    {
+        //Check that this gameobject has the Item script
+        return obj.GetComponent<Item>();
+    }
+    void InsertItem(GameObject obj)
+    {
+        Debug.Log("Inserted");
+        obj.GetComponent<Rigidbody>().isKinematic = true;
+        obj.transform.SetParent(gameObject.transform,false);
+        obj.transform.localPosition = Vector3.zero;
+        obj.transform.localEulerAngles = obj.GetComponent<Item>().slotRotation;
+        obj.GetComponent<Item>().inSlot = true;
+        obj.GetComponent<Item>().currentSlot = this;
+        itemInSlot = obj;
+        slotImage.color = Color.white;
+    }
+    public void ResetColor()
+    {
+        slotImage.color = originalColor;
+    }
+    public void ItemRetrieved()
+    {
+        if(itemInSlot != null)
+        {
+            Debug.Log(itemInSlot.transform.parent?.name);
+            itemInSlot.transform.parent = null;
+            itemInSlot.GetComponent<Item>().inSlot = false;
+            ResetColor();
+            itemInSlot.GetComponent<Item>().currentSlot = null;
+            itemInSlot.GetComponent<Rigidbody>().isKinematic = false;
+            itemInSlot = null;
         }
     }
 }
