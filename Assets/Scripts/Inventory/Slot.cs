@@ -35,9 +35,8 @@ public class Slot : MonoBehaviour
     }
     void InsertItem(GameObject obj)
     {
-        Debug.Log("Inserted");
         obj.GetComponent<Rigidbody>().isKinematic = true;
-        obj.transform.SetParent(gameObject.transform,false);
+        obj.transform.SetParent(gameObject.transform,true);
         obj.transform.localPosition = Vector3.zero;
         obj.transform.localEulerAngles = obj.GetComponent<Item>().slotRotation;
         obj.GetComponent<Item>().inSlot = true;
@@ -53,7 +52,6 @@ public class Slot : MonoBehaviour
     {
         if(itemInSlot != null)
         {
-            Debug.Log(itemInSlot.transform.parent?.name);
             itemInSlot.transform.parent = null;
             itemInSlot.GetComponent<Item>().inSlot = false;
             ResetColor();
