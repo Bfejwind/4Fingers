@@ -5,7 +5,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public float currentHealth;
     public float maxHealth;
-    public ParticleSystem sparks;
+    public ParticleSystem sparksMinor;
+    public ParticleSystem sparksHalf;
+    public ParticleSystem sparksLow;
     public string halfHP = "#F97427";
     public string lowHP = "#e51414";
 
@@ -40,29 +42,35 @@ public class GameManager : MonoBehaviour
         {
             //Death effect
         }
-        if (sparks.isPlaying)
+        if (sparksMinor.isPlaying)
         {
             if (currentHealth <= maxHealth / 5)
             {
+                sparksHalf.Play();
                 SparksColorChange(lowHP);
             }
             else if (currentHealth <= maxHealth / 2)
             {
+                sparksLow.Play();
                 SparksColorChange(halfHP);
             }
         }
         else if (currentHealth < maxHealth)
         {
             //Start Sparks
-            sparks.Play();
+            sparksMinor.Play();
         }
     }
     private void SparksColorChange(string hpLevel)
     {
-        var sparksMain = sparks.main;
+        var sparksMain = sparksMinor.main;
+        var sparksHalfMain = sparksHalf.main;
+        var sparksLowMain = sparksLow.main;
         if (ColorUtility.TryParseHtmlString(hpLevel, out Color newColor))
         {
             sparksMain.startColor = new ParticleSystem.MinMaxGradient(newColor);
+            sparksHalfMain.startColor = new ParticleSystem.MinMaxGradient(newColor);
+            sparksLowMain.startColor = new ParticleSystem.MinMaxGradient(newColor);
         }
     }
 
