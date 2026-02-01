@@ -24,6 +24,7 @@ public class Slot : MonoBehaviour
         if (!isItem(obj)) return;
         else if (!obj.GetComponent<Item>().grabbed)
         {
+            originalScale = obj.transform.lossyScale;
             //Grabbed link here
             InsertItem(obj);
         }
@@ -36,9 +37,8 @@ public class Slot : MonoBehaviour
     }
     void InsertItem(GameObject obj)
     {
-        originalScale = obj.transform.lossyScale;
         obj.GetComponent<Rigidbody>().isKinematic = true;
-        obj.transform.SetParent(gameObject.transform,true);
+        obj.transform.SetParent(gameObject.transform,false);
         obj.transform.localPosition = Vector3.zero;
         obj.transform.localScale = targetScale;
         obj.transform.localEulerAngles = obj.GetComponent<Item>().slotRotation;
@@ -55,8 +55,8 @@ public class Slot : MonoBehaviour
     {
         if(itemInSlot != null)
         {
+            itemInSlot.transform.SetParent(null,true);
             itemInSlot.transform.localScale = originalScale;
-            itemInSlot.transform.parent = null;
             itemInSlot.GetComponent<Item>().inSlot = false;
             ResetColor();
             itemInSlot.GetComponent<Item>().currentSlot = null;

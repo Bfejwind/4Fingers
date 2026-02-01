@@ -10,6 +10,7 @@ TagManager:
   - Sample
   - Scanner
   - DrillTarget
+  - Hazard
   layers:
   - Default
   - TransparentFX

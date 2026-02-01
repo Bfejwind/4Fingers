@@ -2,12 +2,69 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public float Health;
-    public float BatteryLife;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public static GameManager Instance { get; private set; }
+    public float currentHealth;
+    public float maxHealth;
+    public ParticleSystem sparks;
+    public string halfHP = "#F97427";
+    public string lowHP = "#e51414";
+
+    private void Awake()
+    {
+        // If an instance already exists and it's not this one, destroy this
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        // Set instance
+        Instance = this;
+
+        // Persist across scenes
+        DontDestroyOnLoad(gameObject);
+    }
+    /// <summary>
+    /// Health Manager
+    /// </summary>
     void Start()
     {
-        Health = 5.0f;
+        maxHealth = 100;
+        currentHealth = maxHealth;
+        sparks = GetComponent<ParticleSystem>();
+    }
+    public void TakeDamage(float dmg)
+    {
+        currentHealth -= dmg;
+        currentHealth = Mathf.Clamp(currentHealth,0,maxHealth);
+        if (currentHealth<= 0)
+        {
+            //Death effect
+        }
+        if (sparks.isPlaying)
+        {
+            if (currentHealth <= maxHealth / 5)
+            {
+                SparksColorChange(lowHP);
+            }
+            else if (currentHealth <= maxHealth / 2)
+            {
+                SparksColorChange(halfHP);
+            }
+        }
+        else if (currentHealth < maxHealth)
+        {
+            //Start Sparks
+            sparks.Play();
+        }
+    }
+    private void SparksColorChange(string hpLevel)
+    {
+        var sparksMain = sparks.main;
+        if (ColorUtility.TryParseHtmlString(hpLevel, out Color newColor))
+        {
+            sparksMain.startColor = new ParticleSystem.MinMaxGradient(newColor);
+        }
     }
 
 }
