@@ -15,6 +15,7 @@ public class StormDOT : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            Debug.Log("Entered");
             playerInZone = true;
             if (dotInEffect == null)
             {
@@ -28,6 +29,16 @@ public class StormDOT : MonoBehaviour
         {
             yield return new WaitForSeconds(dotInterval);
             GameManager.Instance.TakeDamage(damage);
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Exited");
+            playerInZone = false;
+            StopCoroutine(DOTHandler());
+            dotInEffect = null;
         }
     }
 }

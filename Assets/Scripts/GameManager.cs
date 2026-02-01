@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour
     {
         maxHealth = 100;
         currentHealth = maxHealth;
-        sparks = GetComponent<ParticleSystem>();
     }
     public void TakeDamage(float dmg)
     {
