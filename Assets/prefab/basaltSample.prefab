@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 73.31, y: 302.03, z: -256.73}
-  m_LocalScale: {x: 0.17918521, y: 0.17918521, z: 0.17918521}
+  m_LocalScale: {x: 0.16303876, y: 0.16303876, z: 0.16303876}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5410452698315521889}
@@ -61,7 +61,7 @@ LODGroup:
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 7636122552502055896}
-  - screenRelativeHeight: 0.0028064777
+  - screenRelativeHeight: 0.0059193466
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 7636122552502055896}
@@ -133,8 +133,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 2.0774522
-  m_Center: {x: 0, y: 0, z: 0.2604395}
+  m_Radius: 0.9912554
+  m_Center: {x: 0, y: 0, z: 0.25}
 --- !u!114 &2560385081041939397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,7 +342,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cebdb667cb1839f4bb5ad04556930614, type: 2}
+  - {fileID: 2100000, guid: ba2e86fa714430e4098234d25c7a62db, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
