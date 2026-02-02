@@ -87,11 +87,11 @@ public class DatabaseManager : MonoBehaviour
             },
             ["inventory"] = new Dictionary<string, object>
             {
-                ["tools"] = new Dictionary<string, object>
-                {
-                    ["Repair_tool"] = false,
-                    ["Wiper_tool"] = false,
-                    ["Extractor"] = false
+                ["tools"] = new List<object> 
+                { 
+                    "Repair_tool", 
+                    "Wiper_tool", 
+                    "Extractor" 
                 },
                 ["samples"] = new Dictionary<string, object>
                 {
