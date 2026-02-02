@@ -35,7 +35,7 @@ public class Slot : MonoBehaviour
         //Check that this gameobject has the Item script
         return obj.GetComponent<Item>();
     }
-    void InsertItem(GameObject obj)
+    async void InsertItem(GameObject obj)
     {
         obj.GetComponent<Rigidbody>().isKinematic = true;
         obj.transform.SetParent(gameObject.transform,false);
@@ -46,6 +46,17 @@ public class Slot : MonoBehaviour
         obj.GetComponent<Item>().currentSlot = this;
         itemInSlot = obj;
         slotImage.color = Color.white;
+        string currentTag = obj.tag;   
+        Debug.Log($"[Slot] Detected Item Tag: '{currentTag}'");
+        if (!string.IsNullOrEmpty(currentTag))
+        {
+            await DatabaseManager.Instance.AddInventoryItem(currentTag);
+            Debug.Log("Firebase updated for: " + currentTag);
+        }
+        else 
+        {
+            Debug.LogError("[Slot] Item has NO TAG assigned in Inspector!");
+        }
     }
     public void ResetColor()
     {

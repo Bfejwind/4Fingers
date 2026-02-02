@@ -235,23 +235,46 @@ namespace kTools.Mirrors
             ExecuteCommand(context, cmd);
         }
 
+        
         void RenderMirror(ScriptableRenderContext context, Camera camera)
-        {
+        {   
+            
+            // CRITICAL: Skip if we don't have a valid render texture
+            if (m_RenderTexture == null || !m_RenderTexture.IsCreated())
+            {
+                Debug.LogWarning($"Mirror: Cannot render, RenderTexture not ready");
+                return;
+            }
+            
+            // CRITICAL: Skip if render texture has invalid dimensions
+            if (m_RenderTexture.width <= 0 || m_RenderTexture.height <= 0)
+            {
+                Debug.LogWarning($"Mirror: Cannot render, RenderTexture has invalid dimensions: {m_RenderTexture.width}x{m_RenderTexture.height}");
+                return;
+            }
+            
+            // Ensure the reflection camera has our render texture as target
+            reflectionCamera.targetTexture = m_RenderTexture;
+            
             // Mirror the view matrix
             var mirrorMatrix = GetMirrorMatrix();
             reflectionCamera.worldToCameraMatrix = camera.worldToCameraMatrix * mirrorMatrix;
 
-            // Make oplique projection matrix where near plane is mirror plane
+            // Make oblique projection matrix where near plane is mirror plane
             var mirrorPlane = GetMirrorPlane(reflectionCamera);
             var projectionMatrix = camera.CalculateObliqueMatrix(mirrorPlane);
             reflectionCamera.projectionMatrix = projectionMatrix;
             
-            // Miscellanious camera settings
+            // Camera settings
             reflectionCamera.cullingMask = layerMask;
             reflectionCamera.allowHDR = allowHDR == MirrorCameraOverride.UseSourceCameraSettings ? camera.allowHDR : false;
             reflectionCamera.allowMSAA = allowMSAA == MirrorCameraOverride.UseSourceCameraSettings ? camera.allowMSAA : false;
             reflectionCamera.enabled = false;
-
+            
+            // CRITICAL: Set proper clear flags
+            reflectionCamera.clearFlags = CameraClearFlags.SolidColor;
+            reflectionCamera.backgroundColor = Color.clear;
+            
             // Render reflection camera with inverse culling
             GL.invertCulling = true;
             UniversalRenderPipeline.RenderSingleCamera(context, reflectionCamera);

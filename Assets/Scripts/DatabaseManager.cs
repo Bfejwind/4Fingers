@@ -331,4 +331,97 @@ public class DatabaseManager : MonoBehaviour
     {
         return currentUserId;
     }
+    
+    /// <summary>
+    /// Adds an inventory item to the user's data in Firebase.
+    /// Uses switch case for different item types.
+    /// </summary>
+    /// <returns>
+    /// A Task that represents the asynchronous operation.
+    /// The task result contains true if the update was successful, false otherwise.
+    /// </returns>
+    public async Task<bool> AddInventoryItem(string itemTag, int amount = 1)
+    {
+        if (string.IsNullOrEmpty(currentUserId) || databaseReference == null)
+        {
+            Debug.LogError($"Cannot add item: currentUserId={currentUserId}, databaseReference={databaseReference}");
+            return false;
+        }
+        
+        if (userData == null || !userData.ContainsKey("inventory"))
+        {
+            Debug.LogError("User data or inventory not loaded");
+            return false;
+        }
+        
+        try
+        {
+            // Get the current inventory
+            var inventory = userData["inventory"] as Dictionary<string, object>;
+            if (inventory == null || !inventory.ContainsKey("samples"))
+            {
+                Debug.LogError("Inventory samples not found");
+                return false;
+            }
+            
+            var samples = inventory["samples"] as Dictionary<string, object>;
+            if (samples == null)
+            {
+                Debug.LogError("Samples dictionary is null");
+                return false;
+            }
+            
+            string firebaseKey = "";
+            
+            // Use switch case to map item tag to Firebase key
+            switch (itemTag)
+            {
+                case "Basalt":
+                    firebaseKey = "Basalt";
+                    break;
+                case "Water":
+                    firebaseKey = "Water";
+                    break;
+                case "Regolith":
+                    firebaseKey = "Regolith";
+                    break;
+                case "SmeciteClay":
+                case "Smecite_Clay":
+                    firebaseKey = "Smecite_Clay";
+                    break;
+                case "Gypsum":
+                    firebaseKey = "Gypsum";
+                    break;
+                case "CarbonateRock":
+                case "Carbonate_Rock":
+                    firebaseKey = "Carbonate_Rock";
+                    break;
+                default:
+                    Debug.LogWarning($"Unknown item tag: {itemTag}");
+                    return false;
+            }
+            
+            // Get current amount
+            int currentAmount = 0;
+            if (samples.ContainsKey(firebaseKey) && samples[firebaseKey] != null)
+            {
+                currentAmount = Convert.ToInt32(samples[firebaseKey]);
+            }
+            
+            // Calculate new amount
+            int newAmount = currentAmount + amount;
+            
+            // Update in Firebase
+            await UpdateUserField($"inventory/samples/{firebaseKey}", newAmount);
+            
+            Debug.Log($"Added {amount} {itemTag} to inventory. Total: {newAmount}");
+            return true;
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Error adding inventory item: {e.Message}");
+            Debug.LogError($"Full stack trace: {e.StackTrace}");
+            return false;
+        }
+    }
 }
