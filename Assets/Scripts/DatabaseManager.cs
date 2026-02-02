@@ -102,6 +102,15 @@ public class DatabaseManager : MonoBehaviour
                     ["Carbonate_Rock"] = 0,
                     ["Basalt"] = 0
                 }
+            },
+            ["scores"] = new Dictionary<string, object>
+            {
+                ["Water"] = 0f,
+                ["Regolith"] = 0f,
+                ["Smecite_Clay"] = 0f,
+                ["Gypsum"] = 0f,
+                ["Carbonate_Rock"] = 0f,
+                ["Basalt"] = 0f
             }
         };
         
@@ -422,6 +431,27 @@ public class DatabaseManager : MonoBehaviour
             Debug.LogError($"Error adding inventory item: {e.Message}");
             Debug.LogError($"Full stack trace: {e.StackTrace}");
             return false;
+        }
+    }
+
+    public async Task UpdateHighScore(string rockTag, float newScore)
+    {
+        // 1. Get current high score from local cache
+        float currentHighScore = 0;
+        if (userData.ContainsKey("scores"))
+        {
+            var scores = userData["scores"] as Dictionary<string, object>;
+            if (scores.ContainsKey(rockTag))
+            {
+                currentHighScore = Convert.ToSingle(scores[rockTag]);
+            }
+        }
+
+        // 2. Only update if the new score is better
+        if (newScore > currentHighScore)
+        {
+            await UpdateUserField($"scores/{rockTag}", newScore);
+            Debug.Log($"New High Score for {rockTag}: {newScore}!");
         }
     }
 }

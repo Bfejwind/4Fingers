@@ -19,7 +19,9 @@ public class DrillingScoreTracking : MonoBehaviour
     }
     public void HoverExit()
     {
-        hitScore += Time.time - hoverInstance;
+        float timeOnTarget = Time.time - hoverInstance;
+        timeOnTarget = Mathf.Round(timeOnTarget * 100f) / 100f; // Round to 2 decimal places
+        hitScore += timeOnTarget;
         onTarget = false;
     }
     void Update()
@@ -33,5 +35,16 @@ public class DrillingScoreTracking : MonoBehaviour
     {
         Debug.Log(hitScore);
         hitScore = 0;
+    }
+    public float GetCurrentTotalScore()
+    {
+        float finalScore = hitScore;
+        if (onTarget)
+        {
+            // Add the time spent since the last HoverEnter until right now
+            float activeTime = Time.time - hoverInstance;
+            finalScore += activeTime;
+        }
+        return Mathf.Round(finalScore * 100f) / 100f;
     }
 }
