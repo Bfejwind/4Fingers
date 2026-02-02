@@ -83,14 +83,17 @@ public class CircularPath : MonoBehaviour
         {   
             float finalHitScore = GetScore.GetCurrentTotalScore(); 
             
-            // Pass the tag HERE so the function has its own copy
-            CalculateFinalScore(finalHitScore, currentRockTag); 
+            // Create a local copy BEFORE clearing
+            string rockTagCopy = currentRockTag;
+            
+            // Pass the copy
+            CalculateFinalScore(finalHitScore, rockTagCopy); 
             
             gameTime = 0;
             miniGame.SetActive(false);
             GetScore.ClearHitScore(); 
             sampleGenerate.SpawnSample();
-            currentRockTag = ""; // Now it's safe to clear this
+            currentRockTag = ""; 
         }
         
         if (timeInterval1 > firstInterval)
@@ -221,10 +224,21 @@ public class CircularPath : MonoBehaviour
     
     public void ActivateDrillingGame()
     {   
-        Debug.Log($"ActivateDrillingGame called. Current rock tag: {currentRockTag}");
+        // Shoot a ray downwards to see what we are standing on
+        RaycastHit hit;
+        // Adjust Vector3.down and the distance (5f) based on your drill height
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 5f))
+        {
+            currentRockTag = hit.transform.tag;
+            Debug.Log($"Raycast found rock: {currentRockTag}");
+        }
+        else if (string.IsNullOrEmpty(currentRockTag))
+        {
+            Debug.LogWarning("Game started but no rock detected via Raycast or Hover!");
+        }
+
         miniGame.SetActive(true);
         isGameActive = true;
-        gameTime = 0; // Reset timer when game starts
-        Debug.Log("MiniGame activated");
+        gameTime = 0; 
     }
 }
