@@ -89,28 +89,28 @@ public class DatabaseManager : MonoBehaviour
             {
                 ["tools"] = new List<object> 
                 { 
-                    "Repair_tool", 
-                    "Wiper_tool", 
-                    "Extractor" 
+                    "repairTool", 
+                    "wiperTool", 
+                    "extractor" 
                 },
                 ["samples"] = new Dictionary<string, object>
                 {
-                    ["Water"] = 0,
-                    ["Regolith"] = 0,
-                    ["Smecite_Clay"] = 0,
-                    ["Gypsum"] = 0,
-                    ["Carbonate_Rock"] = 0,
-                    ["Basalt"] = 0
+                    ["water"] = 0,
+                    ["regolith"] = 0,
+                    ["smeciteClay"] = 0,
+                    ["gypsum"] = 0,
+                    ["carbonateRock"] = 0,
+                    ["basalt"] = 0
                 }
             },
             ["scores"] = new Dictionary<string, object>
             {
-                ["Water"] = 0f,
-                ["Regolith"] = 0f,
-                ["Smecite_Clay"] = 0f,
-                ["Gypsum"] = 0f,
-                ["Carbonate_Rock"] = 0f,
-                ["Basalt"] = 0f
+                ["water"] = 0f,
+                ["regolith"] = 0f,
+                ["smeciteClay"] = 0f,
+                ["gypsum"] = 0f,
+                ["carbonateRock"] = 0f,
+                ["basalt"] = 0f
             }
         };
         
@@ -386,24 +386,24 @@ public class DatabaseManager : MonoBehaviour
             switch (itemTag)
             {
                 case "Basalt":
-                    firebaseKey = "Basalt";
+                    firebaseKey = "basalt";
                     break;
                 case "Water":
-                    firebaseKey = "Water";
+                    firebaseKey = "water";
                     break;
                 case "Regolith":
-                    firebaseKey = "Regolith";
+                    firebaseKey = "regolith";
                     break;
                 case "SmeciteClay":
                 case "Smecite_Clay":
-                    firebaseKey = "Smecite_Clay";
+                    firebaseKey = "smeciteClay";
                     break;
                 case "Gypsum":
-                    firebaseKey = "Gypsum";
+                    firebaseKey = "gypsum";
                     break;
                 case "CarbonateRock":
                 case "Carbonate_Rock":
-                    firebaseKey = "Carbonate_Rock";
+                    firebaseKey = "carbonateRock";
                     break;
                 default:
                     Debug.LogWarning($"Unknown item tag: {itemTag}");
