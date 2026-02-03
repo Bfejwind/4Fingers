@@ -190,12 +190,7 @@ public class CircularPath : MonoBehaviour
             return;
         }
         
-        // 1. Add 1 rock to the inventory
-        Debug.Log($"Adding inventory item: {rockTag}");
-        bool inventorySuccess = await DatabaseManager.Instance.AddInventoryItem(rockTag, 1);
-        Debug.Log($"Inventory add result: {inventorySuccess}");
-        
-        // 2. Update the High Score separately
+        // Update the High Score separately
         // This uses the UpdateHighScore method you added to DatabaseManager
         Debug.Log($"Updating high score for: {dbRockTag} = {finalScore}");
         await DatabaseManager.Instance.UpdateHighScore(dbRockTag, finalScore);

@@ -34,12 +34,7 @@ public class Item : MonoBehaviour
         }
     }
     void OnReleased(SelectExitEventArgs args)
-    {
+    {   
         grabbed = false;
-        if (currentSlot = null)
-        {
-            Debug.Log("Still Removal");
-            currentSlot.ItemRetrieved();
-        }
     }
 }

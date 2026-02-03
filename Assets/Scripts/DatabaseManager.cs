@@ -95,22 +95,41 @@ public class DatabaseManager : MonoBehaviour
                 },
                 ["samples"] = new Dictionary<string, object>
                 {
-                    ["water"] = 0,
-                    ["regolith"] = 0,
-                    ["smeciteClay"] = 0,
-                    ["gypsum"] = 0,
-                    ["carbonateRock"] = 0,
-                    ["basalt"] = 0
+                    ["water"] = new Dictionary<string, object>
+                    {
+                        ["amount"] = 0,
+                        ["highScore"] = 0f
+                    },
+                    ["regolith"] = new Dictionary<string, object>
+                    {
+                        ["amount"] = 0,
+                        ["highScore"] = 0f
+                    },
+                    ["smeciteClay"] = new Dictionary<string, object>
+                    {
+                        ["amount"] = 0,
+                        ["highScore"] = 0f
+                    },
+                    ["gypsum"] = new Dictionary<string, object>
+                    {
+                        ["amount"] = 0,
+                        ["highScore"] = 0f
+                    },
+                    ["carbonateRock"] = new Dictionary<string, object>
+                    {
+                        ["amount"] = 0,
+                        ["highScore"] = 0f
+                    },
+                    ["basalt"] = new Dictionary<string, object>
+                    {
+                        ["amount"] = 0,
+                        ["highScore"] = 0f
+                    }
                 }
             },
             ["scores"] = new Dictionary<string, object>
             {
-                ["water"] = 0f,
-                ["regolith"] = 0f,
-                ["smeciteClay"] = 0f,
-                ["gypsum"] = 0f,
-                ["carbonateRock"] = 0f,
-                ["basalt"] = 0f
+                ["totalScore"] = 0f // Total score across all rock types
             }
         };
         
@@ -411,19 +430,39 @@ public class DatabaseManager : MonoBehaviour
             }
             
             // Get current amount
-            int currentAmount = 0;
+            Dictionary<string, object> sampleData = null;
             if (samples.ContainsKey(firebaseKey) && samples[firebaseKey] != null)
             {
-                currentAmount = Convert.ToInt32(samples[firebaseKey]);
+                sampleData = samples[firebaseKey] as Dictionary<string, object>;
             }
-            
-            // Calculate new amount
-            int newAmount = currentAmount + amount;
-            
-            // Update in Firebase
-            await UpdateUserField($"inventory/samples/{firebaseKey}", newAmount);
-            
-            Debug.Log($"Added {amount} {itemTag} to inventory. Total: {newAmount}");
+
+            if (sampleData == null)
+            {
+                // Create new sample data if it doesn't exist
+                sampleData = new Dictionary<string, object>
+                {
+                    ["amount"] = amount,
+                    ["highScore"] = 0f
+                };
+            }
+            else
+            {
+                // Get current amount from the nested dictionary
+                int currentAmount = 0;
+                if (sampleData.ContainsKey("amount") && sampleData["amount"] != null)
+                {
+                    currentAmount = Convert.ToInt32(sampleData["amount"]);
+                }
+                
+                // Calculate new amount
+                int newAmount = currentAmount + amount;
+                sampleData["amount"] = newAmount;
+            }
+
+            // Update the entire sample data dictionary in Firebase
+            await UpdateUserField($"inventory/samples/{firebaseKey}", sampleData);
+
+            Debug.Log($"Added {amount} {itemTag} to inventory.");
             return true;
         }
         catch (Exception e)
@@ -436,22 +475,100 @@ public class DatabaseManager : MonoBehaviour
 
     public async Task UpdateHighScore(string rockTag, float newScore)
     {
-        // 1. Get current high score from local cache
-        float currentHighScore = 0;
-        if (userData.ContainsKey("scores"))
+        if (userData == null || !userData.ContainsKey("inventory"))
         {
-            var scores = userData["scores"] as Dictionary<string, object>;
-            if (scores.ContainsKey(rockTag))
-            {
-                currentHighScore = Convert.ToSingle(scores[rockTag]);
-            }
+            Debug.LogError("User data or inventory not loaded");
+            return;
         }
-
-        // 2. Only update if the new score is better
+        
+        string firebaseKey = "";
+        
+        // Use switch case to map rock tag to Firebase key
+        switch (rockTag)
+        {
+            case "Basalt":
+                firebaseKey = "basalt";
+                break;
+            case "Water":
+                firebaseKey = "water";
+                break;
+            case "Regolith":
+                firebaseKey = "regolith";
+                break;
+            case "SmeciteClay":
+            case "Smecite_Clay":
+                firebaseKey = "smeciteClay";
+                break;
+            case "Gypsum":
+                firebaseKey = "gypsum";
+                break;
+            case "CarbonateRock":
+            case "Carbonate_Rock":
+                firebaseKey = "carbonateRock";
+                break;
+            default:
+                Debug.LogWarning($"Unknown rock tag: {rockTag}");
+                return;
+        }
+        
+        var inventory = userData["inventory"] as Dictionary<string, object>;
+        if (inventory == null || !inventory.ContainsKey("samples"))
+        {
+            Debug.LogError("Inventory or samples not found");
+            return;
+        }
+        
+        var samples = inventory["samples"] as Dictionary<string, object>;
+        if (samples == null || !samples.ContainsKey(firebaseKey))
+        {
+            Debug.LogError($"Sample data for {rockTag} not found");
+            return;
+        }
+        
+        var sampleData = samples[firebaseKey] as Dictionary<string, object>;
+        if (sampleData == null)
+        {
+            Debug.LogError($"Sample data dictionary for {rockTag} is null");
+            return;
+        }
+        
+        // Get current high score from the sample data
+        float currentHighScore = 0f;
+        if (sampleData.ContainsKey("highScore") && sampleData["highScore"] != null)
+        {
+            currentHighScore = Convert.ToSingle(sampleData["highScore"]);
+        }
+        
+        // Only update if the new score is better
         if (newScore > currentHighScore)
         {
-            await UpdateUserField($"scores/{rockTag}", newScore);
+            // Update the high score in the sample data
+            sampleData["highScore"] = newScore;
+            
+            // Update the entire sample data dictionary
+            await UpdateUserField($"inventory/samples/{firebaseKey}", sampleData);
+            
             Debug.Log($"New High Score for {rockTag}: {newScore}!");
+            
+            // Get current total score
+            float currentTotalScore = 0f;
+            if (userData.ContainsKey("scores"))
+            {
+                var scores = userData["scores"] as Dictionary<string, object>;
+                if (scores != null && scores.ContainsKey("totalScore"))
+                {
+                    currentTotalScore = Convert.ToSingle(scores["totalScore"]);
+                }
+            }
+            
+            // Calculate the difference between new high score and old high score
+            float scoreDifference = newScore - currentHighScore;
+            float newTotalScore = currentTotalScore + scoreDifference;
+            
+            // Update total score in Firebase
+            await UpdateUserField("scores/totalScore", newTotalScore);
+            
+            Debug.Log($"Total score updated: {currentTotalScore} → {newTotalScore} (+{scoreDifference})");
         }
     }
 }
