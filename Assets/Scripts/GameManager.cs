@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public ParticleSystem sparksMinor;
     public ParticleSystem sparksHalf;
     public ParticleSystem sparksLow;
+    public string highHP = "#FFE700";
     public string halfHP = "#F97427";
     public string lowHP = "#e51414";
 
@@ -71,6 +72,29 @@ public class GameManager : MonoBehaviour
             sparksMain.startColor = new ParticleSystem.MinMaxGradient(newColor);
             sparksHalfMain.startColor = new ParticleSystem.MinMaxGradient(newColor);
             sparksLowMain.startColor = new ParticleSystem.MinMaxGradient(newColor);
+        }
+    }
+    public void RepairHealth(float angle)
+    {
+        if (currentHealth < maxHealth)
+        {
+            currentHealth += angle;
+            currentHealth = Mathf.Clamp(currentHealth,0,maxHealth);
+            if (currentHealth == maxHealth)
+            {
+                //Stop Sparks
+                sparksMinor.Stop();
+            }
+            else if (currentHealth <= maxHealth / 2)
+            {
+                sparksLow.Stop();
+                SparksColorChange(highHP);
+            }
+            else if (currentHealth >= maxHealth / 5)
+            {
+                sparksHalf.Stop();
+                SparksColorChange(halfHP);
+            }
         }
     }
 

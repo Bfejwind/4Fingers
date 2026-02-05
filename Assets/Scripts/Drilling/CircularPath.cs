@@ -228,7 +228,7 @@ public class CircularPath : MonoBehaviour
     
     private void RandomiseSpeed()
     {
-        speed = Random.Range(0.1f,10f);
+        speed = Random.Range(0.1f,4f);
     }
     
     public void ActivateDrillingGame()
