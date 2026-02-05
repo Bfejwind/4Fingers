@@ -27,6 +27,9 @@ public class CircularPath : MonoBehaviour
     
     // Add a flag to track if game is active
     private bool isGameActive = false;
+    
+    // NEW: Score Tracking
+    public float maxPossibleScore = 1000f; // Adjust based on your game
 
     void Awake()
     {
@@ -195,7 +198,14 @@ public class CircularPath : MonoBehaviour
         Debug.Log($"Updating high score for: {dbRockTag} = {finalScore}");
         await DatabaseManager.Instance.UpdateHighScore(dbRockTag, finalScore);
         
-        Debug.Log($"Drilling Complete! Rock: {currentRockTag}, Points: {finalScore}");
+        // NEW: Calculate score percentage and update unlocked info level
+        float scorePercentage = CalculateScorePercentage(dbRockTag, finalScore, maxPossibleScore);
+        Debug.Log($"Score Percentage for {dbRockTag}: {scorePercentage}%");
+        
+        // NEW: Update unlocked info level
+        RockInfoDisplay.UpdateInfoLevel(dbRockTag, scorePercentage);
+        
+        Debug.Log($"Drilling Complete! Rock: {currentRockTag}, Points: {finalScore}, Percentage: {scorePercentage}%");
         
         // Clear rock tag AFTER we've used it
         currentRockTag = "";
@@ -235,5 +245,34 @@ public class CircularPath : MonoBehaviour
         miniGame.SetActive(true);
         isGameActive = true;
         gameTime = 0; 
+    }
+    
+    // NEW: Helper method to calculate score percentage
+    private float CalculateScorePercentage(string rockTag, float currentScore, float maxPossible)
+    {
+        // Different max scores per rock type if needed
+        float rockMaxScore = maxPossible;
+        
+        // Adjust per rock type if you want different thresholds
+        switch (rockTag)
+        {
+            case "Basalt":
+            case "Regolith":
+                rockMaxScore = 800f;
+                break;
+            case "Gypsum":
+            case "Smecite_Clay":
+                rockMaxScore = 1200f;
+                break;
+            case "Carbonate_Rock":
+                rockMaxScore = 1500f;
+                break;
+            case "Water":
+                rockMaxScore = 600f;
+                break;
+        }
+        
+        float percentage = (currentScore / rockMaxScore) * 100f;
+        return Mathf.Clamp(percentage, 0f, 100f);
     }
 }

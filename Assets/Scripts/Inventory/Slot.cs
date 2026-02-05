@@ -52,6 +52,9 @@ public class Slot : MonoBehaviour
         {
             await DatabaseManager.Instance.AddInventoryItem(currentTag);
             Debug.Log("Firebase updated for: " + currentTag);
+
+            // Display rock info
+            RockInfoDisplay.ShowInfo(currentTag);
         }
         else 
         {
