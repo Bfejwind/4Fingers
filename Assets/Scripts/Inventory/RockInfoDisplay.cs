@@ -10,9 +10,11 @@ public class RockInfoDisplay : MonoBehaviour
     
     [Header("UI References")]
     public GameObject infoPanel;
-    public TMP_Text rockNameText;
-    public TMP_Text descriptionText;
-    public TMP_Text levelText; // Shows which level of info is unlocked
+    public TMP_Text rockNameText;        // Top header - Rock name
+    public TMP_Text slot1Text;           // Slot 1 (unlocks first)
+    public TMP_Text slot2Text;           // Slot 2 (unlocks second)
+    public TMP_Text slot3Text;           // Slot 3 (unlocks third)
+    public TMP_Text purityText;          // Rock name + Drill Score
     public Image rockImage;
     public Button closeButton;
     
@@ -20,7 +22,7 @@ public class RockInfoDisplay : MonoBehaviour
     public List<RockInfo> rockInfos = new List<RockInfo>();
     
     [Header("Display Settings")]
-    public float fadeDuration = 0.5f; // Duration for fade in/out
+    public float fadeDuration = 0.5f;
     
     private CanvasGroup canvasGroup;
     private Coroutine fadeCoroutine;
@@ -32,13 +34,18 @@ public class RockInfoDisplay : MonoBehaviour
         public string displayName;
         public Sprite image;
         
-        // Progressive info levels
-        [TextArea(2, 3)]
-        public string level1Info; // Basic info (unlocks at 10% score)
-        [TextArea(3, 4)]
-        public string level2Info; // Intermediate info (unlocks at 50% score)
-        [TextArea(4, 5)]
-        public string level3Info; // Advanced info (unlocks at 80% score)
+        // Three separate information slots
+        [Header("Slot 1 - Unlocks at Level 1")]
+        [TextArea(2, 4)]
+        public string slot1Info;
+        
+        [Header("Slot 2 - Unlocks at Level 2")]
+        [TextArea(2, 4)]
+        public string slot2Info;
+        
+        [Header("Slot 3 - Unlocks at Level 3")]
+        [TextArea(2, 4)]
+        public string slot3Info;
         
         [HideInInspector]
         public int unlockedLevel = 0; // 0 = locked, 1 = basic, 2 = intermediate, 3 = advanced
@@ -49,7 +56,7 @@ public class RockInfoDisplay : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Keep between scenes
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -62,14 +69,13 @@ public class RockInfoDisplay : MonoBehaviour
             canvasGroup = infoPanel.AddComponent<CanvasGroup>();
         }
         
-        // Close button will manually close the panel
         if (closeButton != null)
         {
             closeButton.onClick.AddListener(HidePanel);
         }
         else
         {
-            Debug.LogWarning("Close button not assigned - user won't be able to close the panel!");
+            Debug.LogWarning("Close button not assigned!");
         }
     }
     
@@ -89,26 +95,24 @@ public class RockInfoDisplay : MonoBehaviour
         
         int newLevel = 0;
         
-        if (scorePercentage >= 80f)
+        if (scorePercentage >= 10f)
             newLevel = 3;
-        else if (scorePercentage >= 50f)
+        else if (scorePercentage >= 5f)
             newLevel = 2;
-        else if (scorePercentage >= 10f)
+        else if (scorePercentage >= 2f)
             newLevel = 1;
         
-        // Only update if new level is higher
         if (newLevel > info.unlockedLevel)
         {
             info.unlockedLevel = newLevel;
             Debug.Log($"Unlocked Level {newLevel} info for {rockTag}!");
             
-            // Save to PlayerPrefs or database
             SaveUnlockedLevel(rockTag, newLevel);
         }
     }
     
     /// <summary>
-    /// Show appropriate info based on unlocked level
+    /// Show rock info in the requested format: rock name, slot1, slot2, slot3, purity text
     /// </summary>
     public void ShowRockInfo(string rockTag)
     {
@@ -122,21 +126,8 @@ public class RockInfoDisplay : MonoBehaviour
         // Load saved unlocked level
         info.unlockedLevel = LoadUnlockedLevel(rockTag);
         
-        // Update UI elements
-        if (rockNameText != null)
-            rockNameText.text = info.displayName;
-        
-        if (descriptionText != null)
-            descriptionText.text = GetInfoForCurrentLevel(info);
-        
-        if (levelText != null)
-            levelText.text = $"Info Level: {info.unlockedLevel}/3";
-        
-        if (rockImage != null && info.image != null)
-            rockImage.sprite = info.image;
-        
-        // Color code based on level
-        UpdateTextColor(info.unlockedLevel);
+        // Update all UI elements
+        UpdateUIWithSlots(info);
         
         // Stop any existing fade coroutine
         if (fadeCoroutine != null)
@@ -144,54 +135,93 @@ public class RockInfoDisplay : MonoBehaviour
             StopCoroutine(fadeCoroutine);
         }
         
-        // Fade in the panel (stays open until user closes it)
+        // Fade in the panel
         fadeCoroutine = StartCoroutine(FadeInCoroutine());
     }
     
-    private string GetInfoForCurrentLevel(RockInfo info)
+    private void UpdateUIWithSlots(RockInfo info)
     {
-        switch (info.unlockedLevel)
+        // 1. TOP: Rock name header
+        if (rockNameText != null)
         {
-            case 3:
-                return $"{info.level3Info}\n\n" + 
-                    $"<color=#00FF00>Advanced Info Unlocked!</color>";
-            
-            case 2:
-                return $"{info.level2Info}\n\n" + 
-                    $"<color=#FFFF00>Intermediate Info</color>";
-            
-            case 1:
-                return $"{info.level1Info}\n\n" +  
-                    $"<color=#FF9900>Basic Info</color>";
-            
-            default:
-                return $"<color=#FF0000>Collect this rock to unlock information!</color>\n" +
-                    $"Drill score needed: 10%";
+            rockNameText.text = info.displayName;
+        }
+        
+        // 2. SLOT 1 - Always shown but content depends on level
+        if (slot1Text != null)
+        {
+            if (info.unlockedLevel >= 1)
+            {
+                slot1Text.text = info.slot1Info;
+                slot1Text.color = Color.white;
+            }
+            else
+            {
+                slot1Text.text = "To Be Unlocked";
+                slot1Text.color = new Color(1f, 0.3f, 0.3f); // Red for locked
+            }
+        }
+        
+        // 3. SLOT 2 - Unlocks at level 2
+        if (slot2Text != null)
+        {
+            if (info.unlockedLevel >= 2)
+            {
+                slot2Text.text = info.slot2Info;
+                slot2Text.color = Color.white;
+            }
+            else
+            {
+                slot2Text.text = "To Be Unlocked";
+                slot2Text.color = new Color(1f, 0.3f, 0.3f); // Red for locked
+            }
+        }
+        
+        // 4. BOTTOM SECTION: Rock name + Score Percentage
+        if (purityText != null)
+        {
+            float savedScorePercentage = LoadScorePercentage(info.tag);
+            purityText.text = $"{info.displayName}\nDrill Score: {savedScorePercentage:F1}%";
+        }
+        
+        // 5. SLOT 3 - Unlocks at level 3 (below purity text)
+        if (slot3Text != null)
+        {
+            if (info.unlockedLevel >= 3)
+            {
+                slot3Text.text = info.slot3Info;
+                slot3Text.color = Color.white;
+            }
+            else
+            {
+                slot3Text.text = "To Be Unlocked";
+                slot3Text.color = new Color(1f, 0.3f, 0.3f); // Red for locked
+            }
+        }
+        
+        // 6. Rock image
+        if (rockImage != null)
+        {
+            rockImage.sprite = info.image != null ? info.image : null;
+            rockImage.enabled = info.image != null;
         }
     }
     
-    private void UpdateTextColor(int level)
+    private float LoadScorePercentage(string rockTag)
     {
-        Color levelColor = Color.white;
-        
-        switch (level)
-        {
-            case 3: levelColor = new Color(0f, 1f, 0f); break; // Green
-            case 2: levelColor = new Color(1f, 1f, 0f); break; // Yellow
-            case 1: levelColor = new Color(1f, 0.6f, 0f); break; // Orange
-            default: levelColor = new Color(1f, 0.3f, 0.3f); break; // Red
-        }
-        
-        if (levelText != null)
-            levelText.color = levelColor;
+        string key = $"RockScore_{rockTag}_Percentage";
+        return PlayerPrefs.GetFloat(key, 0f);
     }
     
     private RockInfo GetRockInfoByTag(string tag)
     {
+        // Clean tag by removing underscores for comparison
+        string cleanTag = tag.Replace("_", "").ToLower();
+        
         foreach (RockInfo info in rockInfos)
         {
-            if (info.tag == tag || 
-                info.tag.Replace("_", "") == tag.Replace("_", ""))
+            string cleanInfoTag = info.tag.Replace("_", "").ToLower();
+            if (cleanInfoTag == cleanTag)
             {
                 return info;
             }
@@ -199,9 +229,6 @@ public class RockInfoDisplay : MonoBehaviour
         return null;
     }
     
-    /// <summary>
-    /// Save unlocked level to PlayerPrefs
-    /// </summary>
     private void SaveUnlockedLevel(string rockTag, int level)
     {
         string key = $"RockInfo_{rockTag}_Level";
@@ -209,24 +236,16 @@ public class RockInfoDisplay : MonoBehaviour
         PlayerPrefs.Save();
     }
     
-    /// <summary>
-    /// Load unlocked level from PlayerPrefs
-    /// </summary>
     private int LoadUnlockedLevel(string rockTag)
     {
         string key = $"RockInfo_{rockTag}_Level";
         return PlayerPrefs.GetInt(key, 0);
     }
     
-    /// <summary>
-    /// Fade in the panel (no auto-close)
-    /// </summary>
     private IEnumerator FadeInCoroutine()
     {
-        // Activate panel
         infoPanel.SetActive(true);
         
-        // Fade in
         float timer = 0f;
         while (timer < fadeDuration)
         {
@@ -235,12 +254,8 @@ public class RockInfoDisplay : MonoBehaviour
             yield return null;
         }
         canvasGroup.alpha = 1f;
-        
     }
     
-    /// <summary>
-    /// User clicks close button to hide panel
-    /// </summary>
     public void HidePanel()
     {
         if (fadeCoroutine != null)
@@ -250,9 +265,6 @@ public class RockInfoDisplay : MonoBehaviour
         StartCoroutine(FadeOutCoroutine());
     }
     
-    /// <summary>
-    /// Fade out and hide panel
-    /// </summary>
     private IEnumerator FadeOutCoroutine()
     {
         float timer = 0f;

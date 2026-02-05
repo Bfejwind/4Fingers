@@ -198,11 +198,15 @@ public class CircularPath : MonoBehaviour
         Debug.Log($"Updating high score for: {dbRockTag} = {finalScore}");
         await DatabaseManager.Instance.UpdateHighScore(dbRockTag, finalScore);
         
-        // NEW: Calculate score percentage and update unlocked info level
+        // Calculate score percentage and update unlocked info level
         float scorePercentage = CalculateScorePercentage(dbRockTag, finalScore, maxPossibleScore);
         Debug.Log($"Score Percentage for {dbRockTag}: {scorePercentage}%");
-        
-        // NEW: Update unlocked info level
+
+        // Save score percentage to Playerprefs
+        PlayerPrefs.SetFloat($"RockScore_{dbRockTag}_Percentage", scorePercentage);
+        PlayerPrefs.Save();
+
+        // Update unlocked info level
         RockInfoDisplay.UpdateInfoLevel(dbRockTag, scorePercentage);
         
         Debug.Log($"Drilling Complete! Rock: {currentRockTag}, Points: {finalScore}, Percentage: {scorePercentage}%");
