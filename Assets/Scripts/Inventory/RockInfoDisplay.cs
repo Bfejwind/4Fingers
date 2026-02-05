@@ -89,11 +89,11 @@ public class RockInfoDisplay : MonoBehaviour
         
         int newLevel = 0;
         
-        if (scorePercentage >= 10f)
+        if (scorePercentage >= 80f)
             newLevel = 3;
-        else if (scorePercentage >= 5f)
+        else if (scorePercentage >= 50f)
             newLevel = 2;
-        else if (scorePercentage >= 2f)
+        else if (scorePercentage >= 10f)
             newLevel = 1;
         
         // Only update if new level is higher
@@ -154,7 +154,7 @@ public class RockInfoDisplay : MonoBehaviour
         {
             case 3:
                 return $"{info.level3Info}\n\n" + 
-                    $"<color=#00FF00>✓ Advanced Info Unlocked!</color>";
+                    $"<color=#00FF00>Advanced Info Unlocked!</color>";
             
             case 2:
                 return $"{info.level2Info}\n\n" + 
@@ -236,8 +236,6 @@ public class RockInfoDisplay : MonoBehaviour
         }
         canvasGroup.alpha = 1f;
         
-        // Panel stays open - user must click close button
-        // NO AUTO-CLOSE HERE
     }
     
     /// <summary>
