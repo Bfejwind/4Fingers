@@ -33,7 +33,6 @@ public class AchievementManager : MonoBehaviour
         [Header("Trigger Conditions")]
         public AchievementType triggerType;
         public string rockTag; // For rock-specific achievements
-        public float scoreThreshold; // Minimum score required
         public int collectionThreshold; // Minimum collection count
         public bool onlyOnce = true; // Can only be unlocked once
         
@@ -44,13 +43,10 @@ public class AchievementManager : MonoBehaviour
     
     public enum AchievementType
     {
-        ScoreThreshold,     // Reach a certain score with any rock
         RockMastery,        // Master a specific rock type (100% score)
         CollectionCount,    // Collect X number of samples
-        TotalScore,         // Reach total score milestone
         FirstDrill,         // First successful drill
         PerfectDrill,       // Perfect score on any drill
-        Combo,              // Multiple high scores in a row
         AllRocksMastered    // Master all rock types
     }
     
@@ -168,13 +164,6 @@ public class AchievementManager : MonoBehaviour
             {
                 switch (achievement.triggerType)
                 {
-                    case AchievementType.ScoreThreshold:
-                        if (score >= achievement.scoreThreshold)
-                        {
-                            await TryUnlockAchievement(achievement.id, score);
-                        }
-                        break;
-                        
                     case AchievementType.RockMastery:
                         if (rockTag == achievement.rockTag && percentage >= 100f)
                         {
@@ -241,15 +230,8 @@ public class AchievementManager : MonoBehaviour
     // Call this when total score is updated
     public async void CheckTotalScoreAchievements(float totalScore)
     {
-        foreach (var achievement in achievements)
-        {
-            if (ShouldCheckAchievement(achievement) && 
-                achievement.triggerType == AchievementType.TotalScore &&
-                totalScore >= achievement.scoreThreshold)
-            {
-                await TryUnlockAchievement(achievement.id, totalScore);
-            }
-        }
+        // REMOVED: TotalScore achievement type
+        // This method is kept for backward compatibility but will not trigger any achievements
     }
     
     private bool ShouldCheckAchievement(Achievement achievement)
@@ -474,7 +456,7 @@ public class AchievementManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("✅ New user - drill count is 0");
+            Debug.Log("New user - drill count is 0");
         }
     }
 
