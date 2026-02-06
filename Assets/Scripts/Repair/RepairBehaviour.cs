@@ -21,6 +21,8 @@ public class RepairBehaviour : MonoBehaviour
             if (angleRotated>= 30f)
             {
                 angleRotated = angleRotated-15;
+                angleRotated = Mathf.Clamp(angleRotated,0,20);
+                Debug.Log("Angle Rotated:" + angleRotated);
                 GameManager.Instance.RepairHealth(angleRotated);
             }
         }

@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
                 //Stop Sparks
                 sparksMinor.Stop();
             }
-            else if (currentHealth <= maxHealth / 2)
+            else if (currentHealth >= maxHealth / 2)
             {
                 sparksLow.Stop();
                 SparksColorChange(highHP);
