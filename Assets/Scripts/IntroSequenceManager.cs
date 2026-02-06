@@ -8,7 +8,6 @@ public class IntroSequenceManager : MonoBehaviour
     public GameObject warningPanel;      
     public CanvasGroup warningCanvasGroup; 
     
-    // CHANGED: Default is now 10 seconds
     public float warningDuration = 10.0f; 
     public float flickerSpeed = 0.08f;   
 
@@ -29,7 +28,7 @@ public class IntroSequenceManager : MonoBehaviour
 
     IEnumerator PlayFullSequence()
     {
-        // --- PART 1: WARNING (10 Seconds) ---
+        // --- PART 1: WARNING ---
         warningPanel.SetActive(true);
         float timer = 0f;
 
