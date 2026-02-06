@@ -429,11 +429,17 @@ public class DatabaseManager : MonoBehaviour
                     return false;
             }
             
-            // Get current amount
+            // Get current amount - declare currentAmount here so it's accessible throughout the method
+            int currentAmount = 0;
             Dictionary<string, object> sampleData = null;
+            
             if (samples.ContainsKey(firebaseKey) && samples[firebaseKey] != null)
             {
                 sampleData = samples[firebaseKey] as Dictionary<string, object>;
+                if (sampleData != null && sampleData.ContainsKey("amount") && sampleData["amount"] != null)
+                {
+                    currentAmount = Convert.ToInt32(sampleData["amount"]);
+                }
             }
 
             if (sampleData == null)
@@ -447,20 +453,13 @@ public class DatabaseManager : MonoBehaviour
             }
             else
             {
-                // Get current amount from the nested dictionary
-                int currentAmount = 0;
-                if (sampleData.ContainsKey("amount") && sampleData["amount"] != null)
-                {
-                    currentAmount = Convert.ToInt32(sampleData["amount"]);
-                }
-                
                 // Calculate new amount
                 int newAmount = currentAmount + amount;
                 sampleData["amount"] = newAmount;
             }
 
             // Update the entire sample data dictionary in Firebase
-            await UpdateUserField($"inventory/samples/{firebaseKey}", sampleData);
+            await UpdateUserField($"inventory/samples/{firebaseKey}/amount", currentAmount + amount);
 
             Debug.Log($"Added {amount} {itemTag} to inventory.");
             return true;
@@ -549,26 +548,26 @@ public class DatabaseManager : MonoBehaviour
             await UpdateUserField($"inventory/samples/{firebaseKey}", sampleData);
             
             Debug.Log($"New High Score for {rockTag}: {newScore}!");
-            
-            // Get current total score
-            float currentTotalScore = 0f;
-            if (userData.ContainsKey("scores"))
-            {
-                var scores = userData["scores"] as Dictionary<string, object>;
-                if (scores != null && scores.ContainsKey("totalScore"))
-                {
-                    currentTotalScore = Convert.ToSingle(scores["totalScore"]);
-                }
-            }
-            
-            // Calculate the difference between new high score and old high score
-            float scoreDifference = newScore - currentHighScore;
-            float newTotalScore = currentTotalScore + scoreDifference;
-            
-            // Update total score in Firebase
-            await UpdateUserField("scores/totalScore", newTotalScore);
-            
-            Debug.Log($"Total score updated: {currentTotalScore} → {newTotalScore} (+{scoreDifference})");
         }
+        
+        // Get current total score
+        float currentTotalScore = 0f;
+        if (userData.ContainsKey("scores"))
+        {
+            var scores = userData["scores"] as Dictionary<string, object>;
+            if (scores != null && scores.ContainsKey("totalScore"))
+            {
+                currentTotalScore = Convert.ToSingle(scores["totalScore"]);
+            }
+        }
+        
+        // FIXED: ALWAYS add the full new score to total score
+        // (not just the difference between newScore and currentHighScore)
+        float newTotalScore = currentTotalScore + newScore;
+        
+        // Update total score in Firebase
+        await UpdateUserField("scores/totalScore", newTotalScore);
+        
+        Debug.Log($"Added {newScore} to total score. Total: {currentTotalScore} → {newTotalScore}");
     }
 }
