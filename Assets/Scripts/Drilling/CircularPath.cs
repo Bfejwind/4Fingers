@@ -208,12 +208,16 @@ public class CircularPath : MonoBehaviour
 
         // Update unlocked info level
         RockInfoDisplay.UpdateInfoLevel(dbRockTag, scorePercentage);
+
+        // Trigger achievement checks
+        if (AchievementManager.Instance != null)
+        {
+            AchievementManager.Instance.CheckDrillAchievements(dbRockTag, finalScore, scorePercentage);
+        }
         
         Debug.Log($"Drilling Complete! Rock: {currentRockTag}, Points: {finalScore}, Percentage: {scorePercentage}%");
         
-        // Clear rock tag AFTER we've used it
-        currentRockTag = "";
-        Debug.Log("Cleared currentRockTag after calculation");
+
     }
     
     private void RandomFirstInterval(float min,float max)

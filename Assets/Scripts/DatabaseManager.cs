@@ -76,6 +76,9 @@ public class DatabaseManager : MonoBehaviour
         
         currentUserId = userId;
         
+        // Create initial achievements structure
+        Dictionary<string, object> initialAchievements = CreateInitialAchievements();
+        
         // Simplified data structure - no redundant userId field
         userData = new Dictionary<string, object>
         {
@@ -130,7 +133,8 @@ public class DatabaseManager : MonoBehaviour
             ["scores"] = new Dictionary<string, object>
             {
                 ["totalScore"] = 0f // Total score across all rock types
-            }
+            },
+            ["achievements"] = initialAchievements // Add achievements section
         };
         
         try
@@ -145,6 +149,70 @@ public class DatabaseManager : MonoBehaviour
             Debug.LogError($"Full stack trace: {e.StackTrace}");
             return false;
         }
+    }
+    
+    /// <summary>
+    /// Creates the initial achievements data structure
+    /// </summary>
+    private Dictionary<string, object> CreateInitialAchievements()
+    {
+        return new Dictionary<string, object>
+        {
+            ["firstDrill"] = new Dictionary<string, object>
+            {
+                ["unlocked"] = false,
+                ["unlockDate"] = "",
+                ["score"] = 0f
+            },
+            ["perfectDrill"] = new Dictionary<string, object>
+            {
+                ["unlocked"] = false,
+                ["unlockDate"] = "",
+                ["score"] = 0f
+            },
+            ["regolithMaster"] = new Dictionary<string, object>
+            {
+                ["unlocked"] = false,
+                ["unlockDate"] = "",
+                ["score"] = 0f
+            },
+            ["basaltMaster"] = new Dictionary<string, object>
+            {
+                ["unlocked"] = false,
+                ["unlockDate"] = "",
+                ["score"] = 0f
+            },
+            ["gypsumMaster"] = new Dictionary<string, object>
+            {
+                ["unlocked"] = false,
+                ["unlockDate"] = "",
+                ["score"] = 0f
+            },
+            ["clayMaster"] = new Dictionary<string, object>
+            {
+                ["unlocked"] = false,
+                ["unlockDate"] = "",
+                ["score"] = 0f
+            },
+            ["carbonateMaster"] = new Dictionary<string, object>
+            {
+                ["unlocked"] = false,
+                ["unlockDate"] = "",
+                ["score"] = 0f
+            },
+            ["waterMaster"] = new Dictionary<string, object>
+            {
+                ["unlocked"] = false,
+                ["unlockDate"] = "",
+                ["score"] = 0f
+            },
+            ["allRocksMastered"] = new Dictionary<string, object>
+            {
+                ["unlocked"] = false,
+                ["unlockDate"] = "",
+                ["score"] = 0f
+            }
+        };
     }
     
     /// <summary>
@@ -472,6 +540,9 @@ public class DatabaseManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates high score for a specific rock type and total score
+    /// </summary>
     public async Task UpdateHighScore(string rockTag, float newScore)
     {
         if (userData == null || !userData.ContainsKey("inventory"))
@@ -560,14 +631,187 @@ public class DatabaseManager : MonoBehaviour
                 currentTotalScore = Convert.ToSingle(scores["totalScore"]);
             }
         }
-        
-        // FIXED: ALWAYS add the full new score to total score
-        // (not just the difference between newScore and currentHighScore)
+
+        // Calculate new total score
         float newTotalScore = currentTotalScore + newScore;
         
         // Update total score in Firebase
         await UpdateUserField("scores/totalScore", newTotalScore);
         
+        // Trigger total score achievements
+        if (AchievementManager.Instance != null)
+        {
+            AchievementManager.Instance.CheckTotalScoreAchievements(newTotalScore);
+        }
+
         Debug.Log($"Added {newScore} to total score. Total: {currentTotalScore} → {newTotalScore}");
+    }
+    
+    /// <summary>
+    /// Unlocks an achievement in Firebase
+    /// </summary>
+    public async Task<bool> UnlockAchievement(string achievementId, float score = 0f)
+    {
+        if (string.IsNullOrEmpty(currentUserId) || databaseReference == null)
+        {
+            Debug.LogError($"Cannot unlock achievement: currentUserId={currentUserId}, databaseReference={databaseReference}");
+            return false;
+        }
+        
+        if (userData == null)
+        {
+            Debug.LogError("User data not loaded");
+            return false;
+        }
+        
+        try
+        {
+            // Ensure achievements section exists in user data
+            if (!userData.ContainsKey("achievements"))
+            {
+                userData["achievements"] = CreateInitialAchievements();
+            }
+            
+            var achievements = userData["achievements"] as Dictionary<string, object>;
+            if (achievements == null || !achievements.ContainsKey(achievementId))
+            {
+                Debug.LogError($"Achievement {achievementId} not found in data structure");
+                return false;
+            }
+            
+            // Get the achievement data
+            var achievementData = achievements[achievementId] as Dictionary<string, object>;
+            if (achievementData == null)
+            {
+                achievementData = new Dictionary<string, object>();
+            }
+            
+            // Update achievement data
+            achievementData["unlocked"] = true;
+            achievementData["unlockDate"] = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ");
+            achievementData["score"] = score;
+            
+            // Update in Firebase
+            string path = $"achievements/{achievementId}";
+            await UpdateUserField(path, achievementData);
+            
+            Debug.Log($"Achievement {achievementId} unlocked and saved to Firebase!");
+            return true;
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Error unlocking achievement: {e.Message}");
+            Debug.LogError($"Full stack trace: {e.StackTrace}");
+            return false;
+        }
+    }
+    
+    /// <summary>
+    /// Gets all achievements from Firebase
+    /// </summary>
+    public async Task<Dictionary<string, object>> GetAchievements()
+    {
+        if (string.IsNullOrEmpty(currentUserId) || databaseReference == null)
+        {
+            Debug.LogError("Cannot get achievements: database not initialized");
+            return null;
+        }
+        
+        try
+        {
+            var snapshot = await databaseReference.Child("users").Child(currentUserId).Child("achievements").GetValueAsync();
+            
+            if (snapshot.Exists && snapshot.Value != null)
+            {
+                return snapshot.Value as Dictionary<string, object>;
+            }
+            
+            // If no achievements exist, return initial structure
+            return CreateInitialAchievements();
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Error getting achievements: {e.Message}");
+            return null;
+        }
+    }
+    
+    /// <summary>
+    /// Checks if an achievement is already unlocked in Firebase
+    /// </summary>
+    public async Task<bool> IsAchievementUnlocked(string achievementId)
+    {
+        var achievements = await GetAchievements();
+        
+        if (achievements == null || !achievements.ContainsKey(achievementId))
+        {
+            return false;
+        }
+        
+        var achievementData = achievements[achievementId] as Dictionary<string, object>;
+        if (achievementData == null || !achievementData.ContainsKey("unlocked"))
+        {
+            return false;
+        }
+        
+        object unlockedValue = achievementData["unlocked"];
+        if (unlockedValue is bool)
+        {
+            return (bool)unlockedValue;
+        }
+        else if (unlockedValue is long)
+        {
+            return (long)unlockedValue == 1;
+        }
+        else if (unlockedValue is int)
+        {
+            return (int)unlockedValue == 1;
+        }
+        
+        return false;
+    }
+    
+    /// <summary>
+    /// Gets the number of unlocked achievements
+    /// </summary>
+    public async Task<int> GetUnlockedAchievementCount()
+    {
+        var achievements = await GetAchievements();
+        
+        if (achievements == null)
+        {
+            return 0;
+        }
+        
+        int count = 0;
+        foreach (var achievement in achievements)
+        {
+            var achievementData = achievement.Value as Dictionary<string, object>;
+            if (achievementData != null && achievementData.ContainsKey("unlocked"))
+            {
+                object unlockedValue = achievementData["unlocked"];
+                bool isUnlocked = false;
+                
+                if (unlockedValue is bool)
+                {
+                    isUnlocked = (bool)unlockedValue;
+                }
+                else if (unlockedValue is long)
+                {
+                    isUnlocked = (long)unlockedValue == 1;
+                }
+                else if (unlockedValue is int)
+                {
+                    isUnlocked = (int)unlockedValue == 1;
+                }
+                
+                if (isUnlocked)
+                {
+                    count++;
+                }
+            }
+        }
+        
+        return count;
     }
 }

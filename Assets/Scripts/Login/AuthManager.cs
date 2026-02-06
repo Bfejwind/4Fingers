@@ -147,6 +147,10 @@ public class AuthManager : MonoBehaviour
             {
                 // Call the database manager to create the user's initial record
                 await databaseManager.CreateUserData(user.UserId, email);
+
+                PlayerPrefs.DeleteKey("TotalDrills");
+                PlayerPrefs.Save();
+                Debug.Log("Drill count reset for new user: TotalDrills = 0");
                 
                 // Immediately load it to ensure lastLogin is set
                 await databaseManager.LoadUserData(user.UserId);
