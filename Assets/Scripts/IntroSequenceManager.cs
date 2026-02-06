@@ -1,48 +1,67 @@
 using System.Collections;
 using UnityEngine;
+using TMPro;
 
 public class IntroSequenceManager : MonoBehaviour
 {
     [Header("Part 1: Warning Settings")]
-    public GameObject warningPanel;     // The parent object holding all your warning texts
-    public CanvasGroup warningCanvasGroup; // Used to control the transparency (Alpha)
+    public GameObject warningPanel;      
+    public CanvasGroup warningCanvasGroup; 
     
-    public float warningDuration = 10.0f; // Total time the warning stays on screen
-    public float flickerSpeed = 0.08f;   // How fast the text flickers (lower is faster)
+    // CHANGED: Default is now 10 seconds
+    public float warningDuration = 10.0f; 
+    public float flickerSpeed = 0.08f;   
+
+    [Header("Part 2: Subtitle Settings")]
+    public TextMeshProUGUI subtitleText; 
+    public float delayBeforeSubtitles = 2.0f; 
+    public float typingSpeed = 0.05f;    
+    public float delayBetweenLines = 2.0f; 
+
+    [TextArea(3, 10)] 
+    public string[] storyLines; 
 
     void Start()
     {
-        // Start the sequence as soon as the game begins
-        StartCoroutine(PlayWarningSequence());
+        if(subtitleText != null) subtitleText.text = "";
+        StartCoroutine(PlayFullSequence());
     }
 
-    IEnumerator PlayWarningSequence()
+    IEnumerator PlayFullSequence()
     {
-        // --- STEP 1: WARNING PHASE ---
-        
-        warningPanel.SetActive(true); // Make sure it's visible
+        // --- PART 1: WARNING (10 Seconds) ---
+        warningPanel.SetActive(true);
         float timer = 0f;
 
         while (timer < warningDuration)
         {
-            // This creates a "glitch" effect by randomizing transparency
-            // We keep it between 0.2 (dim) and 1.0 (full brightness) so it's readable but unstable
+            // Flicker effect
             float randomAlpha = Random.Range(0.2f, 1.0f);
-
-            if (warningCanvasGroup != null)
-            {
-                warningCanvasGroup.alpha = randomAlpha;
-            }
-
-            // Wait for a tiny moment before flickering again
+            if (warningCanvasGroup != null) warningCanvasGroup.alpha = randomAlpha;
+            
             yield return new WaitForSeconds(flickerSpeed);
             timer += flickerSpeed;
         }
 
-        // Turn off the warning completely
-        warningPanel.SetActive(false);
-        
-        // This is where we will add the code for Part 2 (Subtitles) later!
-        Debug.Log("Warning sequence finished. Ready for subtitles.");
+        warningPanel.SetActive(false); 
+
+        // --- PART 2: SUBTITLES ---
+        yield return new WaitForSeconds(delayBeforeSubtitles);
+
+        foreach (string line in storyLines)
+        {
+            subtitleText.text = ""; 
+            
+            foreach (char letter in line.ToCharArray())
+            {
+                subtitleText.text += letter;
+                yield return new WaitForSeconds(typingSpeed);
+            }
+
+            yield return new WaitForSeconds(delayBetweenLines);
+        }
+
+        subtitleText.text = "";
+        Debug.Log("Intro sequence complete.");
     }
 }
