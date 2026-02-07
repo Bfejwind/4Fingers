@@ -12,6 +12,7 @@ TagManager:
   - DrillTarget
   - Hazard
   - Basalt
+  - Wiper
   layers:
   - Default
   - TransparentFX

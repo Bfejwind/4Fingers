@@ -7,6 +7,8 @@ public class WiperBehaviour : MonoBehaviour
 {
     public float screenDirtiness;
     public Image SandOverlay;
+    public WiperTargetL leftWiped;
+    public WiperTargetR rightWiped;
 
     void Start()
     {
@@ -30,6 +32,12 @@ public class WiperBehaviour : MonoBehaviour
     }
     void Update()
     {
+        if (leftWiped.wipedOn && rightWiped.wipedOn)
+        {
+            GettingClean();
+            leftWiped.wipedOn = false;
+            rightWiped.wipedOn = false;
+        }
         SandEffect();
     }
 }
