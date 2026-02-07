@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
     public string highHP = "#FFE700";
     public string halfHP = "#F97427";
     public string lowHP = "#e51414";
+    private bool firstDrill;
+    public GameObject drillTutorial;
+    private bool firstDamage;
+    public GameObject damageTutorial;
 
     private void Awake()
     {
@@ -34,9 +38,18 @@ public class GameManager : MonoBehaviour
     {
         maxHealth = 100;
         currentHealth = maxHealth;
+        firstDrill = true;
+        drillTutorial.SetActive(false);
+        firstDamage = true;
+        damageTutorial.SetActive(false);
     }
     public void TakeDamage(float dmg)
     {
+        if (firstDamage)
+        {
+            damageTutorial.SetActive(true);
+            firstDamage = false;
+        }
         currentHealth -= dmg;
         currentHealth = Mathf.Clamp(currentHealth,0,maxHealth);
         if (currentHealth<= 0)
@@ -95,6 +108,15 @@ public class GameManager : MonoBehaviour
                 sparksHalf.Stop();
                 SparksColorChange(halfHP);
             }
+        }
+    }
+    public void DrillTutorial()
+    {
+        Debug.Log("Tutorial");
+        if (firstDrill)
+        {
+            drillTutorial.SetActive(true);
+            firstDrill = false;
         }
     }
 

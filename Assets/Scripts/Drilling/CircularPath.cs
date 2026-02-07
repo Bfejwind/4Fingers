@@ -31,6 +31,8 @@ public class CircularPath : MonoBehaviour
     // NEW: Score Tracking
     public float maxPossibleScore = 1000f; // Adjust based on your game
     public AudioClip rockBreakSFX;
+    private bool firstDrill;
+    public GameObject drillTutorial;
 
     void Awake()
     {
@@ -39,6 +41,8 @@ public class CircularPath : MonoBehaviour
         gameTime = 0;
         currentRockTag = "";
         isGameActive = false;
+        firstDrill = true;
+        drillTutorial.SetActive(false);
         Debug.Log("CircularPath Awake: Initialized with no rock tag");
     }   
     
@@ -284,5 +288,14 @@ public class CircularPath : MonoBehaviour
         
         float percentage = (currentScore / rockMaxScore) * 100f;
         return Mathf.Clamp(percentage, 0f, 100f);
+    }
+    public void DrillTutorial()
+    {
+        Debug.Log("Tutorial");
+        if (firstDrill)
+        {
+            drillTutorial.SetActive(true);
+            firstDrill = false;
+        }
     }
 }
