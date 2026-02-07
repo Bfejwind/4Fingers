@@ -30,6 +30,7 @@ public class CircularPath : MonoBehaviour
     
     // NEW: Score Tracking
     public float maxPossibleScore = 1000f; // Adjust based on your game
+    public AudioClip rockBreakSFX;
 
     void Awake()
     {
@@ -93,6 +94,7 @@ public class CircularPath : MonoBehaviour
             CalculateFinalScore(finalHitScore, rockTagCopy); 
             
             gameTime = 0;
+            AudioSource.PlayClipAtPoint(rockBreakSFX,transform.position);
             miniGame.SetActive(false);
             GetScore.ClearHitScore(); 
             sampleGenerate.SpawnSample();

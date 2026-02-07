@@ -6,8 +6,10 @@ public class RockSampleExtracted : MonoBehaviour
     public GameObject sample;
     public float outForce = 5f;
     public Transform spawnOrigin;
+    public ParticleSystem rockBreakVFX;
     public void SpawnSample()
     {
+        rockBreakVFX.Play();
         GameObject sampleInstance = Instantiate(sample,spawnOrigin.position,Quaternion.identity);
         Rigidbody sampleRB = sampleInstance.GetComponent<Rigidbody>();
         if (sampleRB != null)

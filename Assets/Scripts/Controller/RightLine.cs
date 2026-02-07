@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Interactable : MonoBehaviour
+public class RightLine : MonoBehaviour
 {
     public GameObject controllerLine;
     public void HoverOver()
