@@ -7,16 +7,41 @@ public class Scanner2Script : MonoBehaviour
     public Material scanShader;
     public Transform scannerSpawn;
     public InputActionReference ActivateScanner;
+    public GameObject scanSphere;
+    public bool ScannerReady;
+    private float cooldown;
     void Start()
     {
         ActivateScanner.action.started += ScanTerrain;
+        scanSphere.SetActive(false);
+        ScannerReady = true;
+        cooldown = 15.0f;
+    }
+    void Update()
+    {
+        if (!ScannerReady)
+        {
+            cooldown -= Time.deltaTime;
+            cooldown = Mathf.Clamp(cooldown,0,15);
+        }
+        if (cooldown == 0)
+        {
+            ScannerReady = true;
+            cooldown = 15.0f;
+        }
     }
     void ScanTerrain(InputAction.CallbackContext context)
     {
-        StartCoroutine(ScreenScanner());
+        if (ScannerReady)
+        {    
+            StartCoroutine(ScreenScanner());
+            StartCoroutine(ActivateScanSphere());
+        }
     }
     public IEnumerator ScreenScanner()
     {
+        yield return new WaitForSeconds(2.5f);
+        ScannerReady = false;
         float timer = 0;
         float scanRange = 0;
         float opacity = 1;
@@ -38,4 +63,12 @@ public class Scanner2Script : MonoBehaviour
             yield return null;
         }
     }
+    IEnumerator ActivateScanSphere()
+    {
+        yield return new WaitForSeconds(3.0f);
+        scanSphere.SetActive(true);
+        yield return new WaitForSeconds(1.0f);
+        scanSphere.SetActive(false);
+    }
+
 }

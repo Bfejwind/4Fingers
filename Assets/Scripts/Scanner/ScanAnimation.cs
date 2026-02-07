@@ -20,7 +20,7 @@ public class ScanAnimation : MonoBehaviour
     public float audioDelay = 2f;
 
     [Header("Cooldown")]
-    public bool ScannerReady = true;
+    public bool ScannerReady;
     public float cooldownTime = 15f;
 
     private float time;
@@ -29,7 +29,7 @@ public class ScanAnimation : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-
+        ScannerReady = true;
         ActivateScanner.action.started += ScannerStartTrigger;
         time = 0;
     }
@@ -54,10 +54,13 @@ public class ScanAnimation : MonoBehaviour
             Debug.Log("Scanner Anim cooldown");
             return;
         }
+        else
+        {
+            StartSpinning();
+            StartCoroutine(PlayScanSoundDelayed());
+            ScannerReady = false;
+        }
 
-        ScannerReady = false;
-        StartSpinning();
-        StartCoroutine(PlayScanSoundDelayed());
     }
 
     public void StartSpinning()
