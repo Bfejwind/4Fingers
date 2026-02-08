@@ -122,6 +122,7 @@ public class GameManager : MonoBehaviour
         {
             rightLine.HoverOver();
             drillTutorial.SetActive(true);
+            firstDrill = false;
         }
     }
     public void PauseGame()

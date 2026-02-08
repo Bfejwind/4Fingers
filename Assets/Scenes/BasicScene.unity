@@ -9358,7 +9358,7 @@ GameObject:
   - component: {fileID: 296751149}
   - component: {fileID: 296751148}
   m_Layer: 5
-  m_Name: Rock Info Panel
+  m_Name: DrillInfoPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53952,7 +53952,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1872530896}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.456}
+  m_LocalPosition: {x: 0, y: 0, z: 4.4}
   m_LocalScale: {x: 0.53919196, y: 0.35069877, z: 0.35069877}
   m_ConstrainProportionsScale: 0
   m_Children:
