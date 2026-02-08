@@ -34,6 +34,7 @@ public class AchievementManager : MonoBehaviour
         public AchievementType triggerType;
         public string rockTag; // For rock-specific achievements
         public int collectionThreshold; // Minimum collection count
+        public int infoLevelThreshold; // Minimum info level (1-3) - CHANGED FROM 1-4
         public bool onlyOnce = true; // Can only be unlocked once
         
         [Header("Display Settings")]
@@ -43,11 +44,12 @@ public class AchievementManager : MonoBehaviour
     
     public enum AchievementType
     {
-        RockMastery,        // Master a specific rock type (100% score)
+        RockMastery,        // Reach a specific info level for a rock type (1-3)
         CollectionCount,    // Collect X number of samples
         FirstDrill,         // First successful drill
-        PerfectDrill,       // Perfect score on any drill
-        AllRocksMastered    // Master all rock types
+        PerfectDrill,       // Perfect score on any drill (100%)
+        AllRocksMastered,   // Reach info level 3 for all rock types
+        AllSamplesCollected // NEW: Collect all rock types with level 3 info
     }
     
     void Awake()
@@ -69,9 +71,12 @@ public class AchievementManager : MonoBehaviour
         }
         
         achievementPopup.SetActive(false);
-        
-        // Don't load from PlayerPrefs in Awake anymore - wait for user login
-        // LoadAchievementProgress(); // REMOVED - will be called after user login
+    }
+    
+    void Start()
+    {
+        // Debug all achievement settings
+        DebugAchievementSettings();
     }
     
     // Call this when user logs in
@@ -157,7 +162,12 @@ public class AchievementManager : MonoBehaviour
         // Get count BEFORE incrementing for FirstDrill check
         int totalDrillsBefore = PlayerPrefs.GetInt("TotalDrills", 0);
         
-        // Check for score-based achievements for this specific rock
+        // Calculate info level from percentage (0-100%)
+        int infoLevel = CalculateInfoLevel(percentage);
+        
+        Debug.Log($"Checking achievements for {rockTag}: {percentage}% = Info Level {infoLevel}");
+        
+        // Check for info-based achievements for this specific rock
         foreach (var achievement in achievements)
         {
             if (ShouldCheckAchievement(achievement))
@@ -165,14 +175,7 @@ public class AchievementManager : MonoBehaviour
                 switch (achievement.triggerType)
                 {
                     case AchievementType.RockMastery:
-                        if (rockTag == achievement.rockTag && percentage >= 100f)
-                        {
-                            await TryUnlockAchievement(achievement.id, score);
-                        }
-                        break;
-                        
-                    case AchievementType.PerfectDrill:
-                        if (percentage >= 100f)
+                        if (rockTag == achievement.rockTag && infoLevel >= achievement.infoLevelThreshold)
                         {
                             await TryUnlockAchievement(achievement.id, score);
                         }
@@ -181,6 +184,22 @@ public class AchievementManager : MonoBehaviour
                     case AchievementType.FirstDrill:
                         // Check if this is the first drill (BEFORE incrementing)
                         if (totalDrillsBefore == 0)
+                        {
+                            await TryUnlockAchievement(achievement.id, score);
+                        }
+                        break;
+                        
+                    case AchievementType.PerfectDrill:
+                        // Check if this drill was perfect (100%)
+                        if (percentage >= 100f)
+                        {
+                            await TryUnlockAchievement(achievement.id, score);
+                        }
+                        break;
+                        
+                    case AchievementType.AllRocksMastered:
+                        // Check if ALL rocks have reached info level 3
+                        if (infoLevel >= achievement.infoLevelThreshold && AreAllRocksAtInfoLevel(achievement.infoLevelThreshold))
                         {
                             await TryUnlockAchievement(achievement.id, score);
                         }
@@ -222,16 +241,93 @@ public class AchievementManager : MonoBehaviour
                             await TryUnlockAchievement(achievement.id, 0f);
                         }
                         break;
+                        
+                    case AchievementType.AllSamplesCollected:
+                        // Check if all rock types have been collected AND have level 3 info
+                        if (AreAllSamplesCollectedWithLevel3())
+                        {
+                            await TryUnlockAchievement(achievement.id, 0f);
+                        }
+                        break;
                 }
             }
         }
     }
     
-    // Call this when total score is updated
+    // Calculate info level from percentage (0-100%)
+    private int CalculateInfoLevel(float percentage)
+    {
+        // Info Level Breakdown (3 levels only):
+        // Level 1: 10% (Basic info unlocked) - CHANGED from >0% to 10%
+        // Level 2: 50% (More info unlocked) - CHANGED from 26% to 50%
+        // Level 3: 80% (All info unlocked) - CHANGED from 51% to 80%
+        // For testing: 2%, 5%, 10% (change these to your testing values)
+        
+        // For FINAL GAME (use these):
+        // if (percentage >= 80f) return 3;
+        // else if (percentage >= 50f) return 2;
+        // else if (percentage >= 10f) return 1;
+        // return 0;
+        
+        // For TESTING (use these):
+        if (percentage >= 10f) return 3;    // Level 3 at 10%
+        else if (percentage >= 5f) return 2;  // Level 2 at 5%
+        else if (percentage >= 2f) return 1;  // Level 1 at 2%
+        return 0;
+    }
+    
+    // Check if all rocks have reached a specific info level
+    private bool AreAllRocksAtInfoLevel(int targetLevel)
+    {
+        // If targetLevel is 0 or negative, return false (no achievement for level 0)
+        if (targetLevel <= 0) return false;
+        
+        string[] allRocks = { "Basalt", "Regolith", "Gypsum", "SmeciteClay", "CarbonateRock", "Water" };
+        
+        foreach (string rock in allRocks)
+        {
+            float percentage = PlayerPrefs.GetFloat($"RockScore_{rock}_Percentage", 0f);
+            int rockLevel = CalculateInfoLevel(percentage);
+            
+            if (rockLevel < targetLevel)
+            {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+    
+    // Check if all rock types have been collected AND have level 3 info
+    private bool AreAllSamplesCollectedWithLevel3()
+    {
+        string[] allRocks = { "Basalt", "Regolith", "Gypsum", "SmeciteClay", "CarbonateRock", "Water" };
+        
+        foreach (string rock in allRocks)
+        {
+            // Check if collected at least once
+            int collectionCount = PlayerPrefs.GetInt($"Collection_{rock}", 0);
+            if (collectionCount == 0)
+            {
+                return false; // Not collected yet
+            }
+            
+            // Check if has level 3 info
+            float percentage = PlayerPrefs.GetFloat($"RockScore_{rock}_Percentage", 0f);
+            int rockLevel = CalculateInfoLevel(percentage);
+            if (rockLevel < 3)
+            {
+                return false; // Not at level 3 yet
+            }
+        }
+        
+        return true;
+    }
+    
+    // Call this when total score is updated (kept for compatibility)
     public async void CheckTotalScoreAchievements(float totalScore)
     {
-        // REMOVED: TotalScore achievement type
-        // This method is kept for backward compatibility but will not trigger any achievements
+        // Not used in info-based system, but kept for compatibility
     }
     
     private bool ShouldCheckAchievement(Achievement achievement)
@@ -466,5 +562,15 @@ public class AchievementManager : MonoBehaviour
         PlayerPrefs.DeleteKey("TotalDrills");
         PlayerPrefs.Save();
         Debug.Log("RESET: TotalDrills set to 0");
+    }
+    
+    // NEW: Debug method to check achievement settings
+    private void DebugAchievementSettings()
+    {
+        Debug.Log("=== ACHIEVEMENT SETTINGS ===");
+        foreach (var a in achievements)
+        {
+            Debug.Log($"{a.id}: Type={a.triggerType}, Rock='{a.rockTag}', LevelReq={a.infoLevelThreshold}, CollectionReq={a.collectionThreshold}");
+        }
     }
 }
