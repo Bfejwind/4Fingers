@@ -31,8 +31,6 @@ public class CircularPath : MonoBehaviour
     // NEW: Score Tracking
     public float maxPossibleScore = 1000f; // Adjust based on your game
     public AudioClip rockBreakSFX;
-    private bool firstDrill;
-    public GameObject drillTutorial;
 
     void Awake()
     {
@@ -41,8 +39,6 @@ public class CircularPath : MonoBehaviour
         gameTime = 0;
         currentRockTag = "";
         isGameActive = false;
-        firstDrill = true;
-        drillTutorial.SetActive(false);
         Debug.Log("CircularPath Awake: Initialized with no rock tag");
     }   
     
@@ -102,6 +98,7 @@ public class CircularPath : MonoBehaviour
             miniGame.SetActive(false);
             GetScore.ClearHitScore(); 
             sampleGenerate.SpawnSample();
+            currentRockTag = ""; 
         }
         
         if (timeInterval1 > firstInterval)
@@ -167,13 +164,13 @@ public class CircularPath : MonoBehaviour
                 basePoints = 300;
                 dbRockTag = "Gypsum";
                 break;
-            case "SmeciteClay": 
+            case "Smecite_Clay": 
                 basePoints = 300;
-                dbRockTag = "SmeciteClay"; 
+                dbRockTag = "Smecite_Clay"; // Convert to database format
                 break;
-            case "CarbonateRock": 
+            case "Carbonate_Rock": 
                 basePoints = 500;
-                dbRockTag = "CarbonateRock"; 
+                dbRockTag = "Carbonate_Rock"; // Convert to database format
                 break;
             case "Water": 
                 basePoints = -500;
@@ -188,7 +185,7 @@ public class CircularPath : MonoBehaviour
         float finalScore = basePoints * timeOnTarget;
         
         // Debug log to see what's being calculated
-        Debug.Log($"Calculating score: Rock={rockTag} (DB: {dbRockTag}), timeOnTarget={timeOnTarget}, basePoints={basePoints}, finalScore={finalScore}");
+        Debug.Log($"Calculating score: Rock={currentRockTag} (DB: {dbRockTag}), timeOnTarget={timeOnTarget}, basePoints={basePoints}, finalScore={finalScore}");
         
         // Check DatabaseManager
         if (DatabaseManager.Instance == null)
@@ -220,8 +217,8 @@ public class CircularPath : MonoBehaviour
             AchievementManager.Instance.CheckDrillAchievements(dbRockTag, finalScore, scorePercentage);
         }
         
-        currentRockTag = ""; // Clear after use
-        Debug.Log($"Drilling Complete! Rock: {rockTag}, Points: {finalScore}, Percentage: {scorePercentage}%");
+        Debug.Log($"Drilling Complete! Rock: {currentRockTag}, Points: {finalScore}, Percentage: {scorePercentage}%");
+        
 
     }
     
@@ -274,10 +271,10 @@ public class CircularPath : MonoBehaviour
                 rockMaxScore = 800f;
                 break;
             case "Gypsum":
-            case "SmeciteClay":
+            case "Smecite_Clay":
                 rockMaxScore = 1200f;
                 break;
-            case "CarbonateRock":
+            case "Carbonate_Rock":
                 rockMaxScore = 1500f;
                 break;
             case "Water":
@@ -287,14 +284,5 @@ public class CircularPath : MonoBehaviour
         
         float percentage = (currentScore / rockMaxScore) * 100f;
         return Mathf.Clamp(percentage, 0f, 100f);
-    }
-    public void DrillTutorial()
-    {
-        Debug.Log("Tutorial");
-        if (firstDrill)
-        {
-            drillTutorial.SetActive(true);
-            firstDrill = false;
-        }
     }
 }

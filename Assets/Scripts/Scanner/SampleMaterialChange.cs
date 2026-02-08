@@ -3,8 +3,12 @@ using UnityEngine;
 
 public class SampleMaterialChange : MonoBehaviour
 {
-    public Material sampleOriginal;
+    private Material sampleOriginal;
     public Material sampleGlow;
+    void Start()
+    {
+        sampleOriginal = GetComponent<Material>();
+    }
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("Collided with " + other.name);

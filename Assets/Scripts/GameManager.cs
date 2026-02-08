@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private bool firstDamage;
     public GameObject damageTutorial;
     public RightLine rightLine;
+    public WiperBehaviour wiperScript;
 
     private void Awake()
     {
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour
             rightLine.HoverOver();
         }
         currentHealth -= dmg;
+        wiperScript.GettingDirty();
         currentHealth = Mathf.Clamp(currentHealth,0,maxHealth);
         if (currentHealth<= 0)
         {
