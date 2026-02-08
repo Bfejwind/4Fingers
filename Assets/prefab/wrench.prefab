@@ -212,15 +212,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 10d38cc609a81e9439b146784aefa779, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 69.66162
+      value: 74.562
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 10d38cc609a81e9439b146784aefa779, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 302.5348
+      value: 304.102
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 10d38cc609a81e9439b146784aefa779, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -255.29
+      value: -259.05
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 10d38cc609a81e9439b146784aefa779, type: 3}
       propertyPath: m_LocalRotation.w
@@ -260,11 +260,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -156075290912524848, guid: 10d38cc609a81e9439b146784aefa779, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.402
+      value: 1.412
       objectReference: {fileID: 0}
     - target: {fileID: -156075290912524848, guid: 10d38cc609a81e9439b146784aefa779, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.379
+      value: 0.357
       objectReference: {fileID: 0}
     - target: {fileID: -156075290912524848, guid: 10d38cc609a81e9439b146784aefa779, type: 3}
       propertyPath: m_LocalRotation.w
@@ -377,7 +377,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
@@ -417,7 +417,7 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 9
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
