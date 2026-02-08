@@ -508,22 +508,21 @@ public class DatabaseManager : MonoBehaviour
                 }
             }
 
-        if (sampleData == null)
-        {
-            // Create new sample data if it doesn't exist
-            sampleData = new Dictionary<string, object>
+            if (sampleData == null)
             {
-                ["amount"] = amount,
-                ["highScore"] = 0f
-            };
-            newAmount = amount;  // Set newAmount
-        }
-        else
-        {
-            // Calculate new amount
-            newAmount = currentAmount + amount;
-            sampleData["amount"] = newAmount;
-        }
+                // Create new sample data if it doesn't exist
+                sampleData = new Dictionary<string, object>
+                {
+                    ["amount"] = amount,
+                    ["highScore"] = 0f
+                };
+            }
+            else
+            {
+                // Calculate new amount
+                int newAmount = currentAmount + amount;
+                sampleData["amount"] = newAmount;
+            }
 
             // Update the entire sample data dictionary in Firebase
             await UpdateUserField($"inventory/samples/{firebaseKey}/amount", currentAmount + amount);

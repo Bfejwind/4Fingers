@@ -102,7 +102,6 @@ public class CircularPath : MonoBehaviour
             miniGame.SetActive(false);
             GetScore.ClearHitScore(); 
             sampleGenerate.SpawnSample();
-            currentRockTag = ""; 
         }
         
         if (timeInterval1 > firstInterval)
@@ -189,7 +188,7 @@ public class CircularPath : MonoBehaviour
         float finalScore = basePoints * timeOnTarget;
         
         // Debug log to see what's being calculated
-        Debug.Log($"Calculating score: Rock={currentRockTag} (DB: {dbRockTag}), timeOnTarget={timeOnTarget}, basePoints={basePoints}, finalScore={finalScore}");
+        Debug.Log($"Calculating score: Rock={rockTag} (DB: {dbRockTag}), timeOnTarget={timeOnTarget}, basePoints={basePoints}, finalScore={finalScore}");
         
         // Check DatabaseManager
         if (DatabaseManager.Instance == null)
@@ -221,8 +220,8 @@ public class CircularPath : MonoBehaviour
             AchievementManager.Instance.CheckDrillAchievements(dbRockTag, finalScore, scorePercentage);
         }
         
-        Debug.Log($"Drilling Complete! Rock: {currentRockTag}, Points: {finalScore}, Percentage: {scorePercentage}%");
-        
+        currentRockTag = ""; // Clear after use
+        Debug.Log($"Drilling Complete! Rock: {rockTag}, Points: {finalScore}, Percentage: {scorePercentage}%");
 
     }
     
