@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,10 +12,11 @@ public class GameManager : MonoBehaviour
     public string highHP = "#FFE700";
     public string halfHP = "#F97427";
     public string lowHP = "#e51414";
-    private bool firstDrill;
+    public bool firstDrill;
     public GameObject drillTutorial;
     private bool firstDamage;
     public GameObject damageTutorial;
+    public RightLine rightLine;
 
     private void Awake()
     {
@@ -115,9 +117,18 @@ public class GameManager : MonoBehaviour
         Debug.Log("Tutorial");
         if (firstDrill)
         {
+            rightLine.HoverOver();
             drillTutorial.SetActive(true);
-            firstDrill = false;
         }
     }
+    public void PauseGame()
+    {
+        Time.timeScale = 0f;
+    }
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
+    }
+
 
 }

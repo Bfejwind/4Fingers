@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RightLine : MonoBehaviour
@@ -6,9 +7,18 @@ public class RightLine : MonoBehaviour
     public void HoverOver()
     {
         controllerLine.SetActive(true);
+        
     }
     public void HoverEnd()
     {
-        controllerLine.SetActive(false);
+        if (GameManager.Instance.firstDrill)
+        {
+            return;
+        }
+        else
+        {
+            controllerLine.SetActive(false);
+            GameManager.Instance.firstDrill = false;
+        }
     }
 }

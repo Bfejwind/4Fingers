@@ -38,14 +38,14 @@ public class IntroSequenceManager : MonoBehaviour
             float randomAlpha = Random.Range(0.2f, 1.0f);
             if (warningCanvasGroup != null) warningCanvasGroup.alpha = randomAlpha;
             
-            yield return new WaitForSeconds(flickerSpeed);
+            yield return new WaitForSecondsRealtime(flickerSpeed);
             timer += flickerSpeed;
         }
 
         warningPanel.SetActive(false); 
 
         // --- PART 2: SUBTITLES ---
-        yield return new WaitForSeconds(delayBeforeSubtitles);
+        yield return new WaitForSecondsRealtime(delayBeforeSubtitles);
 
         foreach (string line in storyLines)
         {
@@ -54,10 +54,10 @@ public class IntroSequenceManager : MonoBehaviour
             foreach (char letter in line.ToCharArray())
             {
                 subtitleText.text += letter;
-                yield return new WaitForSeconds(typingSpeed);
+                yield return new WaitForSecondsRealtime(typingSpeed);
             }
 
-            yield return new WaitForSeconds(delayBetweenLines);
+            yield return new WaitForSecondsRealtime(delayBetweenLines);
         }
 
         subtitleText.text = "";
