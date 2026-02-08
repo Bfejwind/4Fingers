@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
         {
             damageTutorial.SetActive(true);
             firstDamage = false;
+            rightLine.HoverOver();
         }
         currentHealth -= dmg;
         currentHealth = Mathf.Clamp(currentHealth,0,maxHealth);

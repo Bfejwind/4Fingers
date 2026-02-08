@@ -15,19 +15,19 @@ public class Scanner2Script : MonoBehaviour
         ActivateScanner.action.started += ScanTerrain;
         scanSphere.SetActive(false);
         ScannerReady = true;
-        cooldown = 15.0f;
+        cooldown = 1.0f;
     }
     void Update()
     {
         if (!ScannerReady)
         {
             cooldown -= Time.deltaTime;
-            cooldown = Mathf.Clamp(cooldown,0,15);
+            cooldown = Mathf.Clamp(cooldown,0,1);
         }
         if (cooldown == 0)
         {
             ScannerReady = true;
-            cooldown = 15.0f;
+            cooldown = 1.0f;
         }
     }
     void ScanTerrain(InputAction.CallbackContext context)
