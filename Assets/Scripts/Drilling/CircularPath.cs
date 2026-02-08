@@ -168,13 +168,13 @@ public class CircularPath : MonoBehaviour
                 basePoints = 300;
                 dbRockTag = "Gypsum";
                 break;
-            case "Smecite_Clay": 
+            case "SmeciteClay": 
                 basePoints = 300;
-                dbRockTag = "Smecite_Clay"; // Convert to database format
+                dbRockTag = "SmeciteClay"; 
                 break;
-            case "Carbonate_Rock": 
+            case "CarbonateRock": 
                 basePoints = 500;
-                dbRockTag = "Carbonate_Rock"; // Convert to database format
+                dbRockTag = "CarbonateRock"; 
                 break;
             case "Water": 
                 basePoints = -500;
@@ -275,10 +275,10 @@ public class CircularPath : MonoBehaviour
                 rockMaxScore = 800f;
                 break;
             case "Gypsum":
-            case "Smecite_Clay":
+            case "SmeciteClay":
                 rockMaxScore = 1200f;
                 break;
-            case "Carbonate_Rock":
+            case "CarbonateRock":
                 rockMaxScore = 1500f;
                 break;
             case "Water":

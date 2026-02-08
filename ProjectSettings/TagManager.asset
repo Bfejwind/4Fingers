@@ -13,6 +13,11 @@ TagManager:
   - Hazard
   - Basalt
   - Wiper
+  - Water
+  - Regolith
+  - Gypsum
+  - SmeciteClay
+  - CarbonateRock
   layers:
   - Default
   - TransparentFX

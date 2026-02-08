@@ -482,14 +482,12 @@ public class DatabaseManager : MonoBehaviour
                     firebaseKey = "regolith";
                     break;
                 case "SmeciteClay":
-                case "Smecite_Clay":
                     firebaseKey = "smeciteClay";
                     break;
                 case "Gypsum":
                     firebaseKey = "gypsum";
                     break;
                 case "CarbonateRock":
-                case "Carbonate_Rock":
                     firebaseKey = "carbonateRock";
                     break;
                 default:
@@ -510,21 +508,22 @@ public class DatabaseManager : MonoBehaviour
                 }
             }
 
-            if (sampleData == null)
+        if (sampleData == null)
+        {
+            // Create new sample data if it doesn't exist
+            sampleData = new Dictionary<string, object>
             {
-                // Create new sample data if it doesn't exist
-                sampleData = new Dictionary<string, object>
-                {
-                    ["amount"] = amount,
-                    ["highScore"] = 0f
-                };
-            }
-            else
-            {
-                // Calculate new amount
-                int newAmount = currentAmount + amount;
-                sampleData["amount"] = newAmount;
-            }
+                ["amount"] = amount,
+                ["highScore"] = 0f
+            };
+            newAmount = amount;  // Set newAmount
+        }
+        else
+        {
+            // Calculate new amount
+            newAmount = currentAmount + amount;
+            sampleData["amount"] = newAmount;
+        }
 
             // Update the entire sample data dictionary in Firebase
             await UpdateUserField($"inventory/samples/{firebaseKey}/amount", currentAmount + amount);
@@ -566,14 +565,12 @@ public class DatabaseManager : MonoBehaviour
                 firebaseKey = "regolith";
                 break;
             case "SmeciteClay":
-            case "Smecite_Clay":
                 firebaseKey = "smeciteClay";
                 break;
             case "Gypsum":
                 firebaseKey = "gypsum";
                 break;
             case "CarbonateRock":
-            case "Carbonate_Rock":
                 firebaseKey = "carbonateRock";
                 break;
             default:

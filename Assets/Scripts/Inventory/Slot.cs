@@ -50,7 +50,7 @@ public class Slot : MonoBehaviour
         Debug.Log($"[Slot] Detected Item Tag: '{currentTag}'");
         if (!string.IsNullOrEmpty(currentTag))
         {
-            await DatabaseManager.Instance.AddInventoryItem(currentTag);
+            await DatabaseManager.Instance.AddInventoryItem(currentTag); 
             Debug.Log("Firebase updated for: " + currentTag);
 
             // Display rock info
