@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public WiperBehaviour wiperScript;
     public GameObject movementScript;
     public GameObject wiperTutorial;
+    public GameObject scannerTutorial;
 
     private void Awake()
     {
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour
         firstDamage = true;
         damageTutorial.SetActive(false);
         wiperTutorial.SetActive(false);
+        scannerTutorial.SetActive(false);
     }
     public void TakeDamage(float dmg)
     {
@@ -138,6 +140,11 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         movementScript.SetActive(true);
+    }
+    public void ScannerTutorial()
+    {
+        PauseGame();
+        scannerTutorial.SetActive(true);
     }
 
 
