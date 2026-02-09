@@ -7,7 +7,6 @@ public class CircularPath : MonoBehaviour
 {
     public Transform centrePoint; //Rotate around this
     private float speed; //Speed of movement
-    private int posOrNeg; //Direction determinant
     [SerializeField]
     float radius; //Radius of circular path
     [SerializeField]
@@ -31,6 +30,8 @@ public class CircularPath : MonoBehaviour
     // NEW: Score Tracking
     public float maxPossibleScore = 1000f; // Adjust based on your game
     public AudioClip rockBreakSFX;
+    public Transform miniGameRotation;
+    Transform playerCamera;
 
     void Awake()
     {
@@ -40,7 +41,23 @@ public class CircularPath : MonoBehaviour
         currentRockTag = "";
         isGameActive = false;
         Debug.Log("CircularPath Awake: Initialized with no rock tag");
-    }   
+        if (miniGameRotation == null)
+        {
+            miniGameRotation = transform.parent;
+        }
+
+        playerCamera = Camera.main.transform;
+    }
+    public void FacePlayer()
+    {
+        Vector3 dir = playerCamera.position - miniGameRotation.position;
+
+        dir.y = 0f;
+
+        if (dir.sqrMagnitude < 0.001f) return;
+
+        miniGameRotation.rotation = Quaternion.LookRotation(dir);
+    }
     
     public void HoverEnter(UnityEngine.XR.Interaction.Toolkit.HoverEnterEventArgs args)
     {
@@ -128,11 +145,11 @@ public class CircularPath : MonoBehaviour
     private void CalculatePosition()
     {
         //Calculate new position of target
-        float x = centrePoint.position.x + Mathf.Cos(angle) * radius;
-        float y = centrePoint.position.y + Mathf.Sin(angle) *radius;
-        float z = centrePoint.position.z + depth;
+        float x = Mathf.Cos(angle) * radius;
+        float y = Mathf.Sin(angle) *radius;
+        float z = depth;
         //Update the position of target
-        transform.position = new Vector3(x,y,z);
+        transform.localPosition = new Vector3(x,y,z);
     }
     
     async void CalculateFinalScore(float timeOnTarget, string rockTag)
@@ -239,6 +256,7 @@ public class CircularPath : MonoBehaviour
     
     public void ActivateDrillingGame()
     {   
+        FacePlayer();
         // Shoot a ray downwards to see what we are standing on
         RaycastHit hit;
         // Adjust Vector3.down and the distance (5f) based on your drill height
