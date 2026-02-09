@@ -5,9 +5,11 @@ public class SampleMaterialChange : MonoBehaviour
 {
     private Material sampleOriginal;
     public Material sampleGlow;
+    private Renderer sampleRenderer;
     void Start()
     {
-        sampleOriginal = GetComponent<Material>();
+        sampleRenderer = GetComponent<Renderer>();
+        sampleOriginal = sampleRenderer.material;
     }
     void OnTriggerEnter(Collider other)
     {
@@ -22,8 +24,8 @@ public class SampleMaterialChange : MonoBehaviour
 
     IEnumerator GlowFade()
     {
-        this.GetComponent<Renderer>().material = sampleGlow;
+        sampleRenderer.material = sampleGlow;
         yield return new WaitForSeconds(3.0f);
-        this.GetComponent<Renderer>().material = sampleOriginal;
+        sampleRenderer.material = sampleOriginal;
     }
 }
