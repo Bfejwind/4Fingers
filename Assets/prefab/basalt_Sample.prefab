@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2560385081041939397}
   - component: {fileID: 3734705060941112412}
   m_Layer: 0
-  m_Name: basaltSample
+  m_Name: basalt_Sample
   m_TagString: Basalt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

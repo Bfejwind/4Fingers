@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class ScanTutorialScript : MonoBehaviour
 {
-    void OTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
-        GameManager.Instance.ScannerTutorial();
+        if (other.gameObject.CompareTag("Player"))
+        {
+            GameManager.Instance.ScannerTutorial();
+        }
     }
 }

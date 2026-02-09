@@ -146,6 +146,5 @@ public class GameManager : MonoBehaviour
         PauseGame();
         scannerTutorial.SetActive(true);
     }
-
-
+    
 }

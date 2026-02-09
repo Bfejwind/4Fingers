@@ -5613,6 +5613,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1738240481755776489, guid: f9f5956bc15054043b788a0c30f6a81d, type: 3}
+      propertyPath: radius
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738240481755776489, guid: f9f5956bc15054043b788a0c30f6a81d, type: 3}
       propertyPath: rockBreakSFX
       value: 
       objectReference: {fileID: 8300000, guid: 19872f0adcfafe74695379f9274a12be, type: 3}
