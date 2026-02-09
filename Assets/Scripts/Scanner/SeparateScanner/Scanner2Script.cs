@@ -9,25 +9,27 @@ public class Scanner2Script : MonoBehaviour
     public InputActionReference ActivateScanner;
     public GameObject scanSphere;
     public bool ScannerReady;
-    private float cooldown;
+    public float cooldown;
+    public float resetCooldown;
     void Start()
     {
         ActivateScanner.action.started += ScanTerrain;
         scanSphere.SetActive(false);
         ScannerReady = true;
-        cooldown = 1.0f;
+        resetCooldown = 10.0f;
+        cooldown = resetCooldown;
     }
     void Update()
     {
         if (!ScannerReady)
         {
             cooldown -= Time.deltaTime;
-            cooldown = Mathf.Clamp(cooldown,0,1);
+            cooldown = Mathf.Clamp(cooldown,0,resetCooldown);
         }
         if (cooldown == 0)
         {
             ScannerReady = true;
-            cooldown = 1.0f;
+            cooldown = resetCooldown;
         }
     }
     void ScanTerrain(InputAction.CallbackContext context)
