@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public GameObject damageTutorial;
     public RightLine rightLine;
     public WiperBehaviour wiperScript;
+    public GameObject movementScript;
+    public GameObject wiperTutorial;
 
     private void Awake()
     {
@@ -45,11 +47,13 @@ public class GameManager : MonoBehaviour
         drillTutorial.SetActive(false);
         firstDamage = true;
         damageTutorial.SetActive(false);
+        wiperTutorial.SetActive(false);
     }
     public void TakeDamage(float dmg)
     {
         if (firstDamage)
         {
+            PauseGame();
             damageTutorial.SetActive(true);
             firstDamage = false;
             rightLine.HoverOver();
@@ -128,10 +132,12 @@ public class GameManager : MonoBehaviour
     public void PauseGame()
     {
         Time.timeScale = 0f;
+        movementScript.SetActive(false);
     }
     public void ResumeGame()
     {
         Time.timeScale = 1f;
+        movementScript.SetActive(true);
     }
 
 
