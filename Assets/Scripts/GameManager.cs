@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public GameObject deathScreen;
     public GameObject player;
     public Transform respawnPoint;
+    public WiperBehaviour restartWiper;
 
     private void Awake()
     {
@@ -71,6 +72,9 @@ public class GameManager : MonoBehaviour
         {
             deathScreen.SetActive(true);
             player.transform.position = respawnPoint.position;
+            currentHealth = maxHealth;
+            restartWiper.screenDirtiness = 0;
+            PauseGame();
 
         }
         if (sparksMinor.isPlaying)
