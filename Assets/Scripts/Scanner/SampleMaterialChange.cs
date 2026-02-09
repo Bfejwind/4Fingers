@@ -13,7 +13,7 @@ public class SampleMaterialChange : MonoBehaviour
     public float glowIntensity = 2.6f;
     public float fadeDuration = 2.0f;
     public float holdTime = 2.0f;
-    static readonly int BaseColorID = Shader.PropertyToID("_BaseColor");
+    static readonly int BaseColorID = Shader.PropertyToID("_Color");
     static readonly int EmissionColorID = Shader.PropertyToID("_EmissionColor");
     void Awake()
     {

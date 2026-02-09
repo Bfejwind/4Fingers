@@ -5,6 +5,11 @@ public class SampleChecker : MonoBehaviour
     private string correctSample;
     private string inputSample;
     private GameObject inputSampleObject;
+    public ParticleSystem correct;
+    public ParticleSystem wrong;
+    public AudioSource answerSFX;
+    public AudioClip correctSFX;
+    public AudioClip wrongSFX;
     void Awake()
     {
         correctSample = gameObject.name.Split("_")[1];
@@ -21,11 +26,14 @@ public class SampleChecker : MonoBehaviour
     {
         if (inputSample == correctSample)
         {
-            return;
+            correct.Play();
+            answerSFX.PlayOneShot(correctSFX);
         }
         else
         {
             Destroy(inputSampleObject);
+            wrong.Play();
+            answerSFX.PlayOneShot(wrongSFX);
         }
     }
 }

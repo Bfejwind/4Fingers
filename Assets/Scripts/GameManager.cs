@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     public GameObject movementScript;
     public GameObject wiperTutorial;
     public GameObject scannerTutorial;
+    public GameObject deathScreen;
+    public GameObject player;
+    public Transform respawnPoint;
 
     private void Awake()
     {
@@ -50,6 +53,7 @@ public class GameManager : MonoBehaviour
         damageTutorial.SetActive(false);
         wiperTutorial.SetActive(false);
         scannerTutorial.SetActive(false);
+        deathScreen.SetActive(false);
     }
     public void TakeDamage(float dmg)
     {
@@ -65,7 +69,9 @@ public class GameManager : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth,0,maxHealth);
         if (currentHealth<= 0)
         {
-            //Death effect
+            deathScreen.SetActive(true);
+            player.transform.position = respawnPoint.position;
+
         }
         if (sparksMinor.isPlaying)
         {
@@ -146,5 +152,5 @@ public class GameManager : MonoBehaviour
         PauseGame();
         scannerTutorial.SetActive(true);
     }
-    
+
 }

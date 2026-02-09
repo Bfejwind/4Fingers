@@ -94,10 +94,10 @@ Material:
     - _falloff: 0.1
     - _lin_bias: 24.52
     - _line: 14.71
-    - _opacity: 0.0045146346
-    - _range: 99.54854
+    - _opacity: 0.0071389675
+    - _range: 99.2861
     m_Colors:
     - _Color: {r: 0, g: 0.7363053, b: 1.9053557, a: 0}
-    - _position: {r: -78.30757, g: 320.9414, b: 151.04872, a: 0}
+    - _position: {r: 78.47318, g: 303.6325, b: -260.6593, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
