@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centrePoint: {fileID: 4437055171365935195}
-  radius: 1.15
+  radius: 1.2
   angle: 0
   depth: -0.11
   firstInterval: 0
@@ -478,7 +478,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 71.7929, y: 303.8793, z: -248.03082}
-  m_LocalScale: {x: 0.9770588, y: 0.9770588, z: 0.9770588}
+  m_LocalScale: {x: 2.9469202, y: 2.9469202, z: 2.9469202}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6065980288400733265}
