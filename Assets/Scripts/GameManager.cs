@@ -70,11 +70,11 @@ public class GameManager : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth,0,maxHealth);
         if (currentHealth<= 0)
         {
-            deathScreen.SetActive(true);
-            player.transform.position = respawnPoint.position;
-            currentHealth = maxHealth;
-            restartWiper.screenDirtiness = 0;
-            PauseGame();
+            // deathScreen.SetActive(true);
+            // player.transform.position = respawnPoint.position;
+            // currentHealth = maxHealth;
+            // restartWiper.screenDirtiness = 0;
+            // PauseGame();
 
         }
         if (sparksMinor.isPlaying)

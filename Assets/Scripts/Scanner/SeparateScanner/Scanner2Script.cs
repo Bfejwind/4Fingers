@@ -51,9 +51,9 @@ public class Scanner2Script : MonoBehaviour
         while (true)
         {
             timer +=Time.deltaTime;
-            if (timer <= 1)
+            if (timer <= 5)
             {
-                scanRange = Mathf.Lerp(0,100,timer);
+                scanRange = Mathf.Lerp(0,200,timer);
                 opacity = Mathf.Lerp(1,0,timer);
                 scanShader.SetFloat("_range",scanRange);
                 scanShader.SetFloat("_opacity",opacity);
