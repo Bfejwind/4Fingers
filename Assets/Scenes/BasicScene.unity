@@ -736,7 +736,7 @@ GameObject:
   - component: {fileID: 44374746}
   - component: {fileID: 44374748}
   - component: {fileID: 44374747}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: TutorialName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1167,7 +1167,7 @@ GameObject:
   - component: {fileID: 62265915}
   - component: {fileID: 62265917}
   - component: {fileID: 62265916}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Rock Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11597,7 +11597,7 @@ GameObject:
   m_Component:
   - component: {fileID: 97805742}
   - component: {fileID: 97805743}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DrillTutVid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11840,7 +11840,7 @@ GameObject:
   - component: {fileID: 121118355}
   - component: {fileID: 121118357}
   - component: {fileID: 121118356}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12237,7 +12237,7 @@ GameObject:
   m_Component:
   - component: {fileID: 138895288}
   - component: {fileID: 138895287}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: WarningPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12511,7 +12511,7 @@ GameObject:
   - component: {fileID: 177178287}
   - component: {fileID: 177178289}
   - component: {fileID: 177178288}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13834,7 +13834,7 @@ GameObject:
   - component: {fileID: 268002246}
   - component: {fileID: 268002245}
   - component: {fileID: 268002244}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: CloseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14139,7 +14139,7 @@ GameObject:
   - component: {fileID: 294638491}
   - component: {fileID: 294638493}
   - component: {fileID: 294638492}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Instructions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14310,7 +14310,7 @@ GameObject:
   - component: {fileID: 296751147}
   - component: {fileID: 296751149}
   - component: {fileID: 296751148}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: DrillInfoPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14524,7 +14524,7 @@ GameObject:
   - component: {fileID: 312484043}
   - component: {fileID: 312484045}
   - component: {fileID: 312484044}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Rock Info Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19683,7 +19683,7 @@ GameObject:
   m_Component:
   - component: {fileID: 345631916}
   - component: {fileID: 345631917}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WiperVid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25234,7 +25234,7 @@ GameObject:
   - component: {fileID: 379112733}
   - component: {fileID: 379112735}
   - component: {fileID: 379112734}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Instructions (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25914,7 +25914,7 @@ GameObject:
   - component: {fileID: 415886846}
   - component: {fileID: 415886848}
   - component: {fileID: 415886847}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: 'Slot 3 info '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26134,7 +26134,7 @@ GameObject:
   - component: {fileID: 422845552}
   - component: {fileID: 422845551}
   - component: {fileID: 422845550}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: CloseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26849,7 +26849,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1767192439, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 117
+      value: 373
       objectReference: {fileID: 0}
     - target: {fileID: 1767192439, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_projectionMatrixMode
@@ -27325,7 +27325,7 @@ GameObject:
   - component: {fileID: 444141940}
   - component: {fileID: 444141939}
   - component: {fileID: 444141938}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: SubtitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28921,7 +28921,7 @@ GameObject:
   - component: {fileID: 562214613}
   - component: {fileID: 562214615}
   - component: {fileID: 562214614}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Rock Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29057,7 +29057,7 @@ GameObject:
   - component: {fileID: 569165035}
   - component: {fileID: 569165037}
   - component: {fileID: 569165036}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Rock Info Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34720,7 +34720,7 @@ GameObject:
   - component: {fileID: 597414396}
   - component: {fileID: 597414398}
   - component: {fileID: 597414397}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: TutorialName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35052,7 +35052,7 @@ GameObject:
   - component: {fileID: 618770159}
   - component: {fileID: 618770161}
   - component: {fileID: 618770160}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35648,7 +35648,7 @@ GameObject:
   - component: {fileID: 664920977}
   - component: {fileID: 664920979}
   - component: {fileID: 664920978}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Instructions (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41582,7 +41582,7 @@ GameObject:
   - component: {fileID: 741815401}
   - component: {fileID: 741815403}
   - component: {fileID: 741815404}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42476,7 +42476,7 @@ GameObject:
   - component: {fileID: 795500589}
   - component: {fileID: 795500591}
   - component: {fileID: 795500590}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: TutorialName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49173,7 +49173,7 @@ GameObject:
   - component: {fileID: 873230135}
   - component: {fileID: 873230137}
   - component: {fileID: 873230136}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50036,7 +50036,7 @@ GameObject:
   - component: {fileID: 947487641}
   - component: {fileID: 947487640}
   - component: {fileID: 947487639}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: DamageTutorialCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50301,7 +50301,7 @@ GameObject:
   - component: {fileID: 956508290}
   - component: {fileID: 956508292}
   - component: {fileID: 956508291}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Warning Sign
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50668,7 +50668,7 @@ GameObject:
   - component: {fileID: 992701747}
   - component: {fileID: 992701749}
   - component: {fileID: 992701750}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50748,7 +50748,7 @@ GameObject:
   - component: {fileID: 996800457}
   - component: {fileID: 996800459}
   - component: {fileID: 996800458}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Purity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51482,7 +51482,7 @@ GameObject:
   - component: {fileID: 1085866582}
   - component: {fileID: 1085866584}
   - component: {fileID: 1085866583}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Instructions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51713,7 +51713,7 @@ GameObject:
   - component: {fileID: 1098598892}
   - component: {fileID: 1098598894}
   - component: {fileID: 1098598893}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51988,7 +51988,7 @@ GameObject:
   - component: {fileID: 1144606974}
   - component: {fileID: 1144606976}
   - component: {fileID: 1144606975}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Warning Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52334,7 +52334,7 @@ GameObject:
   - component: {fileID: 1174838845}
   - component: {fileID: 1174838847}
   - component: {fileID: 1174838846}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Purity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52725,7 +52725,7 @@ GameObject:
   - component: {fileID: 1196724916}
   - component: {fileID: 1196724918}
   - component: {fileID: 1196724917}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53004,7 +53004,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1208683260}
   - component: {fileID: 1208683261}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DamageTutVid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53074,7 +53074,7 @@ GameObject:
   - component: {fileID: 1210714124}
   - component: {fileID: 1210714123}
   - component: {fileID: 1210714122}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: CloseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53233,7 +53233,7 @@ GameObject:
   - component: {fileID: 1214837557}
   - component: {fileID: 1214837556}
   - component: {fileID: 1214837555}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: ScannerTutorialCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69217,7 +69217,7 @@ GameObject:
   - component: {fileID: 1307372455}
   - component: {fileID: 1307372457}
   - component: {fileID: 1307372456}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Instructions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69437,7 +69437,7 @@ GameObject:
   - component: {fileID: 1309041728}
   - component: {fileID: 1309041731}
   - component: {fileID: 1309041730}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: RawImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69509,7 +69509,7 @@ GameObject:
   - component: {fileID: 1309724082}
   - component: {fileID: 1309724084}
   - component: {fileID: 1309724083}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69916,7 +69916,7 @@ GameObject:
   - component: {fileID: 1341596945}
   - component: {fileID: 1341596947}
   - component: {fileID: 1341596946}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Warning Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70055,7 +70055,7 @@ GameObject:
   - component: {fileID: 1345191879}
   - component: {fileID: 1345191878}
   - component: {fileID: 1345191882}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: DrillTutorialCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75418,7 +75418,7 @@ GameObject:
   - component: {fileID: 1379599031}
   - component: {fileID: 1379599033}
   - component: {fileID: 1379599032}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: AchievementImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75765,7 +75765,7 @@ GameObject:
   - component: {fileID: 1393985104}
   - component: {fileID: 1393985106}
   - component: {fileID: 1393985105}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Instructions (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76179,7 +76179,7 @@ GameObject:
   - component: {fileID: 1439178973}
   - component: {fileID: 1439178975}
   - component: {fileID: 1439178974}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Slot 2 info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81281,7 +81281,7 @@ GameObject:
   - component: {fileID: 1461338175}
   - component: {fileID: 1461338177}
   - component: {fileID: 1461338176}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81747,7 +81747,7 @@ GameObject:
   - component: {fileID: 1465050625}
   - component: {fileID: 1465050628}
   - component: {fileID: 1465050627}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Achievement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82220,7 +82220,7 @@ GameObject:
   - component: {fileID: 1491509029}
   - component: {fileID: 1491509031}
   - component: {fileID: 1491509030}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Instructions (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88315,7 +88315,7 @@ GameObject:
   - component: {fileID: 1576774655}
   - component: {fileID: 1576774654}
   - component: {fileID: 1576774653}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: WiperTutCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88507,7 +88507,7 @@ GameObject:
   - component: {fileID: 1581634631}
   - component: {fileID: 1581634633}
   - component: {fileID: 1581634632}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Purity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88917,7 +88917,7 @@ GameObject:
   - component: {fileID: 1605983011}
   - component: {fileID: 1605983013}
   - component: {fileID: 1605983012}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89073,7 +89073,7 @@ GameObject:
   - component: {fileID: 1610232065}
   - component: {fileID: 1610232067}
   - component: {fileID: 1610232066}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Purity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90064,7 +90064,7 @@ GameObject:
   - component: {fileID: 1673251298}
   - component: {fileID: 1673251300}
   - component: {fileID: 1673251299}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Slot 1 info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90444,7 +90444,7 @@ GameObject:
   - component: {fileID: 1692408499}
   - component: {fileID: 1692408498}
   - component: {fileID: 1692408497}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: CloseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90801,7 +90801,7 @@ GameObject:
   - component: {fileID: 1699799184}
   - component: {fileID: 1699799183}
   - component: {fileID: 1699799187}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: IntroCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91561,7 +91561,7 @@ GameObject:
   - component: {fileID: 1719996307}
   - component: {fileID: 1719996309}
   - component: {fileID: 1719996308}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Purity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91771,7 +91771,7 @@ GameObject:
   - component: {fileID: 1736064083}
   - component: {fileID: 1736064085}
   - component: {fileID: 1736064084}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: RawImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92391,7 +92391,7 @@ GameObject:
   - component: {fileID: 1783628158}
   - component: {fileID: 1783628160}
   - component: {fileID: 1783628159}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Instructions (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92720,7 +92720,7 @@ GameObject:
   - component: {fileID: 1811359014}
   - component: {fileID: 1811359016}
   - component: {fileID: 1811359015}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Warning Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93078,7 +93078,7 @@ GameObject:
   - component: {fileID: 1817010866}
   - component: {fileID: 1817010868}
   - component: {fileID: 1817010869}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93347,7 +93347,7 @@ GameObject:
   - component: {fileID: 1833873725}
   - component: {fileID: 1833873727}
   - component: {fileID: 1833873726}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: RawImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98849,7 +98849,7 @@ GameObject:
   - component: {fileID: 1859622040}
   - component: {fileID: 1859622042}
   - component: {fileID: 1859622041}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Rock Info Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103828,7 +103828,7 @@ GameObject:
   - component: {fileID: 1872530898}
   - component: {fileID: 1872530904}
   - component: {fileID: 1872530903}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: XRCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105591,7 +105591,7 @@ GameObject:
   - component: {fileID: 1953056781}
   - component: {fileID: 1953056783}
   - component: {fileID: 1953056782}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Instructions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106364,7 +106364,7 @@ GameObject:
   - component: {fileID: 2008708707}
   - component: {fileID: 2008708709}
   - component: {fileID: 2008708708}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106500,7 +106500,7 @@ GameObject:
   - component: {fileID: 2008888137}
   - component: {fileID: 2008888139}
   - component: {fileID: 2008888138}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: RawImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108004,7 +108004,7 @@ GameObject:
   - component: {fileID: 2077708671}
   - component: {fileID: 2077708673}
   - component: {fileID: 2077708672}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: TutorialName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113072,7 +113072,7 @@ GameObject:
   - component: {fileID: 2089202723}
   - component: {fileID: 2089202722}
   - component: {fileID: 2089202721}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: CloseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114222,7 +114222,7 @@ GameObject:
   - component: {fileID: 2127041150}
   - component: {fileID: 2127041152}
   - component: {fileID: 2127041151}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114879,7 +114879,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2146650112}
   - component: {fileID: 2146650113}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DamageTutVid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
