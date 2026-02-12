@@ -70,12 +70,8 @@ public class GameManager : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth,0,maxHealth);
         if (currentHealth<= 0)
         {
-            // deathScreen.SetActive(true);
-            // player.transform.position = respawnPoint.position;
-            // currentHealth = maxHealth;
-            // restartWiper.screenDirtiness = 0;
-            // PauseGame();
-
+            PauseGame();
+            deathScreen.SetActive(true);
         }
         if (sparksMinor.isPlaying)
         {
@@ -156,5 +152,11 @@ public class GameManager : MonoBehaviour
         PauseGame();
         scannerTutorial.SetActive(true);
     }
-
+    public void Reboot()
+    {
+        player.transform.position = respawnPoint.position;
+        currentHealth = maxHealth;
+        restartWiper.screenDirtiness = 0;
+        ResumeGame();
+    }
 }

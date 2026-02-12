@@ -212,44 +212,52 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 10d38cc609a81e9439b146784aefa779, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 74.562
+      value: 75.150734
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 10d38cc609a81e9439b146784aefa779, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 304.102
+      value: 304.25494
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 10d38cc609a81e9439b146784aefa779, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -259.05
+      value: -259.12268
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 10d38cc609a81e9439b146784aefa779, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9706393
+      value: 0.6139255
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 10d38cc609a81e9439b146784aefa779, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: -0.3196172
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 10d38cc609a81e9439b146784aefa779, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.24054007
+      value: -0.48623377
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 10d38cc609a81e9439b146784aefa779, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.53340137
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 10d38cc609a81e9439b146784aefa779, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 7.254
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 10d38cc609a81e9439b146784aefa779, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 27.837
+      value: -71.007
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 10d38cc609a81e9439b146784aefa779, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 76.792
       objectReference: {fileID: 0}
+    - target: {fileID: -7096973989231447207, guid: 10d38cc609a81e9439b146784aefa779, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bea11c7b3d76a75418c3979200483b5e, type: 2}
+    - target: {fileID: -6609001934792292544, guid: 10d38cc609a81e9439b146784aefa779, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bea11c7b3d76a75418c3979200483b5e, type: 2}
     - target: {fileID: -3905148029289900243, guid: 10d38cc609a81e9439b146784aefa779, type: 3}
       propertyPath: m_Name
       value: InnerJaw
@@ -290,6 +298,18 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Wrench
       objectReference: {fileID: 0}
+    - target: {fileID: 1613470154832850438, guid: 10d38cc609a81e9439b146784aefa779, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bea11c7b3d76a75418c3979200483b5e, type: 2}
+    - target: {fileID: 1912274164703201683, guid: 10d38cc609a81e9439b146784aefa779, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bea11c7b3d76a75418c3979200483b5e, type: 2}
+    - target: {fileID: 2992768724127207208, guid: 10d38cc609a81e9439b146784aefa779, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bea11c7b3d76a75418c3979200483b5e, type: 2}
     - target: {fileID: 5936350245324894247, guid: 10d38cc609a81e9439b146784aefa779, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.11069779
@@ -417,7 +437,7 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayers:
-    m_Bits: 9
+    m_Bits: 24
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
