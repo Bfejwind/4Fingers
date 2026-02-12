@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 1296312395564901460}
   - component: {fileID: 2575890425127800209}
   - component: {fileID: 5836501251596059384}
+  - component: {fileID: 6863667758427406839}
   m_Layer: 0
   m_Name: gypsum_Sample
   m_TagString: Gypsum
@@ -366,6 +367,22 @@ MonoBehaviour:
   m_LimitAngularVelocity: 0
   m_MaxLinearVelocityDelta: 10
   m_MaxAngularVelocityDelta: 20
+--- !u!114 &6863667758427406839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5107106797854817365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c578a7418d403045b45d2dc02645ba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inSlot: 0
+  slotRotation: {x: 0, y: 0, z: 0}
+  currentSlot: {fileID: 0}
+  grabbed: 0
 --- !u!1 &5750008754023594261
 GameObject:
   m_ObjectHideFlags: 0
