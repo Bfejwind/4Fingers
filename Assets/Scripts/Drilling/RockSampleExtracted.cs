@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 public class RockSampleExtracted : MonoBehaviour
 {
     public GameObject sample;
-    public float outForce = 5f;
+    public float outForce = 1f;
     public Transform spawnOrigin;
     public ParticleSystem rockBreakVFX;
     public void SpawnSample()
