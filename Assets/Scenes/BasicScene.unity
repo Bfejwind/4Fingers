@@ -113068,6 +113068,7 @@ MonoBehaviour:
   achievementPopup: {fileID: 1465050624}
   achievementTitleText: {fileID: 873230136}
   achievementDescriptionText: {fileID: 121118356}
+  achievementIconImage: {fileID: 1379599032}
   displayDuration: 3
   fadeDuration: 0.5
   achievements:

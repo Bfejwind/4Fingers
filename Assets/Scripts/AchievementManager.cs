@@ -3,6 +3,7 @@ using TMPro;
 using System.Collections.Generic;
 using System.Collections;
 using System.Threading.Tasks;
+using UnityEngine.UI;
 
 public class AchievementManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class AchievementManager : MonoBehaviour
     public GameObject achievementPopup;
     public TMP_Text achievementTitleText;
     public TMP_Text achievementDescriptionText;
+    public UnityEngine.UI.Image achievementIconImage;
     public float displayDuration = 3f;
     public float fadeDuration = 0.5f;
     
@@ -417,9 +419,34 @@ public class AchievementManager : MonoBehaviour
     
     private void ShowAchievementPopup(Achievement achievement)
     {
-        // Update UI
+        // Update UI text
         achievementTitleText.text = achievement.title;
         achievementDescriptionText.text = achievement.description;
+        
+        // Update icon if it exists
+        if (achievementIconImage != null)
+        {
+            if (achievement.icon != null)
+            {
+                achievementIconImage.sprite = achievement.icon;
+                achievementIconImage.enabled = true;  // Make sure it's visible
+                achievementIconImage.color = Color.white; // Reset color if it was changed
+            }
+            else
+            {
+                // Optional: Hide or show default icon when no icon is assigned
+                achievementIconImage.enabled = false; // Hide if no icon
+                // OR keep enabled with default sprite
+                // achievementIconImage.sprite = defaultIcon;
+            }
+        }
+        
+        // Also set background color if you want
+        Image popupBackground = achievementPopup.GetComponent<Image>();
+        if (popupBackground != null)
+        {
+            popupBackground.color = achievement.backgroundColor;
+        }
         
         // Stop any existing coroutine
         if (currentDisplayCoroutine != null)
