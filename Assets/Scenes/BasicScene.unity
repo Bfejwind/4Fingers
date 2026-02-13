@@ -45182,6 +45182,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: smectiteDrill
       objectReference: {fileID: 0}
+    - target: {fileID: 2862939763668271402, guid: 6a9a0b3d75e553c4d99816c68a13917d, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3403451173085253814, guid: 6a9a0b3d75e553c4d99816c68a13917d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -180.74
@@ -45221,6 +45225,10 @@ PrefabInstance:
     - target: {fileID: 3403451173085253814, guid: 6a9a0b3d75e553c4d99816c68a13917d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6398179651492710900, guid: 6a9a0b3d75e553c4d99816c68a13917d, type: 3}
+      propertyPath: m_Convex
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -61967,6 +61975,14 @@ PrefabInstance:
     - target: {fileID: 6032649677822353425, guid: 48e2cc36cd5b96846bfedfe4f95f9d3f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7642665483982731652, guid: 48e2cc36cd5b96846bfedfe4f95f9d3f, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985142627902061799, guid: 48e2cc36cd5b96846bfedfe4f95f9d3f, type: 3}
+      propertyPath: m_Convex
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -92556,6 +92572,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 848276367187857771, guid: b341d4dd7b5ca9a4588d3ee6f629290b, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1411497344104474481, guid: b341d4dd7b5ca9a4588d3ee6f629290b, type: 3}
       propertyPath: m_Name
       value: smectite_Sample
@@ -92599,6 +92619,10 @@ PrefabInstance:
     - target: {fileID: 2390291710994734559, guid: b341d4dd7b5ca9a4588d3ee6f629290b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6741926581761035253, guid: b341d4dd7b5ca9a4588d3ee6f629290b, type: 3}
+      propertyPath: m_Convex
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -98920,6 +98944,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: regolith_Sample
       objectReference: {fileID: 0}
+    - target: {fileID: 5459481115956810988, guid: d31ccc47b202aa24b8aaac97ecc5aa07, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6651992078136124117, guid: d31ccc47b202aa24b8aaac97ecc5aa07, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731885467066551059, guid: d31ccc47b202aa24b8aaac97ecc5aa07, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -99844,6 +99880,14 @@ PrefabInstance:
     - target: {fileID: 6032649677822353425, guid: 48e2cc36cd5b96846bfedfe4f95f9d3f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7642665483982731652, guid: 48e2cc36cd5b96846bfedfe4f95f9d3f, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985142627902061799, guid: 48e2cc36cd5b96846bfedfe4f95f9d3f, type: 3}
+      propertyPath: m_Convex
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -102870,6 +102914,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: smectiteDrill (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2862939763668271402, guid: 6a9a0b3d75e553c4d99816c68a13917d, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3403451173085253814, guid: 6a9a0b3d75e553c4d99816c68a13917d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -182.96059
@@ -102909,6 +102957,10 @@ PrefabInstance:
     - target: {fileID: 3403451173085253814, guid: 6a9a0b3d75e553c4d99816c68a13917d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6398179651492710900, guid: 6a9a0b3d75e553c4d99816c68a13917d, type: 3}
+      propertyPath: m_Convex
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -117351,6 +117403,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7642665483982731652, guid: 48e2cc36cd5b96846bfedfe4f95f9d3f, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985142627902061799, guid: 48e2cc36cd5b96846bfedfe4f95f9d3f, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -123771,6 +123831,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gypsum_Sample
       objectReference: {fileID: 0}
+    - target: {fileID: 5437966382700883274, guid: 238f83fdd9f7db34186335363478981e, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6681666853721208642, guid: 238f83fdd9f7db34186335363478981e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -293.33414
@@ -123810,6 +123874,10 @@ PrefabInstance:
     - target: {fileID: 6681666853721208642, guid: 238f83fdd9f7db34186335363478981e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7405300949502855897, guid: 238f83fdd9f7db34186335363478981e, type: 3}
+      propertyPath: m_Convex
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -129016,6 +129084,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2862939763668271402, guid: 6a9a0b3d75e553c4d99816c68a13917d, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3403451173085253814, guid: 6a9a0b3d75e553c4d99816c68a13917d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 93.721535
@@ -129055,6 +129127,10 @@ PrefabInstance:
     - target: {fileID: 3403451173085253814, guid: 6a9a0b3d75e553c4d99816c68a13917d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6398179651492710900, guid: 6a9a0b3d75e553c4d99816c68a13917d, type: 3}
+      propertyPath: m_Convex
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -129213,6 +129289,14 @@ PrefabInstance:
     - target: {fileID: 6032649677822353425, guid: 48e2cc36cd5b96846bfedfe4f95f9d3f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7642665483982731652, guid: 48e2cc36cd5b96846bfedfe4f95f9d3f, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985142627902061799, guid: 48e2cc36cd5b96846bfedfe4f95f9d3f, type: 3}
+      propertyPath: m_Convex
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
