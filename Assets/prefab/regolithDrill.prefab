@@ -5211,33 +5211,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RightLine, Assembly-CSharp
-        m_MethodName: HoverOver
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   m_HoverExited:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RightLine, Assembly-CSharp
-        m_MethodName: HoverEnd
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_FirstSelectEntered:
     m_PersistentCalls:
       m_Calls:
@@ -5422,6 +5398,10 @@ PrefabInstance:
       propertyPath: sample
       value: 
       objectReference: {fileID: 4106679487697800562, guid: d31ccc47b202aa24b8aaac97ecc5aa07, type: 3}
+    - target: {fileID: 4659351771841161250, guid: f9f5956bc15054043b788a0c30f6a81d, type: 3}
+      propertyPath: outForce
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4659351771841161250, guid: f9f5956bc15054043b788a0c30f6a81d, type: 3}
       propertyPath: spawnOrigin
       value: 

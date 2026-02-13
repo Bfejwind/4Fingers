@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sample: {fileID: 4560817450759785707, guid: e501ab321f8c6a041824bd8dba7ac686, type: 3}
-  outForce: 5
+  outForce: 1
   spawnOrigin: {fileID: 0}
   rockBreakVFX: {fileID: 0}
 --- !u!82 &3427358779962734517

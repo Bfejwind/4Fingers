@@ -142,33 +142,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RightLine, Assembly-CSharp
-        m_MethodName: HoverOver
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   m_HoverExited:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RightLine, Assembly-CSharp
-        m_MethodName: HoverEnd
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_FirstSelectEntered:
     m_PersistentCalls:
       m_Calls:
@@ -5470,8 +5446,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   glowColor: {r: 0.20224266, g: 0.645186, b: 0.93207544, a: 1}
   glowIntensity: 2.5
-  fadeDuration: 1
-  holdTime: 1.5
+  fadeDuration: 2
+  holdTime: 2
 --- !u!135 &2027751654661716604
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5725,7 +5701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sample: {fileID: 1179552145517881513, guid: b11d9fe220f2ffb498d9229d81e4ede7, type: 3}
-  outForce: 4
+  outForce: 0.1
   spawnOrigin: {fileID: 7069081304653803019}
   rockBreakVFX: {fileID: 5853186712124653683}
 --- !u!82 &2259950895513912221
@@ -5740,7 +5716,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 19872f0adcfafe74695379f9274a12be, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.119
   m_Pitch: 1.27
   Loop: 0

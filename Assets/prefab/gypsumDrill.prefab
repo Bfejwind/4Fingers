@@ -106,7 +106,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -160605192979358844, guid: 736d0e34b572e454a9f344dfd2bd6e87, type: 3}
 --- !u!1 &5802892619036560628
@@ -272,33 +272,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RightLine, Assembly-CSharp
-        m_MethodName: HoverOver
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   m_HoverExited:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RightLine, Assembly-CSharp
-        m_MethodName: HoverEnd
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_FirstSelectEntered:
     m_PersistentCalls:
       m_Calls:
@@ -5497,7 +5473,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -160605192979358844, guid: 76870539b6ce6f542a3a39607e8a01a3, type: 3}
 --- !u!114 &5834815643815686997
@@ -5636,6 +5612,10 @@ PrefabInstance:
       propertyPath: sample
       value: 
       objectReference: {fileID: 5107106797854817365, guid: 238f83fdd9f7db34186335363478981e, type: 3}
+    - target: {fileID: 4659351771841161250, guid: f9f5956bc15054043b788a0c30f6a81d, type: 3}
+      propertyPath: outForce
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4659351771841161250, guid: f9f5956bc15054043b788a0c30f6a81d, type: 3}
       propertyPath: spawnOrigin
       value: 
