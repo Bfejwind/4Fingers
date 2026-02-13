@@ -5,57 +5,74 @@ using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine.UI;
 
+/// <summary>
+/// Manages achievements: unlocking, displaying popups, and syncing with Firebase.
+/// Implements singleton pattern for global access across scenes.
+/// </summary>
 public class AchievementManager : MonoBehaviour
 {
+    // Singleton instance for global access to the AchievementManager.
     public static AchievementManager Instance;
-    
     [Header("UI References")]
-    public GameObject achievementPopup;
-    public TMP_Text achievementTitleText;
-    public TMP_Text achievementDescriptionText;
-    public UnityEngine.UI.Image achievementIconImage;
-    public float displayDuration = 3f;
-    public float fadeDuration = 0.5f;
+    public GameObject achievementPopup;  // The popup panel GameObject that displays when an achievement is unlocked.
+    public TMP_Text achievementTitleText; // Text component for displaying the achievement title in the popup.
+    public TMP_Text achievementDescriptionText;  // Text component for displaying the achievement description in the popup.
+    public UnityEngine.UI.Image achievementIconImage;  // Image component for displaying the achievement icon in the popup.
+    public float displayDuration = 3f;  // Duration in seconds that the achievement popup remains visible.
+    public float fadeDuration = 0.5f;  // Duration in seconds for the popup fade in/out animation.
     
     [Header("Achievement Settings")]
     public List<Achievement> achievements = new List<Achievement>();
-    
-    private CanvasGroup popupCanvasGroup;
-    private Coroutine currentDisplayCoroutine;
-    private Dictionary<string, bool> unlockedAchievements = new Dictionary<string, bool>();
-    private bool isLoadingFromFirebase = false;
-    
+
+    private CanvasGroup popupCanvasGroup; // CanvasGroup for controlling popup fade in/out
+    private Coroutine currentDisplayCoroutine; // Reference to the currently running popup display coroutine
+    private Dictionary<string, bool> unlockedAchievements = new Dictionary<string, bool>(); // Tracks unlocked achievements by ID
+    private bool isLoadingFromFirebase = false; // Flag to indicate if loading from Firebase is in progress
     [System.Serializable]
     public class Achievement
     {
-        public string id; // Unique ID for the achievement
-        public string title;
-        public string description;
-        
+
+        public string id; // Unique identifier for the achievement
+        public string title; // Title of the achievement
+        public string description; // Description of the achievement
         [Header("Trigger Conditions")]
-        public AchievementType triggerType;
-        public string rockTag; // For rock-specific achievements
-        public int collectionThreshold; // Minimum collection count
-        public int infoLevelThreshold; // Minimum info level (1-3) - CHANGED FROM 1-4
-        public bool onlyOnce = true; // Can only be unlocked once
-        
+        public AchievementType triggerType; // Type of trigger for unlocking the achievement
+        public string rockTag; // Relevant rock tag for rock-specific achievements
+        public int collectionThreshold; // Number of samples required to unlock
+        public int infoLevelThreshold;  // Info level required to unlock (1-3)
+        public bool onlyOnce = true; // Whether the achievement can only be unlocked once
         [Header("Display Settings")]
-        public Sprite icon;
-        public Color backgroundColor = Color.yellow;
+        public Sprite icon; //  icon for the achievement
+        public Color backgroundColor = Color.yellow; // Default to yellow
     }
     
+    /// <summary>
+    /// Enumeration of all possible achievement trigger types.
+    /// Determines when and how an achievement is checked and unlocked.
+    /// </summary>
     public enum AchievementType
     {
-        RockMastery,        // Reach a specific info level for a rock type (1-3)
-        CollectionCount,    // Collect X number of samples
-        FirstDrill,         // First successful drill
-        PerfectDrill,       // Perfect score on any drill (100%)
-        AllRocksMastered,   // Reach info level 3 for all rock types
-        AllSamplesCollected // NEW: Collect all rock types with level 3 info
+        //  Reach a specific info level for a rock type (1-3).
+        RockMastery,
+        //  Collect X number of samples total.
+        CollectionCount,
+        //  Complete the first successful drill.
+        FirstDrill,
+        //  Achieve a perfect score (100%) on any drill.
+        PerfectDrill,
+        //  Reach info level 3 for all rock types.
+        AllRocksMastered,
+        //   Collect all rock types with level 3 info.
+        AllSamplesCollected
     }
     
+    /// <summary>
+    /// Initializes the singleton instance and sets up UI components.
+    /// Called when the script instance is being loaded.
+    /// </summary>
     void Awake()
-    {
+    {   
+        // Ensure only one instance exists
         if (Instance == null)
         {
             Instance = this;
@@ -66,22 +83,32 @@ public class AchievementManager : MonoBehaviour
             Destroy(gameObject);
         }
         
+        // Setup CanvasGroup for fading
         popupCanvasGroup = achievementPopup.GetComponent<CanvasGroup>();
         if (popupCanvasGroup == null)
         {
             popupCanvasGroup = achievementPopup.AddComponent<CanvasGroup>();
         }
         
-        achievementPopup.SetActive(false);
+        achievementPopup.SetActive(false); // Hide popup initially
     }
     
+    /// <summary>
+    /// Called before the first frame update.
+    /// Logs all achievement settings for debugging purposes.
+    /// </summary>
     void Start()
     {
         // Debug all achievement settings
         DebugAchievementSettings();
     }
     
-    // Call this when user logs in
+    /// <summary>
+    /// Loads achievement progress for a specific user from Firebase or local storage.
+    /// Should be called immediately after user login.
+    /// </summary>
+    /// <param name="userId">The unique identifier of the user. If null or empty, loads local-only achievements.</param>
+    /// <returns>Task representing the asynchronous operation.</returns>
     public async Task LoadAchievementsForUser(string userId)
     {
         if (string.IsNullOrEmpty(userId))
@@ -107,9 +134,11 @@ public class AchievementManager : MonoBehaviour
                     
                     // Sync from Firebase
                     foreach (var achievement in achievements)
-                    {
+                    {   
+                        // Check if achievement exists in Firebase data
                         if (firebaseAchievements.ContainsKey(achievement.id))
-                        {
+                        {   
+                            // Parse unlocked status
                             var achievementData = firebaseAchievements[achievement.id] as Dictionary<string, object>;
                             if (achievementData != null && achievementData.ContainsKey("unlocked"))
                             {
@@ -158,7 +187,13 @@ public class AchievementManager : MonoBehaviour
         isLoadingFromFirebase = false;
     }
     
-    // Call this when a drill is completed
+    /// <summary>
+    /// Checks and unlocks achievements related to drill completion.
+    /// Should be called whenever a drill operation is completed.
+    /// </summary>
+    /// <param name="rockTag">The tag of the rock that was drilled.</param>
+    /// <param name="score">The raw score achieved in the drill.</param>
+    /// <param name="percentage">The percentage score achieved (0-100%).</param>
     public async void CheckDrillAchievements(string rockTag, float score, float percentage)
     {   
         // Get count BEFORE incrementing for FirstDrill check
@@ -172,17 +207,21 @@ public class AchievementManager : MonoBehaviour
         // Check for info-based achievements for this specific rock
         foreach (var achievement in achievements)
         {
+            // Only check relevant achievement types
             if (ShouldCheckAchievement(achievement))
-            {
+            {   
+                // Check based on achievement type
                 switch (achievement.triggerType)
-                {
+                {   
+                    // Check for RockMastery
                     case AchievementType.RockMastery:
                         if (rockTag == achievement.rockTag && infoLevel >= achievement.infoLevelThreshold)
                         {
                             await TryUnlockAchievement(achievement.id, score);
                         }
                         break;
-                        
+
+                    // Check for FirstDrill
                     case AchievementType.FirstDrill:
                         // Check if this is the first drill (BEFORE incrementing)
                         if (totalDrillsBefore == 0)
@@ -190,7 +229,8 @@ public class AchievementManager : MonoBehaviour
                             await TryUnlockAchievement(achievement.id, score);
                         }
                         break;
-                        
+
+                    // Check for PerfectDrill
                     case AchievementType.PerfectDrill:
                         // Check if this drill was perfect (100%)
                         if (percentage >= 100f)
@@ -198,7 +238,8 @@ public class AchievementManager : MonoBehaviour
                             await TryUnlockAchievement(achievement.id, score);
                         }
                         break;
-                        
+
+                    // Check for AllRocksMastered
                     case AchievementType.AllRocksMastered:
                         // Check if ALL rocks have reached info level 3
                         if (infoLevel >= achievement.infoLevelThreshold && AreAllRocksAtInfoLevel(achievement.infoLevelThreshold))
@@ -215,7 +256,11 @@ public class AchievementManager : MonoBehaviour
         PlayerPrefs.Save();
     }
     
-    // Call this when a sample is collected
+    /// <summary>
+    /// Checks and unlocks achievements related to sample collection.
+    /// Should be called whenever a sample is collected from a rock.
+    /// </summary>
+    /// <param name="rockTag">The tag of the rock from which the sample was collected.</param>
     public async void CheckCollectionAchievements(string rockTag)
     {
         // Update collection count for this rock
@@ -231,11 +276,14 @@ public class AchievementManager : MonoBehaviour
         
         // Check collection achievements
         foreach (var achievement in achievements)
-        {
+        {   
+            // Only check relevant achievement types
             if (ShouldCheckAchievement(achievement))
-            {
+            {   
+                // Check based on achievement type
                 switch (achievement.triggerType)
-                {
+                {   
+                    // Check for CollectionCount
                     case AchievementType.CollectionCount:
                         int totalCollections = PlayerPrefs.GetInt("TotalSamplesCollected", 0);
                         if (totalCollections >= achievement.collectionThreshold)
@@ -243,7 +291,8 @@ public class AchievementManager : MonoBehaviour
                             await TryUnlockAchievement(achievement.id, 0f);
                         }
                         break;
-                        
+
+                    // Check for AllSamplesCollected
                     case AchievementType.AllSamplesCollected:
                         // Check if all rock types have been collected AND have level 3 info
                         if (AreAllSamplesCollectedWithLevel3())
@@ -256,29 +305,29 @@ public class AchievementManager : MonoBehaviour
         }
     }
     
-    // Calculate info level from percentage (0-100%)
+    /// <summary>
+    /// Calculates the info level achieved based on drill score percentage.
+    /// </summary>
+    /// <param name="percentage">Drill score percentage (0-100%).</param>
+    /// <returns>Info level: 0 (locked), 1 (basic), 2 (intermediate), or 3 (advanced).</returns>
     private int CalculateInfoLevel(float percentage)
     {
         // Info Level Breakdown (3 levels only):
-        // Level 1: 10% (Basic info unlocked) - CHANGED from >0% to 10%
-        // Level 2: 50% (More info unlocked) - CHANGED from 26% to 50%
-        // Level 3: 80% (All info unlocked) - CHANGED from 51% to 80%
-        // For testing: 2%, 5%, 10% (change these to your testing values)
-        
-        // For FINAL GAME (use these):
-        // if (percentage >= 80f) return 3;
-        // else if (percentage >= 50f) return 2;
-        // else if (percentage >= 10f) return 1;
-        // return 0;
-        
-        // For TESTING (use these):
-        if (percentage >= 10f) return 3;    // Level 3 at 10%
-        else if (percentage >= 5f) return 2;  // Level 2 at 5%
-        else if (percentage >= 2f) return 1;  // Level 1 at 2%
+        // Level 1: 10% (Basic info unlocked) 
+        // Level 2: 50% (More info unlocked)
+        // Level 3: 80% (All info unlocked) 
+
+        if (percentage >= 80f) return 3;    // Level 3 at 80%
+        else if (percentage >= 50f) return 2;  // Level 2 at 50%
+        else if (percentage >= 10f) return 1;  // Level 1 at 10%
         return 0;
     }
     
-    // Check if all rocks have reached a specific info level
+    /// <summary>
+    /// Checks if all rock types have reached a specific info level.
+    /// </summary>
+    /// <param name="targetLevel">The minimum info level required for each rock.</param>
+    /// <returns>True if all rocks meet or exceed the target level, false otherwise.</returns>
     private bool AreAllRocksAtInfoLevel(int targetLevel)
     {
         // If targetLevel is 0 or negative, return false (no achievement for level 0)
@@ -286,11 +335,13 @@ public class AchievementManager : MonoBehaviour
         
         string[] allRocks = { "Basalt", "Regolith", "Gypsum", "SmeciteClay", "CarbonateRock", "Water" };
         
+        // Check each rock's info level
         foreach (string rock in allRocks)
         {
             float percentage = PlayerPrefs.GetFloat($"RockScore_{rock}_Percentage", 0f);
             int rockLevel = CalculateInfoLevel(percentage);
             
+            // If any rock is below the target level, return false
             if (rockLevel < targetLevel)
             {
                 return false;
@@ -300,7 +351,10 @@ public class AchievementManager : MonoBehaviour
         return true;
     }
     
-    // Check if all rock types have been collected AND have level 3 info
+    /// <summary>
+    /// Checks if all rock types have been collected at least once AND have reached info level 3.
+    /// </summary>
+    /// <returns>True if all rocks meet both collection and mastery requirements, false otherwise.</returns>
     private bool AreAllSamplesCollectedWithLevel3()
     {
         string[] allRocks = { "Basalt", "Regolith", "Gypsum", "SmeciteClay", "CarbonateRock", "Water" };
@@ -326,12 +380,22 @@ public class AchievementManager : MonoBehaviour
         return true;
     }
     
-    // Call this when total score is updated (kept for compatibility)
+    /// <summary>
+    /// Checks and unlocks achievements related to total score.
+    /// Kept for compatibility with legacy systems; currently not used.
+    /// </summary>
+    /// <param name="totalScore">The total cumulative score.</param>
     public async void CheckTotalScoreAchievements(float totalScore)
     {
         // Not used in info-based system, but kept for compatibility
     }
     
+    /// <summary>
+    /// Determines whether an achievement should be checked for unlocking.
+    /// Considers if it's already unlocked and if it can only be unlocked once.
+    /// </summary>
+    /// <param name="achievement">The achievement to evaluate.</param>
+    /// <returns>True if the achievement should be checked, false if it should be skipped.</returns>
     private bool ShouldCheckAchievement(Achievement achievement)
     {
         // Skip if already unlocked and onlyOnce is true
@@ -345,9 +409,18 @@ public class AchievementManager : MonoBehaviour
         return true;
     }
     
+    /// <summary>
+    /// Attempts to unlock an achievement by ID.
+    /// Checks Firebase for current unlock status, saves if newly unlocked, and displays popup.
+    /// </summary>
+    /// <param name="achievementId">The unique ID of the achievement to unlock.</param>
+    /// <param name="score">The score associated with the achievement unlock.</param>
+    /// <returns>Task representing the asynchronous operation.</returns>
     private async Task TryUnlockAchievement(string achievementId, float score = 0f)
-    {
+    {   
+        // Find the achievement
         Achievement achievement = achievements.Find(a => a.id == achievementId);
+        // Safety check
         if (achievement == null)
         {
             Debug.LogWarning($"Achievement with ID {achievementId} not found!");
@@ -361,6 +434,7 @@ public class AchievementManager : MonoBehaviour
             {
                 bool alreadyUnlocked = await DatabaseManager.Instance.IsAchievementUnlocked(achievementId);
                 
+                // If not unlocked yet
                 if (!alreadyUnlocked)
                 {
                     // Mark as unlocked locally
@@ -369,6 +443,7 @@ public class AchievementManager : MonoBehaviour
                     // Save to Firebase
                     bool success = await DatabaseManager.Instance.UnlockAchievement(achievementId, score);
                     
+                    // If successfully saved to Firebase
                     if (success)
                     {
                         // Also save locally with user-specific key
@@ -405,6 +480,12 @@ public class AchievementManager : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// Unlocks an achievement using only local storage (PlayerPrefs).
+    /// Used as fallback when Firebase is unavailable.
+    /// </summary>
+    /// <param name="achievement">The achievement to unlock.</param>
+    /// <param name="score">Optional score associated with the achievement.</param>
     private void UnlockAchievementLocal(Achievement achievement, float score)
     {
         unlockedAchievements[achievement.id] = true;
@@ -417,6 +498,11 @@ public class AchievementManager : MonoBehaviour
         Debug.Log($"Achievement Unlocked (Local): {achievement.title}");
     }
     
+    /// <summary>
+    /// Displays the achievement unlocked popup UI with fade animation.
+    /// Updates all UI elements with the achievement's data.
+    /// </summary>
+    /// <param name="achievement">The achievement that was unlocked.</param>
     private void ShowAchievementPopup(Achievement achievement)
     {
         // Update UI text
@@ -434,10 +520,7 @@ public class AchievementManager : MonoBehaviour
             }
             else
             {
-                // Optional: Hide or show default icon when no icon is assigned
                 achievementIconImage.enabled = false; // Hide if no icon
-                // OR keep enabled with default sprite
-                // achievementIconImage.sprite = defaultIcon;
             }
         }
         
@@ -458,6 +541,10 @@ public class AchievementManager : MonoBehaviour
         currentDisplayCoroutine = StartCoroutine(DisplayPopupCoroutine());
     }
     
+    /// <summary>
+    /// Coroutine that handles the popup fade in, display, and fade out animation.
+    /// </summary>
+    /// <returns>IEnumerator for Unity coroutine system.</returns>
     private IEnumerator DisplayPopupCoroutine()
     {
         // Fade in
@@ -490,10 +577,16 @@ public class AchievementManager : MonoBehaviour
         currentDisplayCoroutine = null;
     }
     
+    /// <summary>
+    /// Loads achievement progress from local PlayerPrefs storage.
+    /// Can load either user-specific or device-global progress.
+    /// </summary>
+    /// <param name="userId">Optional user ID for loading user-specific progress.</param>
     private void LoadLocalAchievementProgress(string userId = null)
     {
-        unlockedAchievements.Clear();
+        unlockedAchievements.Clear(); // Clear current data
         
+        // Load from PlayerPrefs
         foreach (var achievement in achievements)
         {
             string key;
@@ -525,14 +618,21 @@ public class AchievementManager : MonoBehaviour
         Debug.Log("Loaded local achievement progress");
     }
     
-    // Helper method to check if an achievement is unlocked
+    /// <summary>
+    /// Checks if a specific achievement has been unlocked.
+    /// </summary>
+    /// <param name="achievementId">The unique ID of the achievement to check.</param>
+    /// <returns>True if the achievement is unlocked, false otherwise.</returns>
     public bool IsAchievementUnlocked(string achievementId)
     {
         return unlockedAchievements.ContainsKey(achievementId) && 
                unlockedAchievements[achievementId];
     }
     
-    // Get all unlocked achievement IDs
+    /// <summary>
+    /// Gets a list of all unlocked achievement IDs.
+    /// </summary>
+    /// <returns>List of achievement IDs that have been unlocked.</returns>
     public List<string> GetUnlockedAchievementIds()
     {
         List<string> unlocked = new List<string>();
@@ -546,7 +646,11 @@ public class AchievementManager : MonoBehaviour
         return unlocked;
     }
     
-    // Reset achievements (for testing)
+    /// <summary>
+    /// Resets all achievements to locked state.
+    /// Primarily used for testing purposes.
+    /// </summary>
+    /// <param name="userId">Optional user ID to clear user-specific save data.</param>
     public void ResetAchievements(string userId = null)
     {
         unlockedAchievements.Clear();
@@ -570,6 +674,10 @@ public class AchievementManager : MonoBehaviour
         Debug.Log("Achievements reset");
     }
 
+    /// <summary>
+    /// Checks and logs the current drill count for new users.
+    /// Used to verify drill tracking is working correctly.
+    /// </summary>
     public void ResetDrillCountForNewUser()
     {
         // Check if this is a completely new user
@@ -583,7 +691,10 @@ public class AchievementManager : MonoBehaviour
         }
     }
 
-    // Public method to manually reset drill count
+    /// <summary>
+    /// Manually resets the total drill count to zero.
+    /// Useful for testing and debugging drill-related achievements.
+    /// </summary>
     public void ResetDrillCount()
     {
         PlayerPrefs.DeleteKey("TotalDrills");
@@ -591,10 +702,14 @@ public class AchievementManager : MonoBehaviour
         Debug.Log("RESET: TotalDrills set to 0");
     }
     
-    // NEW: Debug method to check achievement settings
+    /// <summary>
+    /// Logs all achievement settings to the Unity Console for debugging.
+    /// Displays ID, trigger type, rock tag, level requirement, and collection requirement.
+    /// </summary>
     private void DebugAchievementSettings()
     {
-        Debug.Log("=== ACHIEVEMENT SETTINGS ===");
+        // Log all achievement settings
+        Debug.Log("Achievement Settings:");
         foreach (var a in achievements)
         {
             Debug.Log($"{a.id}: Type={a.triggerType}, Rock='{a.rockTag}', LevelReq={a.infoLevelThreshold}, CollectionReq={a.collectionThreshold}");
