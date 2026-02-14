@@ -98,11 +98,6 @@ public class DatabaseManager : MonoBehaviour
                 },
                 ["samples"] = new Dictionary<string, object>
                 {
-                    ["water"] = new Dictionary<string, object>
-                    {
-                        ["amount"] = 0,
-                        ["highScore"] = 0f
-                    },
                     ["regolith"] = new Dictionary<string, object>
                     {
                         ["amount"] = 0,
@@ -195,12 +190,6 @@ public class DatabaseManager : MonoBehaviour
                 ["score"] = 0f
             },
             ["carbonateMaster"] = new Dictionary<string, object>
-            {
-                ["unlocked"] = false,
-                ["unlockDate"] = "",
-                ["score"] = 0f
-            },
-            ["waterMaster"] = new Dictionary<string, object>
             {
                 ["unlocked"] = false,
                 ["unlockDate"] = "",
@@ -475,9 +464,6 @@ public class DatabaseManager : MonoBehaviour
                 case "Basalt":
                     firebaseKey = "basalt";
                     break;
-                case "Water":
-                    firebaseKey = "water";
-                    break;
                 case "Regolith":
                     firebaseKey = "regolith";
                     break;
@@ -556,9 +542,6 @@ public class DatabaseManager : MonoBehaviour
         {
             case "Basalt":
                 firebaseKey = "basalt";
-                break;
-            case "Water":
-                firebaseKey = "water";
                 break;
             case "Regolith":
                 firebaseKey = "regolith";

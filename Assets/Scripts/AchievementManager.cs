@@ -333,7 +333,7 @@ public class AchievementManager : MonoBehaviour
         // If targetLevel is 0 or negative, return false (no achievement for level 0)
         if (targetLevel <= 0) return false;
         
-        string[] allRocks = { "Basalt", "Regolith", "Gypsum", "SmeciteClay", "CarbonateRock", "Water" };
+        string[] allRocks = { "Basalt", "Regolith", "Gypsum", "SmeciteClay", "CarbonateRock" };
         
         // Check each rock's info level
         foreach (string rock in allRocks)
@@ -357,7 +357,7 @@ public class AchievementManager : MonoBehaviour
     /// <returns>True if all rocks meet both collection and mastery requirements, false otherwise.</returns>
     private bool AreAllSamplesCollectedWithLevel3()
     {
-        string[] allRocks = { "Basalt", "Regolith", "Gypsum", "SmeciteClay", "CarbonateRock", "Water" };
+        string[] allRocks = { "Basalt", "Regolith", "Gypsum", "SmeciteClay", "CarbonateRock" };
         
         foreach (string rock in allRocks)
         {
