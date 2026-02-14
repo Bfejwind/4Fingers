@@ -11887,15 +11887,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 121118354}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.05400084}
-  m_LocalScale: {x: 0.0015751993, y: 0.0020224974, z: 0.0030835061}
+  m_LocalPosition: {x: 0, y: 0, z: -0.089526}
+  m_LocalScale: {x: 0.003323828, y: 0.0042676716, z: 0.0065065064}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1465050625}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.1306, y: -0.29499748}
+  m_AnchoredPosition: {x: -0.17237552, y: -0.5988088}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &121118356
@@ -11952,7 +11952,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -59680,15 +59680,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 873230134}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.054}
-  m_LocalScale: {x: 0.0013740862, y: 0.0017819183, z: 0.0026898205}
+  m_LocalPosition: {x: 0, y: 0, z: -0.089525}
+  m_LocalScale: {x: 0.0028994593, y: 0.0037600258, z: 0.0056757904}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1465050625}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0707, y: -0.224}
+  m_AnchoredPosition: {x: -0.17153552, y: -0.449}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &873230136
@@ -59745,7 +59745,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -91261,15 +91261,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1379599030}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.01}
-  m_LocalScale: {x: 0.44323236, y: 0.65487003, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.045533}
+  m_LocalScale: {x: 0.9352646, y: 1.3818413, z: 2.1101}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1465050625}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.018, y: 0.154}
+  m_AnchoredPosition: {x: -0.008, y: 0.28226}
   m_SizeDelta: {x: 0.7, y: 0.82}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1379599032
@@ -97376,7 +97376,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 22
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1465050625
 RectTransform:
   m_ObjectHideFlags: 0
@@ -119636,16 +119636,6 @@ MonoBehaviour:
     onlyOnce: 1
     icon: {fileID: 21300000, guid: bc150466e8030dc4b98301d5f03dc213, type: 3}
     backgroundColor: {r: 0, g: 0, b: 0, a: 0}
-  - id: waterMaster
-    title: Hydration Expert
-    description: 'Master drilling Water '
-    triggerType: 0
-    rockTag: Water
-    collectionThreshold: 0
-    infoLevelThreshold: 3
-    onlyOnce: 1
-    icon: {fileID: 21300000, guid: a386b84dd37d5a64a9427e7f3c7821b5, type: 3}
-    backgroundColor: {r: 0, g: 0, b: 0, a: 0}
   - id: allRocksMastered
     title: Geology Master
     description: Master ALL rock types (100% on each)
@@ -135217,6 +135207,10 @@ PrefabInstance:
     - target: {fileID: 2589734920712345642, guid: 6a9a0b3d75e553c4d99816c68a13917d, type: 3}
       propertyPath: m_Name
       value: smectite-lod (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2589734920712345642, guid: 6a9a0b3d75e553c4d99816c68a13917d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3403451173085253814, guid: 6a9a0b3d75e553c4d99816c68a13917d, type: 3}
       propertyPath: m_LocalPosition.x
