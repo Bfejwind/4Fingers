@@ -110,11 +110,11 @@ public class RockInfoDisplay : MonoBehaviour
         
         int newLevel = 0;
         
-        if (scorePercentage >= 10f)
+        if (scorePercentage >= 80f)
             newLevel = 3;
-        else if (scorePercentage >= 5f)
+        else if (scorePercentage >= 50f)
             newLevel = 2;
-        else if (scorePercentage >= 2f)
+        else if (scorePercentage >= 10f)
             newLevel = 1;
         
         if (newLevel > info.unlockedLevel)
