@@ -10,6 +10,8 @@ public class SampleChecker : MonoBehaviour
     public AudioSource answerSFX;
     public AudioClip correctSFX;
     public AudioClip wrongSFX;
+    private int samplesCorrect = 0;
+    private int maxSamplesCorrect = 5;
     void Awake()
     {
         correctSample = gameObject.name.Split("_")[1];
@@ -28,6 +30,11 @@ public class SampleChecker : MonoBehaviour
         {
             correct.Play();
             answerSFX.PlayOneShot(correctSFX);
+            samplesCorrect++;
+            if (samplesCorrect == maxSamplesCorrect)
+            {
+                
+            }
         }
         else
         {
