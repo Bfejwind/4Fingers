@@ -33,7 +33,7 @@ public class SampleChecker : MonoBehaviour
             samplesCorrect++;
             if (samplesCorrect == maxSamplesCorrect)
             {
-                
+                GameManager.Instance.EnableWinCanvas();
             }
         }
         else

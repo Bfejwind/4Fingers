@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -25,6 +27,8 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public Transform respawnPoint;
     public WiperBehaviour restartWiper;
+    public GameObject transitScreen;
+    public GameObject winCanvas;
 
     private void Awake()
     {
@@ -55,6 +59,7 @@ public class GameManager : MonoBehaviour
         wiperTutorial.SetActive(false);
         scannerTutorial.SetActive(false);
         deathScreen.SetActive(false);
+        winCanvas.SetActive(false);
     }
     public void TakeDamage(float dmg)
     {
@@ -158,5 +163,26 @@ public class GameManager : MonoBehaviour
         currentHealth = maxHealth;
         restartWiper.screenDirtiness = 0;
         ResumeGame();
+    }
+    public void EnableWinCanvas()
+    {
+        winCanvas.SetActive(true);
+    }
+    public void WinScenario()
+    {
+        StartCoroutine(TransitScene());
+        SceneManager.LoadScene("EndingScene");
+    }
+    IEnumerator TransitScene()
+    {
+        transitScreen.SetActive(true);
+        PauseGame();
+        yield return new WaitForSeconds(2.0f);
+        ResumeGame();
+        transitScreen.SetActive(false);
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
