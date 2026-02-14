@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 7574387978659557191}
   - component: {fileID: 4476756222842408467}
   - component: {fileID: 6673988299078275068}
+  - component: {fileID: -1370880408758038599}
   m_Layer: 0
   m_Name: smectite-lod (1)
   m_TagString: Untagged
@@ -193,6 +194,22 @@ LODGroup:
     renderers:
     - renderer: {fileID: 351800025311054288}
   m_Enabled: 1
+--- !u!114 &-1370880408758038599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8215347987639269168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b291b7243fca8c41a8f03ceebae1e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glowColor: {r: 0.20392157, g: 0.64705884, b: 0.93333334, a: 1}
+  glowIntensity: 2.6
+  fadeDuration: 2
+  holdTime: 2
 --- !u!1 &8984840131342712310
 GameObject:
   m_ObjectHideFlags: 0
