@@ -30,7 +30,7 @@ public class IntroSequenceManager : MonoBehaviour
     {
         // --- PART 1: WARNING ---
         warningPanel.SetActive(true);
-        //GameManager.Instance.PauseGame();
+        GameManager.Instance.PauseGame();
         float timer = 0f;
 
         while (timer < warningDuration)
@@ -63,6 +63,6 @@ public class IntroSequenceManager : MonoBehaviour
 
         subtitleText.text = "";
         Debug.Log("Intro sequence complete.");
-        //GameManager.Instance.ResumeGame();
+        GameManager.Instance.ResumeGame();
     }
 }

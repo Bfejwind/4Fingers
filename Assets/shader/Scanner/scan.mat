@@ -98,6 +98,6 @@ Material:
     - _range: 200
     m_Colors:
     - _Color: {r: 0, g: 0.7363053, b: 1.9053557, a: 0}
-    - _position: {r: 74.63575, g: 303.76224, b: -259.1742, a: 0}
+    - _position: {r: -226.48721, g: 312.13083, b: 176.61633, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

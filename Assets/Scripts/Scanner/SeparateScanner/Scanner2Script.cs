@@ -16,7 +16,7 @@ public class Scanner2Script : MonoBehaviour
         ActivateScanner.action.started += ScanTerrain;
         scanSphere.SetActive(false);
         ScannerReady = true;
-        resetCooldown = 10.0f;
+        resetCooldown = 3.0f;
         cooldown = resetCooldown;
     }
     void Update()

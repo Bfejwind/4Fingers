@@ -22,7 +22,7 @@ public class LiftMovement : MonoBehaviour
     {
         transitScreen.SetActive(true);
         GameManager.Instance.PauseGame();
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSecondsRealtime(2.0f);
         GameManager.Instance.ResumeGame();
         transitScreen.SetActive(false);
     }

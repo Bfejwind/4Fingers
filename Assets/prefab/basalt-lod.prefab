@@ -5447,7 +5447,7 @@ MonoBehaviour:
   glowColor: {r: 0.20224266, g: 0.645186, b: 0.93207544, a: 1}
   glowIntensity: 2.5
   fadeDuration: 2
-  holdTime: 2
+  holdTime: 10
 --- !u!135 &2027751654661716604
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5494,7 +5494,7 @@ Transform:
   m_GameObject: {fileID: 8439841713984672748}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.949, z: 0}
+  m_LocalPosition: {x: 0, y: 1.27, z: -0.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

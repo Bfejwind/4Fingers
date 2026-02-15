@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     public Transform respawnPoint;
     public WiperBehaviour restartWiper;
     public GameObject transitScreen;
+    public int samplesCorrect = 0;
+    private int maxSamples = 5;
     public GameObject winCanvas;
 
     private void Awake()
@@ -164,6 +166,14 @@ public class GameManager : MonoBehaviour
         restartWiper.screenDirtiness = 0;
         ResumeGame();
     }
+    public void SampleChecker()
+    {
+        samplesCorrect++;
+        if (samplesCorrect == maxSamples)
+        {
+            EnableWinCanvas();
+        }
+    }
     public void EnableWinCanvas()
     {
         winCanvas.SetActive(true);
@@ -177,7 +187,7 @@ public class GameManager : MonoBehaviour
     {
         transitScreen.SetActive(true);
         PauseGame();
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSecondsRealtime(2.0f);
         ResumeGame();
         transitScreen.SetActive(false);
     }

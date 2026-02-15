@@ -5491,7 +5491,7 @@ MonoBehaviour:
   glowColor: {r: 0.20392157, g: 0.64705884, b: 0.93333334, a: 1}
   glowIntensity: 2.6
   fadeDuration: 2
-  holdTime: 2
+  holdTime: 10
 --- !u!135 &4241145957318806347
 SphereCollider:
   m_ObjectHideFlags: 0
