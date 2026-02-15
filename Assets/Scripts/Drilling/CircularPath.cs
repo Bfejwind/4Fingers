@@ -189,10 +189,6 @@ public class CircularPath : MonoBehaviour
                 basePoints = 500;
                 dbRockTag = "Carbonate_Rock"; // Convert to database format
                 break;
-            case "Water": 
-                basePoints = -500;
-                dbRockTag = "Water";
-                break;
             default:
                 Debug.LogWarning($"Unknown rock tag in switch: {currentRockTag}");
                 basePoints = 0;
