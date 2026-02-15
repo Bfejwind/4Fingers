@@ -5,6 +5,7 @@
 <p>This application is a VR simulation where players take on the role of a planetary rover exploring the surface of Mars to collect geological samples and assess the planet’s potential habitability. Players investigate rocks, perform scans, and analyze environmental clues while navigating hazards such as dust storms that threaten visibility and progress. Throughout the experience, users must solve science-based puzzles using information discovered during exploration. The core objective of the simulation is to educate Secondary School students about Martian geology, environmental conditions, and the scientific process used in planetary exploration.</p>
 
 <h1>Movement & Camera</h1>
+
 | Input            | Action                  |
 | ---------------- | ----------------------- |
 | Left Thumbstick  | Player movement         |
